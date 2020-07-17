@@ -1,0 +1,57 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "commonjs": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:vue/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "parser": "@typescript-eslint/parser"
+    },
+    "plugins": [
+        "vue",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "vue/html-closing-bracket-newline": [
+            2,
+            {
+                "multiline": "never"
+            }
+        ],
+        "no-unused-vars": 0,
+        "multiline": 0,
+        "no-var": 2,
+        "indent": [2, 2],
+        "space-in-parens": [
+            2,
+            "never"
+        ],
+        "no-console": 0,
+        "computed-property-spacing": 2,
+        "no-multiple-empty-lines": [
+            2,
+            {
+                "max": 1
+            }
+        ],
+        "func-call-spacing": [
+            2,
+            "never"
+        ],
+        "semi": [
+            2,
+            "never"
+        ]
+    }
+}
