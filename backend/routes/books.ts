@@ -1,12 +1,13 @@
-const express = require("express");
+import express from 'express';
+
 const router = express.Router();
 // const paymentController = require("../controllers/paymentController");
 
 // router.get("/list", paymentController.index);
 // router.get("/", paymentController.get);
 // router.post("/", paymentController.create);
-router.get("/", (req,res) => {
-  res.json('おはよう')
+router.get('/', (req: any, res: any) => {
+  res.json('おはよう');
 });
 
-module.exports = router;
+export default router;
