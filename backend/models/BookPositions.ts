@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -12,11 +13,11 @@ export class BookPositions extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number | undefined;
 
-  @Column()
-  public name: string = '';
+  @Column('integer')
+  public column_no: number | undefined;
 
-  @Column()
-  public description: string = '';
+  @Column('integer')
+  public row_no: number | undefined;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date = new Date();

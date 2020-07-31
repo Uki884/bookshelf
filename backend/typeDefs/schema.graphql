@@ -1,5 +1,7 @@
 # import Book from "./models/Book.graphql"
 # import Query from "Query.graphql"
+# import BookShelf from './models/BookShelf.graphql'
+# import BookPosition from './models/BookPosition.graphql'
 
 schema {
   query: Query
