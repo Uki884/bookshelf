@@ -1,20 +1,20 @@
 // expressモジュールを読み込む
 import express from 'express';
 
-// ルート読み込み
-import bodyParser from 'body-parser';
-import routes from './routes/index';
+import { importSchema } from 'graphql-import';
 
-// クライアントから送られてきたjsonデータを取得できるようにする
+const { ApolloServer } = require('apollo-server-express');
 
-// expressアプリを生成する
+const typeDefs = importSchema('./typeDefs/schema.graphql');
+
+// TODO 別ファイルに移す
+const resolvers = {
+
+};
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
 const app = express();
+server.applyMiddleware({ app });
 
-// body-parserの設定
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-app.use('/api', routes);
-
-const port = process.env.PORT || 8000;
-app.listen(port, () => console.log(`listening on ${port}`));
+app.listen({ port: 4000 }, () => console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`));
