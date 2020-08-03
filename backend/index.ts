@@ -3,6 +3,8 @@ import express from 'express';
 
 import { importSchema } from 'graphql-import';
 
+import { dbconnect } from '@/dbConnect';
+
 const { ApolloServer } = require('apollo-server-express');
 
 const typeDefs = importSchema('./typeDefs/schema.graphql');
@@ -11,6 +13,8 @@ const typeDefs = importSchema('./typeDefs/schema.graphql');
 const resolvers = {
 
 };
+
+dbconnect();
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
