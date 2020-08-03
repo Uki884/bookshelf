@@ -5,6 +5,7 @@ import { importSchema } from 'graphql-import';
 
 import { dbconnect } from '@/dbConnect';
 import resolvers from '@/resolvers/index';
+import models from '@/models/index';
 
 const { ApolloServer } = require('apollo-server-express');
 
@@ -13,7 +14,13 @@ const typeDefs = importSchema('./typeDefs/schema.graphql');
 
 dbconnect();
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: {
+    ...models,
+  },
+});
 
 const app = express();
 server.applyMiddleware({ app });

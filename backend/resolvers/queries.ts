@@ -1,5 +1,3 @@
 export const Query = {
-  books: (_, __, context) => {
-    console.log(context);
-  },
+  books: (_, __, { Books }) => Books.find(),
 };
