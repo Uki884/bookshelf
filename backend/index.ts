@@ -4,15 +4,12 @@ import express from 'express';
 import { importSchema } from 'graphql-import';
 
 import { dbconnect } from '@/dbConnect';
+import resolvers from '@/resolvers/index';
 
 const { ApolloServer } = require('apollo-server-express');
 
 const typeDefs = importSchema('./typeDefs/schema.graphql');
-
 // TODO 別ファイルに移す
-const resolvers = {
-
-};
 
 dbconnect();
 
