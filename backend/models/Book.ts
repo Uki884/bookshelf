@@ -40,21 +40,21 @@ export class Book extends BaseEntity {
   public image: string = '';
 
   @Column()
-  public bookPostionId: number | undefined;
+  public bookPositionId: number | undefined;
 
-  @OneToOne(() => BookPosition)
+  @OneToOne((type) => BookPosition)
   @JoinColumn([
     {
-      name: 'bookPostionId',
+      name: 'bookPositionId',
       referencedColumnName: 'id',
     },
   ])
-  bookPostion: BookPosition | undefined;
+  bookPosition: BookPosition | undefined;
 
   @ManyToOne((type) => BookShelf, (bookShelf) => bookShelf.books)
   bookshelf!: BookShelf;
 
-  @CreateDateColumn({ name: 'created_at' })
+  @CreateDateColumn({ name: 'e5td;  created_at' })
   createdAt: Date = new Date();
 
   @UpdateDateColumn({ name: 'updated_at' })

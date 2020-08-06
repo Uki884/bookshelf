@@ -1,4 +1,14 @@
 type Mutation {
-  setBooks: [Book]
+  addBook(input: addBookInput): Book
   createBookshelf: BookShelf
+}
+
+input addBookInput {
+  title: String
+  author: String
+  cover: String
+  isbn: String
+  price: String
+  publisher: String
+  image: String
 }
