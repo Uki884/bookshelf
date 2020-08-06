@@ -5,33 +5,24 @@ import {
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
+import { BookShelf } from '@/models/BookShelf';
+
 @Entity()
-export class Books extends BaseEntity {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number | undefined;
 
   @Column()
-  public title: string = '';
+  public name: string = '';
 
   @Column()
-  public author: string = '';
+  public email: string = '';
 
-  @Column()
-  public cover: string = '';
-
-  @Column()
-  public isbn: string = '';
-
-  @Column()
-  public price: string = '';
-
-  @Column()
-  public publisher: string = '';
-
-  @Column()
-  public image: string = '';
+  @OneToMany((type) => BookShelf, (bookshelf) => bookshelf.user)
+  bookShelf: BookShelf[] | undefined;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date = new Date();
@@ -40,4 +31,4 @@ export class Books extends BaseEntity {
   updatedAt: Date = new Date();
 }
 
-export default Books;
+export default User;

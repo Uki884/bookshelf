@@ -10,7 +10,7 @@
     "build": "rm -rf ./dist && tsc --allowSyntheticDefaultImports",
     "lint": "eslint --fix './**/*.ts' --ignore-path .gitignore",
     "start": "nodemon",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ormconfig.json"
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ormconfig.ts"
   },
   "author": "",
   "license": "ISC",

@@ -5,10 +5,15 @@ import {
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  JoinColumn,
+  OneToOne,
 } from 'typeorm';
 
+import { Book } from '@/models/Book';
+
 @Entity()
-export class BookPositions extends BaseEntity {
+export class BookPosition extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number | undefined;
 
@@ -25,4 +30,4 @@ export class BookPositions extends BaseEntity {
   updatedAt: Date = new Date();
 }
 
-export default BookPositions;
+export default BookPosition;

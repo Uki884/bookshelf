@@ -1,7 +1,9 @@
-import { Books } from '@/models/Books.ts';
-import { BookShelfs } from '@/models/BookShelfs.ts';
+import { Book } from '@/models/Book';
+import { BookShelf } from '@/models/BookShelf';
+import { BookPosition } from '@/models/BookPosition';
 
 export default {
-  BookShelfs,
-  Books,
+  BookShelf,
+  Book,
+  BookPosition,
 };

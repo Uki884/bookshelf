@@ -5,10 +5,15 @@ import {
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  ManyToOne,
 } from 'typeorm';
+import { Book } from '@/models/Book';
+
+import { User } from '@/models/User';
 
 @Entity()
-export class BookShelfs extends BaseEntity {
+export class BookShelf extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number | undefined;
 
@@ -18,6 +23,12 @@ export class BookShelfs extends BaseEntity {
   @Column()
   public description: string = '';
 
+  @OneToMany((type) => Book, (book) => book.bookshelf)
+  books: Book[] | undefined;
+
+  @ManyToOne((type) => User, (user) => user.bookShelf)
+  user!: User;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date = new Date();
 
@@ -25,4 +36,4 @@ export class BookShelfs extends BaseEntity {
   updatedAt: Date = new Date();
 }
 
-export default BookShelfs;
+export default BookShelf;
