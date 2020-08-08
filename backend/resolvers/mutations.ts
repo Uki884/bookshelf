@@ -10,11 +10,11 @@ export const Mutation = {
     return result;
   },
   // 本棚作成
-  createBookshelf: async (_, { input }, { BookShelf }) => {
+  createBookshelf: async (_, { input }, { BookShelf, currentUser }) => {
     const bookshelf = await BookShelf.create({ ...input });
-    console.log(bookshelf);
-    await bookshelf.save();
-    return bookshelf;
+    bookshelf.user = currentUser;
+    const data = await bookshelf.save();
+    return data;
   },
   createUser: async (_, { input }, { User }) => {
     const user = await User.findOne({ auth0Id: input.auth0Id });

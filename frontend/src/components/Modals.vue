@@ -18,9 +18,31 @@ import {
   onMounted,
   watch
 } from "@vue/composition-api"
+
 import { useGrobalStore } from '@/store/grobalStore.ts'
 
+import Barcode from "@/components/Modal/Book/AddBookBarcode.vue"
+import Search from "@/components/Modal/Book/AddBookSearch.vue"
+import DeleteBook from "@/components/Modal/Book/DeleteBook.vue"
+import DeleteBookShelf from '@/components/Modal/BookShelf/DeleteBookShelf.vue'
+import AddBookShelf from '@/components/Modal/BookShelf/AddBookShelf.vue'
+import ChangeBookPositionComfirm from "@/components/Modal/ChangePosition/changeBookPositionComfirm.vue"
+import ChooseAddBookType from '@/components/Modal/Book/ChooseAddBookType.vue'
+import SelectBook from "@/components/Modal/Book/SelectBook.vue"
+import BookDetail from "@/components/Modal/Book/BookDetail.vue"
+
 export default defineComponent({
+  components: {
+    AddBookShelf,
+    Barcode,
+    Search,
+    DeleteBook,
+    DeleteBookShelf,
+    ChangeBookPositionComfirm,
+    ChooseAddBookType,
+    SelectBook,
+    BookDetail
+  },
   props: {
     item: {
       type: [Object, Array],

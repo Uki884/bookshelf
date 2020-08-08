@@ -21,7 +21,7 @@ const server = new ApolloServer({
   context: async ({ req }) => {
     const token = req.headers.authorization || '';
     return {
-      currentUser: verifyJwtToken(token),
+      currentUser: await verifyJwtToken(token),
       ...models,
     };
   },

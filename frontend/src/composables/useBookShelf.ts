@@ -9,7 +9,8 @@ import {
 import { RepositoryFactory } from "@/api/Factory/index.js"
 import BookUtil from "@/utils/BookUtli"
 import { useGrobalStore } from "@/store/grobalStore.ts"
-
+import { CREATE_BOOKSHELF } from '@/apollo/mutations/createBookShelf.ts'
+import { GET_USER_BOOKSHELFS } from '@/apollo/queries/getUserBookshelfs.ts'
 const BOOKSHELF_SELECT_MENU = [
   { id: 1, name: "本を追加/削除" },
   { id: 2, name: "本の位置を変更" },
@@ -39,8 +40,6 @@ const swiperOption = {
 }
 
 export default function useBookShelf(context: SetupContext) {
-  const userRepository = RepositoryFactory.get("user")
-
   const state: any = reactive({
     bookShelfs: [],
     editBookPositions: []
@@ -61,6 +60,24 @@ export default function useBookShelf(context: SetupContext) {
       return BookUtil.setBookShelf(item)
     })
     bookShelfs.value = bookShelf
+  }
+
+  const useCreateBookShelf = async (input: any) => {
+    const variables = { input }
+    const data = await context.root.$apollo.mutate({
+      mutation: CREATE_BOOKSHELF,
+      variables,
+    })
+    console.log("useCreateBookShelf", data)
+  }
+
+  const useGetUserBookShelf = async (input: any) => {
+    const variables = { input }
+    const data = await context.root.$apollo.query({
+      query: GET_USER_BOOKSHELFS,
+      variables,
+    })
+    console.log("useCreateBookShelf", data)
   }
 
   const useHandleChangePositionMode = (state: any, flag: boolean) => {
@@ -113,5 +130,7 @@ export default function useBookShelf(context: SetupContext) {
     useAddBookShelfRow,
     useSaveBooksPosition,
     useSetBookPosition,
-  }
+    useCreateBookShelf,
+    useGetUserBookShelf,
+  };
 }

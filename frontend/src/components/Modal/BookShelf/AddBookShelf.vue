@@ -49,9 +49,8 @@ export default defineComponent({
   setup(props: any, context: SetupContext) {
 
     const { user } = useUserStore()
-    const { useGetUserBookShelf } = useBookShelfStore()
+    const { useCreateBookShelf, useGetUserBookShelf } = useBookShelfStore()
     const { closeModal } = useGrobalStore()
-
     const state = reactive({
       input: {
         name: {
@@ -74,8 +73,7 @@ export default defineComponent({
       const result = validation(state.input)
       if (result.validStatus) {
         const payload = requestInput(state.input)
-        context.root.$store.dispatch('book/addBookShelf', {...payload, user: user.value.id })
-        await useGetUserBookShelf(user.value.id)
+        await useCreateBookShelf(payload)
         await closeModal()
       }
     }
