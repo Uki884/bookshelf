@@ -9,10 +9,17 @@ export const GET_USER = gql`
       email
       bookShelf{
         id
-        name,
+        name
+        description
         books {
           id
           title
+          cover
+          author
+          isbn
+          price
+          publisher
+          image
           bookPosition {
             id
             row_no
