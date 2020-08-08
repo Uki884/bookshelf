@@ -132,5 +132,5 @@ export default function useBookShelf(context: SetupContext) {
     useSetBookPosition,
     useCreateBookShelf,
     useGetUserBookShelf,
-  };
+  }
 }
