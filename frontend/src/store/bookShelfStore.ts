@@ -1,5 +1,5 @@
 import { inject, provide,  InjectionKey } from "@vue/composition-api"
-import useBookShelf from '@/composables/useBookShelf'
+import useBookShelf from '@/composables/useBookshelfs'
 
 // injectのためのキー
 export const BookShelfKey: InjectionKey<any> = Symbol(

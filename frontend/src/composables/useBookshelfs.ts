@@ -1,16 +1,13 @@
 import {
   reactive,
   SetupContext,
-  InjectionKey,
-  toRefs,
   ref
 } from "@vue/composition-api"
 
-import { RepositoryFactory } from "@/api/Factory/index.js"
 import BookUtil from "@/utils/BookUtli"
-import { useGrobalStore } from "@/store/grobalStore.ts"
 import { CREATE_BOOKSHELF } from '@/apollo/mutations/createBookShelf.ts'
 import { GET_USER_BOOKSHELFS } from '@/apollo/queries/getUserBookshelfs.ts'
+
 const BOOKSHELF_SELECT_MENU = [
   { id: 1, name: "本を追加/削除" },
   { id: 2, name: "本の位置を変更" },
