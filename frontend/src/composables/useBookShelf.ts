@@ -48,21 +48,19 @@ export default function useBookShelf(context: SetupContext) {
 
   const bookShelfs = ref([])
 
-  const useGetUserBookShelf = async (userId: any) => {
-    await userRepository.getUserBook(userId).then((Response: any) => {
-      const bookData = Response.data.map((item: any) => {
-        const bookShelf = { books: null, description: "", id: null, name: '' }
-        bookShelf.books = BookUtil.createBookArray(item)
-        bookShelf.description = item.description
-        bookShelf.id = item.id
-        bookShelf.name = item.name
-        return bookShelf
-      })
-      const bookShelf = bookData.map((item: any) => {
-        return BookUtil.setBookShelf(item)
-      })
-      bookShelfs.value = bookShelf
+  const useSetBookShelf = async (bookshelf: any) => {
+    const bookData = bookshelf.map(item => {
+      const bookShelf = { books: null, description: "", id: null, name: "" }
+      bookShelf.books = BookUtil.createBookArray(item)
+      bookShelf.description = item.description
+      bookShelf.id = Number(item.id) as any
+      bookShelf.name = item.name
+      return bookShelf
     })
+    const bookShelf = bookData.map((item: any) => {
+      return BookUtil.setBookShelf(item)
+    })
+    bookShelfs.value = bookShelf
   }
 
   const useHandleChangePositionMode = (state: any, flag: boolean) => {
@@ -110,7 +108,7 @@ export default function useBookShelf(context: SetupContext) {
     bookShelfs,
     swiperOption,
     BOOKSHELF_SELECT_MENU,
-    useGetUserBookShelf,
+    useSetBookShelf,
     useHandleChangePositionMode,
     useAddBookShelfRow,
     useSaveBooksPosition,

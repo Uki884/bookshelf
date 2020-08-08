@@ -41,15 +41,7 @@ export default defineComponent({
     SwiperSlide
   },
   setup(props: any, context: SetupContext) {
-    const { user } = useUserStore()
-    const { state, useGetUserBookShelf, bookShelfs, swiperOption } = useBookShelfStore()
-    //ユーザーの本棚を取得
-    watchEffect(async() => {
-      if (user !== null) {
-        await useGetUserBookShelf(user.value.id)
-      }
-      return
-    })
+    const { state, bookShelfs, swiperOption } = useBookShelfStore()
 
     return {
       state,

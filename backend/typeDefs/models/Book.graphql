@@ -9,4 +9,5 @@ type Book {
   image: String
   createdAt: String
   updatedAt: String
+  bookPosition: BookPosition
 }

@@ -6,8 +6,8 @@
       class="main-content">
       <Sidemenu
         :is-open="state.isOpen"
+        :is-user-logged-in="isUserLoggedIn"
         @click="handleSidemenu"
-        :isUserLoggedIn="isUserLoggedIn"
         @hiddenSidemenu="hiddenSidemenu" />
       <router-view />
       <Modals />
@@ -23,6 +23,7 @@ import { mapGetters } from 'vuex'
 import Modals from '@/components/Modals.vue'
 import { isSmartPhone } from  '@/utils/useIsDevice.ts'
 import { useUserStore } from '@/store/userStore'
+import { useBookShelfStore } from '@/store/bookShelfStore'
 
 import {
   defineComponent,
@@ -39,8 +40,13 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { useGetUser, user, isUserLoggedIn } = useUserStore()
+    const {useSetBookShelf } = useBookShelfStore()
     const getUser = async() => {
-      await useGetUser()
+      const user = await useGetUser()
+      console.log('user', user)
+      if (user) {
+        await useSetBookShelf(user.bookShelf)
+      }
     }
     const state = reactive({
       isOpen: isSmartPhone() ? false : true,

@@ -45,6 +45,7 @@ export default function useUser(context: SetupContext): UseUser {
       })
       console.log("getUser", userData)
       user.value = userData.data.user
+      return userData.data.user
     }
   }
 

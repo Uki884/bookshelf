@@ -3,4 +3,5 @@ type User {
   auth0Id: String
   name: String
   email: String
+  bookShelf: [BookShelf]
 }

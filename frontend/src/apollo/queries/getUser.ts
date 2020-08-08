@@ -7,6 +7,19 @@ export const GET_USER = gql`
       name
       auth0Id
       email
+      bookShelf{
+        id
+        name,
+        books {
+          id
+          title
+          bookPosition {
+            id
+            row_no
+            column_no
+          }
+        }
+      }
     }
   }
 `

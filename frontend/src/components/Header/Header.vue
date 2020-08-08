@@ -9,7 +9,11 @@
         @click.native="handleSidemenu()" />
       <span class="header__title--text">みんなの本棚</span>
     </div>
-    <HeaderMenu :isUserLoggedIn="isUserLoggedIn" @logout="logout" @login="login" :user="user" />
+    <HeaderMenu
+      :is-user-logged-in="isUserLoggedIn"
+      :user="user"
+      @logout="logout"
+      @login="login" />
   </div>
 </template>
 

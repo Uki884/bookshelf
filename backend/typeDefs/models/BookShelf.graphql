@@ -4,4 +4,5 @@ type BookShelf {
   description: String
   createdAt: String
   updatedAt: String
+  books: [Book]
 }

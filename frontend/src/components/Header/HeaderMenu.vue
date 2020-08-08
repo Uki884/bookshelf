@@ -4,10 +4,12 @@
     @mouseover="visbleUserMenu = true"
     @mouseleave="visbleUserMenu = false">
     <div
-    class="header__right"
-    @click="isUserLoggedIn ? logout() : login()"
-    v-text="isUserLoggedIn ? user.name : 'ログイン'" />
-    <v-icon v-if="isUserLoggedIn" name="angle-down" />
+      class="header__right"
+      @click="isUserLoggedIn ? logout() : login()"
+      v-text="isUserLoggedIn ? user.name : 'ログイン'" />
+    <v-icon
+      v-if="isUserLoggedIn"
+      name="angle-down" />
     <transition name="fade">
       <div
         v-if="visbleUserMenu && isUserLoggedIn"
