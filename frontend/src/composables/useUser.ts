@@ -1,69 +1,68 @@
 import {
-  reactive,
   SetupContext,
-  InjectionKey,
-  onUnmounted,
   computed,
-  toRefs,
   Ref,
   ref
 } from "@vue/composition-api"
 
-import { RepositoryFactory } from "@/api/Factory/index.js"
-import { validation, requestInput } from "@/utils/validation.js"
+import { CREATE_USER } from '@/apollo/mutations/createUser.ts'
+import { GET_USER } from "@/apollo/queries/getUser.ts"
 
 export interface UseUser {
   user: Ref<{ email: string, id: number, first_name: string, last_name: string, username: string } | null>
   isUserLoggedIn: Ref<boolean>
-  useSignUp: () => void
-  useGetUser: (user: any, userRepository: any) => Promise<boolean>
-  useLogin: (input: { email: string, password: string }) => Promise<void>
-}
-
-const getUser = async (user: any, userRepository: any) => {
-  const data = await userRepository.getUser()
-  const { email, pk, first_name, last_name, username } = data.data
-  user.value = { email, id: pk, first_name, last_name, username }
+  login: () => any
+  logout: () => any
+  useCreateUser: (user: any) => Promise<void>
+  useGetUser: () => any
 }
 
 export default function useUser(context: SetupContext): UseUser {
-  const userRepository = RepositoryFactory.get("user")
   const user: any = ref(null)
   const isUserLoggedIn = computed(() => {
     return !!user.value?.id
   })
 
-  const useGetUser: any = async() => {
-    try {
-      await getUser(user, userRepository)
-      return true
-    } catch (error) {
-      return false
+  const useCreateUser = async (user: any) => {
+    const variables = { input: { email: user.email, name: user.nickname, auth0Id: user.sub }}
+    const { data } = await context.root.$apollo.mutate({
+      mutation: CREATE_USER,
+      variables
+    })
+    user.value = data.createUser
+    return user
+  }
+
+  const useGetUser = async () => {
+    const isLoggedIn = await context.root.$auth0.isLoggedIn()
+    if (!isLoggedIn) return
+    if (!user.value) {
+      const data = await context.root.$auth0.getUser()
+      const variables = { auth0Id: data.sub }
+      const userData = await context.root.$apollo.query({
+        query: GET_USER,
+        variables,
+      })
+      console.log("getUser", userData)
+      user.value = userData.data.user
     }
   }
 
-  const useLogin = async (input: { email: string, password: string }) => {
-    const result = validation(input)
-    if (result.validStatus) {
-      const payload = requestInput(input)
-      await context.root.$store.dispatch('user/loginUser', payload)
-      await getUser(user, userRepository)
-      await context.root.$router.push({ path: "/my_bookshelf" })
-    }
+  const login = async () => {
+    context.root.$auth0.loginWithRedirect()
   }
 
-  const useSignUp = () => {
-    context.root.$router.push({ path: "/signup" })
+  const logout = async () => {
+    context.root.$auth0.logout()
   }
-
-  useGetUser()
 
   return {
     user,
     isUserLoggedIn,
-    useSignUp,
+    login,
+    logout,
+    useCreateUser,
     useGetUser,
-    useLogin,
   }
 }
 

@@ -3,15 +3,15 @@
     class="header__right"
     @mouseover="visbleUserMenu = true"
     @mouseleave="visbleUserMenu = false">
-    <span>{{ user.username }}
-      <v-icon name="angle-down" />
-    </span>
+    <div
+    class="header__right"
+    @click="isUserLoggedIn ? logout() : login()"
+    v-text="isUserLoggedIn ? user.name : 'ログイン'" />
+    <v-icon v-if="isUserLoggedIn" name="angle-down" />
     <transition name="fade">
       <div
-        v-if="visbleUserMenu"
+        v-if="visbleUserMenu && isUserLoggedIn"
         class="header__menu">
-        <!-- <div class="header__menu__item" @click="addBookShelf()">本棚追加</div> -->
-        <!-- <div class="header__menu__item" @click="mybookshelf()">わたしの本棚</div> -->
         <div
           class="header__menu__item"
           @click="logout()">
@@ -24,6 +24,16 @@
 
 <script>
 export default {
+  props: {
+    isUserLoggedIn: {
+      type: Boolean,
+      default: false
+    },
+    user: {
+      type: Object,
+      default: null
+    }
+  },
   data() {
     return {
       visbleUserMenu: false,
@@ -31,8 +41,10 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.commit('user/clearUser')
-      window.location.href = '/login'
+      this.$emit('logout')
+    },
+    login() {
+      this.$emit('login')
     }
   }
 

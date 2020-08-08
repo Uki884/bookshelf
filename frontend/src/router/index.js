@@ -4,6 +4,7 @@ import MyBookShelf from "../views/MyBookShelf.vue"
 import Login from '@/views/User/Login.vue'
 import SignUp from "@/views/User/SignUp.vue"
 import isLoggedIn from '@/router/plugins/isLoggedIn.js'
+import CallBack from '@/components/Callback.vue'
 
 Vue.use(VueRouter)
 
@@ -13,7 +14,12 @@ const routes = [
     name: "top",
     meta: {
       requiresAuth: true,
-    }
+    },
+  },
+  {
+    path: "/callback",
+    name: "callback",
+    component: CallBack
   },
   {
     path: "/my_bookshelf",
@@ -50,18 +56,18 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  let token = window.localStorage.getItem("token")
-  if (to.matched.some((item) => item.meta.requiresAuth)) {
-    if (!token) {
-      next("/login")
-      return
-    } else {
-      if (to.path === '/') {
-        next('my_bookshelf')
-      }
-      next()
-    }
-  }
+  // let token = window.localStorage.getItem("token")
+  // if (to.matched.some((item) => item.meta.requiresAuth)) {
+  //   if (!token) {
+  //     next("/login")
+  //     return
+  //   } else {
+  //     if (to.path === '/') {
+  //       next('my_bookshelf')
+  //     }
+  //     next()
+  //   }
+  // }
   next()
 })
 

@@ -8,23 +8,32 @@ import Icon from "vue-awesome/components/Icon.vue"
 import '@/services/grobalComponents/index.js'
 import mobile from "ismobilejs"
 import isDevice from "@/mixins/isDevice.js"
-import User from "@/mixins/User.js"
 import ModalService from "@/services/modal/index.js"
 import VueCompositionApi from "@vue/composition-api"
+import { apolloClient } from '@/apollo'
+import VueApollo from "vue-apollo"
 
 Vue.mixin(isDevice)
-Vue.mixin(User)
 Vue.prototype.ismobile = mobile
 Vue.prototype.ModalService = ModalService
-
+Vue.use(VueApollo)
 Vue.component('v-icon', Icon)
 
 Vue.use(VueCompositionApi)
+const apolloProvider = new VueApollo({
+  defaultClient: apolloClient,
+})
 
-Vue.config.productionTip = false
+import authService from "./auth";
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app")
+(async function () {
+  await authService.init()
+  Vue.prototype.$auth0 = authService
+  Vue.config.productionTip = false
+  new Vue({
+    router,
+    store,
+    apolloProvider,
+    render: (h) => h(App),
+  }).$mount("#app")
+}())

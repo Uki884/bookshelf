@@ -1,7 +1,7 @@
 <template>
   <transition>
     <div
-      v-if="isOpen && isLoggedIn()"
+      v-if="isOpen && isUserLoggedIn"
       class="sidemenu"
       :class="isOpen ? 'is_inactive' : 'is_active'"
       :style="sidemenuHeight">
@@ -36,6 +36,10 @@ export default {
   },
   props: {
     isOpen: {
+      type: Boolean,
+      default: false
+    },
+    isUserLoggedIn: {
       type: Boolean,
       default: false
     }

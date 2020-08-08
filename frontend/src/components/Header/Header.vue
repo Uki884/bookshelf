@@ -9,55 +9,36 @@
         @click.native="handleSidemenu()" />
       <span class="header__title--text">みんなの本棚</span>
     </div>
-    <div
-      v-if="Object.keys(user).length <= 0"
-      class="header__right">
-      <div @click="login()">
-        ログイン
-      </div>
-    </div>
-    <HeaderMenu
-      v-else
-      :user="user" />
+    <HeaderMenu :isUserLoggedIn="isUserLoggedIn" @logout="logout" @login="login" :user="user" />
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, reactive, SetupContext} from "@vue/composition-api"
+import { useUserStore } from '@/store/userStore'
 import HeaderMenu from '@/components/Header/HeaderMenu.vue'
-import ModalService from '@/services/modal/index.js'
-import { isSmartPhone } from '@/utils/useIsDevice.ts'
-import { mapGetters } from 'vuex'
 
-export default {
+export default defineComponent({
   components: {
-    HeaderMenu,
+    HeaderMenu
   },
-  props: {
-    isOpen: {
-      type: Boolean,
-      default: false
+  setup(props: any, context: SetupContext) {
+    const { login, logout, user, isUserLoggedIn} = useUserStore()
+    const handleSidemenu = () => {
+      context.emit('click')
     }
-  },
-  data() {
+    const state = reactive({
+      user: user
+    })
     return {
-      rightMenu: false
-    }
-  },
-  computed: {
-    ...mapGetters({ user: 'user/user' }),
-  },
-  methods: {
-    handleSidemenu(){
-      this.$emit('click')
-    },
-    login() {
-      this.$router.push('/login').catch(err => {})
-    },
-    mybookshelf() {
-      this.$router.push('/my_bookshelf').catch(err => {})
+      user,
+      isUserLoggedIn,
+      handleSidemenu,
+      login,
+      logout
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

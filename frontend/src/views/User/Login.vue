@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext} from "@vue/composition-api"
-import { useUserStore } from '@/store/userStore.ts'
+import { useUserStore } from '@/store/userStore'
 import TextField from "@/components/Parts/CommonTextField.vue"
 
 export default defineComponent({
@@ -52,7 +52,6 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { useSignUp, useLogin } = useUserStore()
-
     const state = reactive({
       input: {
         email: {
@@ -76,7 +75,7 @@ export default defineComponent({
     return {
       state,
       useSignUp,
-      useLogin
+      useLogin,
     }
   }
 })

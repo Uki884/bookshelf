@@ -1,31 +1,15 @@
 <template>
   <GlobalProvide>
     <div id="app">
-      <HeaderContent @click="handleSidemenu" />
-      <div
-        id="main"
-        class="main-content">
-        <Sidemenu
-          :is-open="state.isOpen"
-          @click="handleSidemenu"
-          @hiddenSidemenu="hiddenSidemenu" />
-        <router-view />
-        <Modals />
-      </div>
-    <!-- <Footer /> -->
+      <Index />
     </div>
   </GlobalProvide>
 </template>
 
 <script lang="ts">
-
 import 'normalize.css'
-import HeaderContent from '@/components/Header/Header.vue'
-import Sidemenu from '@/components/Sidemenu/Sidemenu.vue'
 import GlobalProvide from '@/components/Providers/GlobalProvider.vue'
-import { mapGetters } from 'vuex'
-import Modals from '@/components/Modals.vue'
-import { isSmartPhone } from  '@/utils/useIsDevice.ts'
+import Index from '@/views/Index.vue'
 
 import {
   defineComponent,
@@ -36,39 +20,11 @@ import {
 
 export default defineComponent({
   components: {
-    HeaderContent,
     GlobalProvide,
-    Modals,
-    // Footer,
-    Sidemenu
+    Index
   },
   setup(props: any, context: SetupContext) {
-    const state = reactive({
-      isOpen: isSmartPhone() ? false : true
-    })
-
-    const modals = computed(()=> {
-      return context.root.$store.getters['modal/modals']
-    })
-
-    const handleSidemenu =() => {
-      state.isOpen = !state.isOpen
-    }
-
-    const hiddenSidemenu = (flag: boolean) => {
-      state.isOpen = flag
-    }
-
-    const addBookShelf = () => {
-      (context as any).root.ModalService.addBookShelf()
-    }
-
     return {
-      state,
-      modals,
-      handleSidemenu,
-      hiddenSidemenu,
-      addBookShelf
     }
   }
 })
@@ -94,5 +50,6 @@ body {
 }
 .main-content {
   display: flex;
+  height: calc(100% - 56px);
 }
 </style>
