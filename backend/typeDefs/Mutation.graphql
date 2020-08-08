@@ -1,6 +1,7 @@
 type Mutation {
   addBook(input: addBookInput): Book
-  createBookshelf: BookShelf
+  createBookshelf(input: createBookshelfInput): BookShelf
+  createUser(input: createUserInput ): User
 }
 
 input addBookInput {
@@ -11,4 +12,18 @@ input addBookInput {
   price: String
   publisher: String
   image: String
+  row_no: Int
+  column_no: Int
+}
+
+input createUserInput {
+  id: String
+  auth0Id: String
+  name: String
+  email: String
+}
+
+input createBookshelfInput {
+  name: String
+  description: String
 }
