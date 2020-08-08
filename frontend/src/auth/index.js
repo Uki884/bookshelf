@@ -47,8 +47,8 @@ export class Auth {
     this.loading = true
     try {
       const result = await this.auth0Client.handleRedirectCallback()
-      await this.auth0Client.getUser()
-      return result.appState
+      const user = await this.auth0Client.getUser()
+      return { appState: result.appState, user };
     } catch (e) {
       this.error = e
     } finally {
