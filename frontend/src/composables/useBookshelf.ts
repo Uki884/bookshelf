@@ -6,7 +6,7 @@ import {
 
 import BookUtil from "@/utils/BookUtli"
 import { CREATE_BOOKSHELF } from '@/apollo/mutations/createBookShelf.ts'
-import { GET_USER_BOOKSHELFS } from '@/apollo/queries/getUserBookshelfs.ts'
+import { GET_USER_BOOKSHELFS } from '@/apollo/queries/getUserBookShelfs'
 
 const BOOKSHELF_SELECT_MENU = [
   { id: 1, name: "本を追加/削除" },
