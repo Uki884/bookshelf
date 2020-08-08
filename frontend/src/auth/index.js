@@ -18,21 +18,19 @@ export class Auth {
       client_id: client_id,
       redirect_uri: redirect_uri,
     })
-    await this.isLoggedIn()
   }
 
   async isLoggedIn() {
     const result = await this.auth0Client.isAuthenticated()
-    await this.getUser()
     return result
   }
 
   async getUser() {
-    const user = await this.auth0Client.getUser()
-    const token = await this.auth0Client.getTokenSilently();
+    const userData = await this.auth0Client.getUser()
+    const token = await this.auth0Client.getTokenSilently()
     const idToken = await this.auth0Client.getIdTokenClaims()
-    console.log(token, idToken.__raw);
-    return { user, idToken: idToken.__raw, token };
+    localStorage.setItem("idToken", idToken.__raw)
+    return { userData, idToken: idToken.__raw, token }
   }
 
   async loginWithPopup(o) {

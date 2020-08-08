@@ -31,9 +31,6 @@ export default defineComponent({
     const handleSidemenu = () => {
       context.emit('click')
     }
-    const state = reactive({
-      user: user
-    })
     return {
       user,
       isUserLoggedIn,

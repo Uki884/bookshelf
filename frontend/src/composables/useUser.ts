@@ -7,6 +7,7 @@ import {
 
 import { CREATE_USER } from '@/apollo/mutations/createUser.ts'
 import { GET_USER } from "@/apollo/queries/getUser.ts"
+import { GET_CURRENT_USER } from '@/apollo/queries/getCurrentUser.ts'
 
 export interface UseUser {
   user: Ref<{ email: string, id: number, first_name: string, last_name: string, username: string } | null>
@@ -14,7 +15,7 @@ export interface UseUser {
   login: () => any
   logout: () => any
   useCreateUser: (user: any) => Promise<void>
-  useGetUser: () => any
+  useGetCurrentUser: () => any
 }
 
 export default function useUser(context: SetupContext): UseUser {
@@ -33,19 +34,18 @@ export default function useUser(context: SetupContext): UseUser {
     return user
   }
 
-  const useGetUser = async () => {
+  const useGetCurrentUser = async () => {
     const isLoggedIn = await context.root.$auth0.isLoggedIn()
     if (!isLoggedIn) return
     if (!user.value) {
-      const { user, idToken } = await context.root.$auth0.getUser();
-      const variables = { auth0Id: user.sub };
-      const userData = await context.root.$apollo.query({
-        query: GET_USER,
+      const { userData, idToken } = await context.root.$auth0.getUser()
+      const variables = { auth0Id: userData.sub }
+      const data = await context.root.$apollo.query({
+        query: GET_CURRENT_USER,
         variables,
       })
-      localStorage.setItem('idToken', idToken)
-      user.value = userData.data.user
-      return userData.data.user
+      user.value = data.data.currentUser
+      return data.data.currentUser
     }
   }
 
@@ -63,7 +63,7 @@ export default function useUser(context: SetupContext): UseUser {
     login,
     logout,
     useCreateUser,
-    useGetUser,
+    useGetCurrentUser,
   }
 }
 

@@ -39,19 +39,17 @@ export default defineComponent({
     Sidemenu
   },
   setup(props: any, context: SetupContext) {
-    const { useGetUser, user, isUserLoggedIn } = useUserStore()
+    const { useGetCurrentUser, user, isUserLoggedIn } = useUserStore()
     const {useSetBookShelf } = useBookShelfStore()
 
     const getUser = async() => {
-      const user = await useGetUser()
-      console.log('user', user)
-      if (user) {
-        await useSetBookShelf(user.bookShelf)
+      const userdata = await useGetCurrentUser()
+      if (userdata) {
+        await useSetBookShelf(userdata.bookShelf)
       }
     }
     const state = reactive({
       isOpen: isSmartPhone() ? false : true,
-      user: user
     })
 
     const modals = computed(()=> {

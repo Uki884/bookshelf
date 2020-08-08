@@ -6,6 +6,7 @@ import { importSchema } from 'graphql-import';
 import { dbconnect } from '@/dbConnect';
 import resolvers from '@/resolvers/index';
 import models from '@/models/index';
+import { verifyJwtToken } from '@/utils/verifyJwtToken';
 
 const { ApolloServer } = require('apollo-server-express');
 
@@ -17,8 +18,12 @@ dbconnect();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: {
-    ...models,
+  context: async ({ req }) => {
+    const token = req.headers.authorization || '';
+    return {
+      currentUser: verifyJwtToken(token),
+      ...models,
+    };
   },
 });
 

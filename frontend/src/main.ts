@@ -24,7 +24,7 @@ const apolloProvider = new VueApollo({
   defaultClient: apolloClient,
 })
 
-import authService from "./auth";
+import authService from "./auth"
 
 (async function () {
   await authService.init()
