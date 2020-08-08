@@ -3,7 +3,6 @@ import { createConnection } from 'typeorm';
 // eslint-disable-next-line import/prefer-default-export
 export const dbconnect = async () => {
   await createConnection('default').then(async (connection) => {
-    console.log(connection);
   //   const Book = new Books();
   //   Book.title = 'aaaa';
   //   await connection.manager.save(Book);

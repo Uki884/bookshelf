@@ -16,6 +16,9 @@ export class User extends BaseEntity {
   public id: number | undefined;
 
   @Column()
+  public auth0Id: string = '';
+
+  @Column()
   public name: string = '';
 
   @Column()

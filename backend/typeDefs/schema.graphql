@@ -1,6 +1,7 @@
 # import Book from "./models/Book.graphql"
 # import BookShelf from './models/BookShelf.graphql'
 # import BookPosition from './models/BookPosition.graphql'
+# import User from './models/User.graphql'
 # import Mutation from './Mutation.graphql'
 # import Query from "Query.graphql"
 

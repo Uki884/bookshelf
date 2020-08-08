@@ -42,7 +42,7 @@ export class Book extends BaseEntity {
   @Column()
   public bookPositionId: number | undefined;
 
-  @OneToOne((type) => BookPosition)
+  @OneToOne((type) => BookPosition, { cascade: true })
   @JoinColumn([
     {
       name: 'bookPositionId',
@@ -54,7 +54,7 @@ export class Book extends BaseEntity {
   @ManyToOne((type) => BookShelf, (bookShelf) => bookShelf.books)
   bookshelf!: BookShelf;
 
-  @CreateDateColumn({ name: 'e5td;  created_at' })
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date = new Date();
 
   @UpdateDateColumn({ name: 'updated_at' })
