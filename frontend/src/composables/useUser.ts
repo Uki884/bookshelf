@@ -37,13 +37,13 @@ export default function useUser(context: SetupContext): UseUser {
     const isLoggedIn = await context.root.$auth0.isLoggedIn()
     if (!isLoggedIn) return
     if (!user.value) {
-      const data = await context.root.$auth0.getUser()
-      const variables = { auth0Id: data.sub }
+      const { user, idToken } = await context.root.$auth0.getUser();
+      const variables = { auth0Id: user.sub };
       const userData = await context.root.$apollo.query({
         query: GET_USER,
         variables,
       })
-      console.log("getUser", userData)
+      localStorage.setItem('idToken', idToken)
       user.value = userData.data.user
       return userData.data.user
     }

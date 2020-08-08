@@ -28,7 +28,11 @@ export class Auth {
   }
 
   async getUser() {
-    return await this.auth0Client.getUser()
+    const user = await this.auth0Client.getUser()
+    const token = await this.auth0Client.getTokenSilently();
+    const idToken = await this.auth0Client.getIdTokenClaims()
+    console.log(token, idToken.__raw);
+    return { user, idToken: idToken.__raw, token };
   }
 
   async loginWithPopup(o) {

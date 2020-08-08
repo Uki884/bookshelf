@@ -41,6 +41,7 @@ export default defineComponent({
   setup(props: any, context: SetupContext) {
     const { useGetUser, user, isUserLoggedIn } = useUserStore()
     const {useSetBookShelf } = useBookShelfStore()
+
     const getUser = async() => {
       const user = await useGetUser()
       console.log('user', user)
