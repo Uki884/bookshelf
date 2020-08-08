@@ -5,4 +5,13 @@ export const Query = {
     const user = await User.findOne({ auth0Id }, { relations: ['bookShelf', 'bookShelf.books', 'bookShelf.books.bookPosition'] });
     return user;
   },
+  userBookshelfs: async (_, __, { currentUser, User, BookShelf }) => {
+    const { id } = currentUser;
+    const bookshelfs = await BookShelf.find(
+      { where: { user: currentUser } },
+      { relations: ['books', 'books.bookPosition', 'user'] },
+    );
+    console.log('usr', bookshelfs);
+    return bookshelfs;
+  },
 };

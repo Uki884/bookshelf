@@ -1,5 +1,6 @@
 type Query {
   books: [Book]
   user(auth0Id: String): User
+  userBookshelfs: [BookShelf]
   currentUser: User
 }
