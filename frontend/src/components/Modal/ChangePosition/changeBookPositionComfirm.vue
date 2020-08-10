@@ -24,6 +24,7 @@ import Modal from '@/components/Modal/Modal.vue'
 import ModalService from '@/services/modal/index.js'
 import { SetupContext, defineComponent } from '@vue/composition-api'
 import { useGrobalStore } from '@/store/grobalStore.ts'
+import { useBookShelfStore } from '@/store/bookShelfStore'
 
 export default defineComponent({
   props: {
@@ -37,10 +38,9 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { closeModal } = useGrobalStore()
-
+    const { useSaveBooksPosition } = useBookShelfStore()
     const saveBookPosition = async() => {
-      await context.root.$store.dispatch('book/saveBooksPosition', props.params)
-      await context.root.$store.commit('book/setEditPosition', false)
+      await useSaveBooksPosition(props.params)
       await closeModal()
     }
 

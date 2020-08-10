@@ -30,10 +30,10 @@
 
 <script lang="ts">
 import { SetupContext, defineComponent, reactive } from '@vue/composition-api'
-import { useUserStore } from '@/store/userStore.ts'
-import { useBookShelfStore } from '@/store/bookShelfStore.ts'
-import { useGrobalStore } from '@/store/grobalStore.ts'
-import { validation, requestInput } from "@/utils/validation.js"
+import { useUserStore } from '@/store/userStore'
+import { useBookShelfStore } from '@/store/bookShelfStore'
+import { useGrobalStore } from '@/store/grobalStore'
+import { validation, requestInput } from "@/utils/validation"
 import Modal from '@/components/Modal/Modal.vue'
 
 export default defineComponent({
@@ -74,6 +74,7 @@ export default defineComponent({
       if (result.validStatus) {
         const payload = requestInput(state.input)
         await useCreateBookShelf(payload)
+        await useGetUserBookShelf()
         await closeModal()
       }
     }

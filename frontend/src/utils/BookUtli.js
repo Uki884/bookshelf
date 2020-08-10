@@ -1,6 +1,5 @@
 export default {
   setBookShelf: (bookData) => {
-    console.log(bookData)
     let arrayLength = 4
     if (bookData.books.length) {
       const columnNo = bookData.books.map((item) => {

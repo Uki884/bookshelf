@@ -7,7 +7,7 @@ import {
 import BookUtil from "@/utils/BookUtli"
 import { CREATE_BOOKSHELF } from '@/apollo/mutations/createBookShelf.ts'
 import { GET_USER_BOOKSHELFS } from '@/apollo/queries/getUserBookShelfs'
-
+import { SAVE_BOOK_POSITION } from '@/apollo/mutations/saveBookPosition.ts'
 const BOOKSHELF_SELECT_MENU = [
   { id: 1, name: "本を追加/削除" },
   { id: 2, name: "本の位置を変更" },
@@ -33,13 +33,16 @@ const swiperOption = {
     950: {
       slidesPerView: 1,
     },
-  },
+  }
 }
 
 export default function useBookShelf(context: SetupContext) {
   const state: any = reactive({
     bookShelfs: [],
-    editBookPositions: []
+    editBookPositions: [],
+    isEditMode: false,
+    isOpenMenu: false,
+    isEditPositionMode: false,
   })
 
   const bookShelfs = ref([])
@@ -70,11 +73,11 @@ export default function useBookShelf(context: SetupContext) {
 
   const useGetUserBookShelf = async (input: any) => {
     const variables = { input }
-    const data = await context.root.$apollo.query({
+    const { data } = await context.root.$apollo.query({
       query: GET_USER_BOOKSHELFS,
-      variables,
+      variables
     })
-    console.log("useCreateBookShelf", data)
+    await useSetBookShelf(data.userBookshelfs)
   }
 
   const useHandleChangePositionMode = (state: any, flag: boolean) => {
@@ -87,8 +90,13 @@ export default function useBookShelf(context: SetupContext) {
     return state
   }
 
-  const useSaveBooksPosition = () => {
-    (context as any).root.ModalService.changeBookPositionComfirm(state.editBookPositions)
+  const useSaveBooksPosition = async (input: any) => {
+    const variables = { input }
+    const data = await context.root.$apollo.mutate({
+      mutation: SAVE_BOOK_POSITION,
+      variables,
+    })
+    state.isEditPositionMode = false
   }
 
   //移動した本の位置を保存

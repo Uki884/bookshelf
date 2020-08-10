@@ -45,7 +45,7 @@
           v-if="state.isEditPositionMode"
           width="120"
           text="現在の本の位置を保存"
-          @click.native="useSaveBooksPosition()" />
+          @click.native="saveBookPosition()" />
         <RoundButton
           width="90"
           text="行を追加"
@@ -86,17 +86,15 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { user } = useUserStore()
-    const { BOOKSHELF_SELECT_MENU, useAddBookShelfRow, useSaveBooksPosition } = useBookShelfStore()
-
-    const state = reactive({
-      isEditMode: false,
-      isOpenMenu: false,
-      isEditPositionMode: false
-    })
+    const { BOOKSHELF_SELECT_MENU, useAddBookShelfRow, state } = useBookShelfStore()
 
     const bookShelf = computed(() => {
       return props.bookShelf
     })
+
+    const saveBookPosition =() => {
+      context.root.ModalService.changeBookPositionComfirm(state.editBookPositions)
+    }
 
     const handleAction = (item: any) => {
       switch (item) {
@@ -140,7 +138,7 @@ export default defineComponent({
       handleEdit,
       handleAction,
       useAddBookShelfRow,
-      useSaveBooksPosition,
+      saveBookPosition,
       BOOKSHELF_SELECT_MENU
     }
   }

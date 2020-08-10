@@ -49,6 +49,7 @@ import { SetupContext, defineComponent } from '@vue/composition-api'
 import { useUserStore } from '@/store/userStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 import { useGrobalStore } from '@/store/grobalStore.ts'
+import { useBookStore } from '@/store/bookStore'
 
 export default defineComponent({
   props: {
@@ -64,6 +65,7 @@ export default defineComponent({
 
     const { user } = useUserStore()
     const { useGetUserBookShelf } = useBookShelfStore()
+    const { addBook } = useBookStore()
     const { closeModal } = useGrobalStore()
 
     const registBook = async() => {
@@ -76,11 +78,11 @@ export default defineComponent({
         isbn: props.params.isbn,
         row_no: props.params.row_no,
         column_no: props.params.column_no,
-        bookShelf: props.params.bookShelf
+        bookshelfId: props.params.bookShelf
       }
 
-      await context.root.$store.dispatch('book/addBook', payload)
-      await useGetUserBookShelf(user.value.id)
+      await addBook(payload)
+      await useGetUserBookShelf()
       await (context as any).root.ModalService.closeAll()
     }
 

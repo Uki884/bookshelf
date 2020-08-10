@@ -21,7 +21,8 @@
     position: relative;
   }
   &__footer {
-    padding: 0px 46px;
+    display: flex;
+    justify-content: center;
     height: 60px;
   }
   &__pagination {
@@ -39,6 +40,7 @@
     height: 600px;
     width: 600px;
     background: white;
+    position: relative;
   }
   &__body {
     height: calc(100% - 200px);
@@ -53,6 +55,10 @@
       width: 100%;
       font-weight: bold;
       font-size: 20px;
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
       &__text{
         padding-bottom: 32px;
       }

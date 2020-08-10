@@ -12,6 +12,9 @@ export const apolloClient = new ApolloClient({
   link: ApolloLink.from([authMiddleware, errorLink, link]),
   cache,
   defaultOptions: {
-    fetchPolicy: 'no-cache'
+    query: {
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
+    },
   }
 })

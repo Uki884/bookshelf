@@ -5,20 +5,20 @@
     <template slot="main">
       <div class="Modal__form">
         <div class="Modal__form-item">
-          <div class="Modal__form-item__text">
             どちらの方法で本を追加しますか？
           </div>
-          <div class="btn__wrapper">
-            <common-button
-              text="検索で追加"
-              width="120px"
-              @click="search()" />
-            <common-button
-              text="バーコードで追加"
-              width="140px"
-              @click="barcode()" />
-          </div>
-        </div>
+      </div>
+    </template>
+    <template slot="footer">
+      <div class="btn__wrapper">
+        <common-button
+          text="検索で追加"
+          width="120px"
+          @click="search()" />
+        <common-button
+          text="バーコードで追加"
+          width="140px"
+          @click="barcode()" />
       </div>
     </template>
   </Modal>

@@ -126,8 +126,8 @@ export default defineComponent({
     }
 
     const setBookPosition = async () => {
-      const targetBookId = bookShelf.value[state.target.line][state.target.index].book_id
-      const draggedBookId = bookShelf.value[state.dragged.line][state.dragged.index].book_id
+      const targetBookId = bookShelf.value[state.target.line][state.target.index].position_id
+      const draggedBookId = bookShelf.value[state.dragged.line][state.dragged.index].position_id
       const targetPosition = {
         id: targetBookId,
         column_no: state.dragged.line,

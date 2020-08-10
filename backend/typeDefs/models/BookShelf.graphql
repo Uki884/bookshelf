@@ -5,4 +5,5 @@ type BookShelf {
   createdAt: String
   updatedAt: String
   books: [Book]
+  user: User
 }

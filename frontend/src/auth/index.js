@@ -62,7 +62,8 @@ export class Auth {
   }
 
   async logout(o) {
-    this.auth0Client.logout(o)
+    await this.auth0Client.logout(o)
+    localStorage.removeItem("idToken")
   }
 }
 

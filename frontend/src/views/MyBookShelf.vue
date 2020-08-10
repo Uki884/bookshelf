@@ -42,7 +42,6 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { state, bookShelfs, swiperOption } = useBookShelfStore()
-
     return {
       state,
       bookShelfs,
