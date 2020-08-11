@@ -3,145 +3,128 @@
     title="バーコードで登録"
     @close="closeModal">
     <template slot="main">
-      <div class="empty">
-        <div
-          v-if="bookAreaState.searchResult"
-          class="empty__text">
-          本が見つかりました！
-        </div>
-      </div>
       <div
-        v-show="isCapturing && !bookAreaState.searchResult"
+        v-if="!isDetected"
         id="interactive"
         class="viewport">
         <div class="detect-area" />
       </div>
       <div
-        v-if="bookAreaState.searchResult && bookAreaState.isDetected"
         class="detect">
-        <div class="detect__container">
+        <div
+          v-if="isDetected"
+          class="detect__container">
           <div class="detect__image">
-            <img :src="book.cover">
+            <img :src="barcodeResult.cover">
           </div>
           <div class="detect__item">
             <div class="detect__text">
               <div class="detect__title">
                 タイトル
               </div>
-              <span>{{ book.title }}</span>
+              <span>{{ barcodeResult.title }}</span>
             </div>
             <div class="detect__text">
               <div class="detect__title">
                 価格情報
               </div>
-              <span>{{ book.price ? book.price + '円' : '価格情報がありません' }}</span>
+              <span>{{ barcodeResult.price ? barcodeResult.price + '円' : '価格情報がありません' }}</span>
             </div>
           </div>
         </div>
       </div>
-      <div
-        v-else-if="!bookAreaState.searchResult && bookAreaState.isDetected"
-        class="detect__no-result">
-        <div>本の情報がみつかりませんでした</div>
-      </div>
     </template>
     <template slot="footer">
       <div
-        v-if="bookAreaState.isDetected"
         class="btn__wrapper">
         <div
+          v-if="isFailed"
           class="btn btn--large"
           @click="start()">
           撮りなおす
         </div>
         <div
+          v-if="!isFailed && isDetected"
           class="btn btn--large"
-          @click="registBook()"
-          v-text="bookAreaState.searchResult ? 'この本を追加する': '検索で見つける'" />
+          @click="registBook()">
+          登録する
+        </div>
       </div>
     </template>
   </Modal>
 </template>
 
-<script>
-import Modal from '@/components/Modal/Modal.vue'
-import ModalService from '@/services/modal/index.js'
+<script lang="ts">
+import { defineComponent, reactive, SetupContext, onMounted} from "@vue/composition-api"
 import { Caputure } from '@/utils/BarcodeScanner.js'
-import { mapGetters } from 'vuex'
+import useBarcodeScanner from '@/composables/useBarcodeScanner.ts'
+import { useBookStore } from '@/store/bookStore'
+import { useGrobalStore } from '@/store/grobalStore.ts'
+import { useBookShelfStore } from '@/store/bookShelfStore.ts'
+import Modal from '@/components/Modal/Modal.vue'
 
-let caputure = new Caputure()
-export default {
+export default defineComponent({
   components: {
     Modal
   },
   props: {
     params: {
-      type: Object
+      type: Object,
+      default: null
     }
   },
-  data() {
-    return {
-      input: {
-        name: {
-          name: '名前',
-          value: '',
-          length: [1, 28],
-          require: true,
-          errorMessage: []
-        },
-      },
-      isCapturing: false
+  setup(props, context: SetupContext) {
+    const { addBook, state } = useBookStore()
+    const { closeModal, closeAllModal } = useGrobalStore()
+    const { useGetUserBookShelf } = useBookShelfStore()
+    const { CaptureStart, CaptureStop, barcodeResult, isDetected, isFailed} = useBarcodeScanner()
+
+    const start = async() => {
+      await CaptureStart()
+      state.isCapturing = true
     }
-  },
-  computed: {
-    ...mapGetters({ bookAreaState: 'book/bookAreaState', book: 'book/book' }),
-  },
-  watch: {
-    'bookAreaState.isDetected': {
-      handler(newValue) {
-        this.isCapturing = !newValue
+    const stop = async() => {
+      await CaptureStop()
+      state.isCapturing = false
+    }
+
+    const registBook = async() => {
+      console.log(barcodeResult)
+      const payload = {
+        cover: barcodeResult.value.cover,
+        author: barcodeResult.value.author,
+        title: barcodeResult.value.title,
+        price: barcodeResult.value.itemPrice,
+        publisher: barcodeResult.value.publisher,
+        isbn: barcodeResult.value.isbn,
+        row_no: props.params.row_no,
+        column_no: props.params.column_no,
+        bookshelfId: props.params.bookShelf
       }
+      await addBook(payload)
+      await useGetUserBookShelf()
+      await closeAllModal()
     }
-  },
-  mounted() {
-    this.start()
-  },
-  beforeDestroy() {
-    caputure.CaptureStop()
-  },
-  methods: {
-    closeModal() {
-      caputure.CaptureStop()
-      ModalService.close()
-    },
-    start() {
-      this.$store.commit("book/clearBook")
-      caputure.CaptureStart()
-      this.isCapturing = true
-    },
-    stop() {
-      caputure.CaptureStop()
-      this.isCapturing = !this.isCapturing
-    },
-    registBook() {
-      console.log(this.params)
-      this.$store.dispatch('book/addBook', this.params).then(async Response =>{
-        this.closeModal()
-      })
+
+    onMounted(()=>{
+      start()
+    })
+
+    console.log(props)
+
+    return {
+      closeModal,
+      registBook,
+      state,
+      isDetected,
+      isFailed,
+      barcodeResult
     }
   }
-
-}
+})
 </script>
 
 <style lang="scss" scoped>
-@import 'src/assets/scss/form.scss';
-@import '@/assets/scss/btn.scss';
-@import '@/assets/scss/detect.scss';
-
-.Modal__body {
-  height: calc(100% - 180px) !important;
-}
 #interactive{
   position: relative;
   overflow: hidden;
@@ -149,12 +132,15 @@ export default {
   height: 300px;
   width: 300px;
   z-index: 1;
+  /deep/ video{
+    width: 100%;
+    height: 400px;
+  }
     video, canvas {
     margin-top: -50px;
-    width: 300px;
+    width: 100%;
     height: 400px;
       z-index: 1;
   }
 }
-
 </style>

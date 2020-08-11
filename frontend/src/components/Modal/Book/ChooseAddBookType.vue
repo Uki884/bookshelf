@@ -5,8 +5,8 @@
     <template slot="main">
       <div class="Modal__form">
         <div class="Modal__form-item">
-            どちらの方法で本を追加しますか？
-          </div>
+          どちらの方法で本を追加しますか？
+        </div>
       </div>
     </template>
     <template slot="footer">

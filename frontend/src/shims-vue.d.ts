@@ -4,3 +4,4 @@ declare module '*.vue' {
 }
 
 declare module 'vuedraggable'
+declare module 'quagga'

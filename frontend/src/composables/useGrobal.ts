@@ -18,10 +18,14 @@ export default function useGrobal(context: SetupContext) {
   const closeModal = () => {
     (context as any).root.ModalService.close()
   }
+  const closeAllModal = () => {
+    (context as any).root.ModalService.closeAll()
+  }
 
   return {
     modals,
     openModal,
     closeModal,
+    closeAllModal,
   }
 }

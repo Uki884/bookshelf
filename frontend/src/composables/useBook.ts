@@ -8,7 +8,9 @@ export default function useBook(context: SetupContext) {
     selectBookId: null,
     searchWord: '',
     page: 1,
-    currentPage: 1
+    currentPage: 1,
+    barcodeResult: {},
+    isCapturing: false
   })
   const addBook = async (input: any) => {
     const variables = { input }
