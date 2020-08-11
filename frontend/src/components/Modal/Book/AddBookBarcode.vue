@@ -74,7 +74,7 @@ export default defineComponent({
     }
   },
   setup(props, context: SetupContext) {
-    const { addBook, state } = useBookStore()
+    const { useAddBook, state } = useBookStore()
     const { closeModal, closeAllModal } = useGrobalStore()
     const { useGetUserBookShelf } = useBookShelfStore()
     const { CaptureStart, CaptureStop, barcodeResult, isDetected, isFailed} = useBarcodeScanner()
@@ -101,7 +101,7 @@ export default defineComponent({
         column_no: props.params.column_no,
         bookshelfId: props.params.bookShelf
       }
-      await addBook(payload)
+      await useAddBook(payload)
       await useGetUserBookShelf()
       await closeAllModal()
     }

@@ -42,15 +42,12 @@ export default defineComponent({
   setup(props: any, context: SetupContext) {
 
     const { user } = useUserStore()
-    const { useGetUserBookShelf } = useBookShelfStore()
+    const { useGetUserBookShelf, useDeleteBookShelf } = useBookShelfStore()
     const { closeModal } = useGrobalStore()
 
     const deleteBookShelf = async() => {
-      const payload = {
-        id: props.params.id
-      }
-      await context.root.$store.dispatch('book/deleteBookShelf', payload)
-      await useGetUserBookShelf(user.value.id)
+      await useDeleteBookShelf(Number(props.params.id))
+      await useGetUserBookShelf()
       await closeModal()
     }
 

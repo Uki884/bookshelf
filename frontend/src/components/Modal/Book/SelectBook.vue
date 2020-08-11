@@ -65,7 +65,7 @@ export default defineComponent({
 
     const { user } = useUserStore()
     const { useGetUserBookShelf } = useBookShelfStore()
-    const { addBook } = useBookStore()
+    const { useAddBook } = useBookStore()
     const { closeModal } = useGrobalStore()
 
     const registBook = async() => {
@@ -81,7 +81,7 @@ export default defineComponent({
         bookshelfId: props.params.bookShelf
       }
 
-      await addBook(payload)
+      await useAddBook(payload)
       await useGetUserBookShelf()
       await (context as any).root.ModalService.closeAll()
     }

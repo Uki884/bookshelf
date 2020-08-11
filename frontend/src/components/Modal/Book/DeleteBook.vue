@@ -19,12 +19,17 @@
   </Modal>
 </template>
 
-<script>
+<script lang="ts">
 import Modal from '@/components/Modal/Modal.vue'
 import ModalService from '@/services/modal/index.js'
 import { mapGetters } from 'vuex'
+import { SetupContext, defineComponent } from '@vue/composition-api'
+import { useUserStore } from '@/store/userStore.ts'
+import { useBookShelfStore } from '@/store/bookShelfStore.ts'
+import { useGrobalStore } from '@/store/grobalStore.ts'
+import { useBookStore } from '@/store/bookStore'
 
-export default {
+export default defineComponent({
   components: {
     Modal
   },
@@ -33,32 +38,24 @@ export default {
       type: Object
     }
   },
-  data() {
+  setup(props, context) {
+    const { user } = useUserStore()
+    const { useGetUserBookShelf } = useBookShelfStore()
+    const { useAddBook, useDeleteBook } = useBookStore()
+    const { closeModal } = useGrobalStore()
+
+    const deleteBook = async() => {
+      await useDeleteBook(Number(props.params.item.book_id))
+      await useGetUserBookShelf()
+      await closeModal()
+    }
+
     return {
-      input: {
-        name: {
-          name: '名前',
-          value: '',
-          length: [1, 28],
-          require: true,
-          errorMessage: []
-        },
-      },
+      closeModal,
+      deleteBook
     }
   },
-  methods: {
-    closeModal() {
-      ModalService.close()
-    },
-    deleteBook() {
-      console.log(this.params)
-      this.$store.dispatch('book/deleteBook', this.params).then(async Response =>{
-        this.closeModal()
-      })
-    }
-  }
-
-}
+})
 </script>
 
 <style lang="scss" scoped>

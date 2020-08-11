@@ -8,6 +8,8 @@ import BookUtil from "@/utils/BookUtli"
 import { CREATE_BOOKSHELF } from '@/apollo/mutations/createBookShelf.ts'
 import { GET_USER_BOOKSHELFS } from '@/apollo/queries/getUserBookShelfs'
 import { SAVE_BOOK_POSITION } from '@/apollo/mutations/saveBookPosition.ts'
+import { DELETE_BOOKSHELF } from '@/apollo/mutations/deleteBookshelf.ts'
+
 const BOOKSHELF_SELECT_MENU = [
   { id: 1, name: "本を追加/削除" },
   { id: 2, name: "本の位置を変更" },
@@ -125,6 +127,13 @@ export default function useBookShelf(context: SetupContext) {
       }
     }
   }
+  const useDeleteBookShelf = async (bookshelfId: number) => {
+    const variables = { bookshelfId }
+    const { data } = await context.root.$apollo.mutate({
+      mutation: DELETE_BOOKSHELF,
+      variables,
+    })
+  }
   return {
     state,
     bookShelfs,
@@ -137,5 +146,6 @@ export default function useBookShelf(context: SetupContext) {
     useSetBookPosition,
     useCreateBookShelf,
     useGetUserBookShelf,
+    useDeleteBookShelf,
   }
 }

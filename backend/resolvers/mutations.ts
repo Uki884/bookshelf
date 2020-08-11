@@ -15,12 +15,38 @@ export const Mutation = {
       return null;
     }
   },
+  deleteBook: async (_, { bookId }, { Book, currentUser }) => {
+    if (!bookId) return new Error('本を削除できませんでした');
+    const targetBook = await Book.findOne(bookId, { relations: ['bookshelf', 'bookshelf.user'] });
+    try {
+      if (targetBook.bookshelf.user.id === currentUser.id) {
+        const result = await targetBook.remove();
+        return result;
+      }
+      return new Error('本を削除できませんでした');
+    } catch {
+      return new Error('本を削除できませんでした');
+    }
+  },
   // 本棚作成
   createBookshelf: async (_, { input }, { BookShelf, currentUser }) => {
     const bookshelf = await BookShelf.create({ ...input });
     bookshelf.user = currentUser;
     const data = await bookshelf.save();
     return data;
+  },
+  deleteBookshelf: async (_, { bookshelfId }, { BookShelf, currentUser }) => {
+    if (!bookshelfId) return new Error('本棚を削除できませんでした');
+    const targetBookShelf = await BookShelf.findOne(bookshelfId, { relations: ['user'] });
+    try {
+      if (targetBookShelf.user.id === currentUser.id) {
+        const result = await targetBookShelf.remove();
+        return result;
+      }
+      return new Error('本棚を削除できませんでした');
+    } catch {
+      return new Error('本棚を削除できませんでした');
+    }
   },
   // 本の位置保存
   saveBookPosition: async (_, { input }, { BookShelf, currentUser, BookPosition }) => {
