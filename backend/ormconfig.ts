@@ -1,11 +1,11 @@
 module.exports = [{
   name: 'default',
   type: 'mysql',
-  host: '127.0.0.1',
+  host: process.env.DATABASE_URL,
   port: 3306,
-  username: 'root',
-  password: '',
-  database: 'bookshelf',
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   synchronize: false,
   logging: false,
   entities: [
