@@ -12,7 +12,7 @@
     "start": "nodemon",
     "serve": "ts-node --files -r tsconfig-paths/register .",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ormconfig.ts",
-    "heroku-postbuild": "rm -rf node_modules package-lock.json && npm install && npm run serve"
+    "heroku-postbuild": "npm run serve"
   },
   "author": "",
   "license": "ISC",
