@@ -40,7 +40,7 @@ body {
   overscroll-behavior: none;
   width: 100%;
 }
-html,body { height:100%; }
+html,body { height:100%; overflow: hidden; }
 #app {
   height: 100%;
   font-family: 'Noto Serif JP', serif;

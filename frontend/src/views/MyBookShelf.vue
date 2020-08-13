@@ -74,7 +74,7 @@ export default defineComponent({
 }
 
 .swiper-pagination-bullets {
-    // bottom: 58px;
+  bottom: 70px;
 }
 
 .swiper-pagination {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overview">
     <Header @click="handleSidemenu" />
     <div
       id="main"
@@ -82,6 +82,9 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped>
+.overview {
+  height: 100%;
+}
 
 </style>
