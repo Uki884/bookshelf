@@ -60,8 +60,9 @@ export class Auth {
     return await this.auth0Client.loginWithRedirect(o)
   }
 
-  async logout(o) {
-    await this.auth0Client.logout(o)
+  logout(o) {
+    const returnTo = { returnTo: window.location.origin }
+    this.auth0Client.logout(returnTo)
     localStorage.removeItem("idToken")
   }
 }
