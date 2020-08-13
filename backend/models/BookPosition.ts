@@ -10,8 +10,6 @@ import {
   OneToOne,
 } from 'typeorm';
 
-import { Book } from '@/models/Book';
-
 @Entity()
 export class BookPosition extends BaseEntity {
   @PrimaryGeneratedColumn()

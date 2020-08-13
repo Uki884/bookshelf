@@ -10,8 +10,8 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import { BookShelf } from '@/models/BookShelf.ts';
-import { BookPosition } from '@/models/BookPosition';
+import { BookShelf } from './BookShelf';
+import { BookPosition } from './BookPosition';
 
 @Entity()
 export class Book extends BaseEntity {

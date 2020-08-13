@@ -8,7 +8,7 @@ import {
   OneToMany,
 } from 'typeorm';
 
-import { BookShelf } from '@/models/BookShelf';
+import { BookShelf } from './BookShelf';
 
 @Entity()
 export class User extends BaseEntity {

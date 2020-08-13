@@ -3,10 +3,10 @@ import express from 'express';
 
 import { importSchema } from 'graphql-import';
 
-import { dbconnect } from '@/dbConnect';
-import resolvers from '@/resolvers/index';
-import models from '@/models/index';
-import { verifyJwtToken } from '@/utils/verifyJwtToken';
+import { dbconnect } from './dbConnect';
+import resolvers from './resolvers/index';
+import models from './models/index';
+import { verifyJwtToken } from './utils/verifyJwtToken';
 
 const { ApolloServer } = require('apollo-server-express');
 

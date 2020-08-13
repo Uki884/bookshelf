@@ -1,7 +1,7 @@
-import { Book } from '@/models/Book';
-import { BookShelf } from '@/models/BookShelf';
-import { BookPosition } from '@/models/BookPosition';
-import { User } from '@/models/User';
+import { Book } from './Book';
+import { BookShelf } from './BookShelf';
+import { BookPosition } from './BookPosition';
+import { User } from './User';
 
 export default {
   BookShelf,
