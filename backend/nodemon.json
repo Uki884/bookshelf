@@ -1,8 +1,5 @@
 {
   "watch": [
     "./"
-  ],
-  "ext": "ts",
-  "exec": "ts-node --files -r tsconfig-paths/register .",
-  "delay": "1500"
+  ]
 }

@@ -11,7 +11,6 @@ import { verifyJwtToken } from './utils/verifyJwtToken';
 const { ApolloServer } = require('apollo-server-express');
 
 const typeDefs = importSchema('./typeDefs/schema.graphql');
-// TODO 別ファイルに移す
 
 dbconnect();
 
