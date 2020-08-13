@@ -54,11 +54,11 @@ export class Book extends BaseEntity {
   @ManyToOne((type) => BookShelf, (bookShelf) => bookShelf.books)
   bookshelf!: BookShelf;
 
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date = new Date();
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date | undefined;
 
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date = new Date();
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updatedAt: Date | undefined;
 }
 
 export default Book;

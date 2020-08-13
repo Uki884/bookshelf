@@ -21,11 +21,11 @@ export class BookPosition extends BaseEntity {
   @Column('integer')
   public row_no: number | undefined;
 
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date = new Date();
+  @CreateDateColumn({ name: 'created_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date | undefined;
 
-  @UpdateDateColumn({ name: 'updated_at' })
-  updatedAt: Date = new Date();
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updatedAt: Date | undefined;
 }
 
 export default BookPosition;
