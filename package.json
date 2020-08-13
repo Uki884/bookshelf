@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build:front": "npm --prefix frontend run install && npm --prefix frontend run build"
+    "build:front": "npm --prefix frontend install && npm --prefix frontend run build"
   },
   "license": "ISC",
   "dependencies": {},
