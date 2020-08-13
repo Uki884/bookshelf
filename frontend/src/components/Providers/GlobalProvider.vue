@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="provider">
     <slot />
   </div>
 </template>
@@ -20,3 +20,9 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="scss">
+.provider {
+  height: 100%;
+}
+</style>

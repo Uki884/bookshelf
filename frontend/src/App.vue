@@ -40,8 +40,9 @@ body {
   overscroll-behavior: none;
   width: 100%;
 }
+html,body { height:100%; }
 #app {
-  height: 100vh;
+  height: 100%;
   font-family: 'Noto Serif JP', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
