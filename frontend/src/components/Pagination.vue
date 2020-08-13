@@ -86,6 +86,7 @@ export default {
     border-radius: 3px;
     margin-right: 4px;
     background: rgb(238,238,238);
+    max-width: 32px;
     button {
       cursor: pointer;
       background-color: transparent;

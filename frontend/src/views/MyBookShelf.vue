@@ -41,7 +41,8 @@ export default defineComponent({
     SwiperSlide
   },
   setup(props: any, context: SetupContext) {
-    const { state, bookShelfs, swiperOption } = useBookShelfStore()
+    const { state, bookShelfs, swiperOption, useGetUserBookShelf } = useBookShelfStore()
+    useGetUserBookShelf()
     return {
       state,
       bookShelfs,

@@ -12,8 +12,13 @@ export default defineComponent({
     const callback = async() => {
       const { appState } = await (context as any).root.$auth0.handleRedirectCallback()
       await useCreateUser()
-      window.location.href = 'my_bookshelf/'
     }
+
+    watch(()=> user.value, (newVal, oldVal)=>{
+      if (newVal) {
+        context.root.$router.push('/my_bookshelf')
+      }
+    })
 
     callback()
     return {

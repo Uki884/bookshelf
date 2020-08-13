@@ -64,7 +64,7 @@ export default defineComponent({
           name: '本棚の説明',
           value: '',
           length: [1, 32],
-          require: true,
+          require: false,
           errorMessage: []
         },
       },

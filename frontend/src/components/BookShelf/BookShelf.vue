@@ -20,7 +20,7 @@
           @click="handleAction" />
       </div>
       <div class="bookshelf__wrapper">
-        <div class="bookshelf__outer">
+        <div v-if="bookShelf.books.length" class="bookshelf__outer" >
           <Books
             v-for="(item, index) in bookShelf.books"
             :id="index"
@@ -33,6 +33,9 @@
             :is-edit-position="state.isEditPositionMode"
             :column="index"
             class="bookshelf__line seam" />
+        </div>
+        <div v-else >
+          本棚がありません
         </div>
       </div>
       <div class="bottom_buttons bookshelf__bottom-botton">
