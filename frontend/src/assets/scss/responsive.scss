@@ -35,6 +35,11 @@
   .VueCarousel-inner{
     width: 380px;
   }
+  .pagination{
+    &__buttons{
+      font-size: 12px !important;
+    }
+  }
 }
 
 /* iphone 5 */
