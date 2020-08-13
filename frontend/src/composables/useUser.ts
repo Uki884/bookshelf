@@ -24,9 +24,9 @@ export default function useUser(context: SetupContext): UseUser {
     return !!user.value?.id
   })
 
-  const useCreateUser = async (user: any) => {
-    const variables = { input: { email: user.email, name: user.nickname, auth0Id: user.sub }}
-    await (context as any).root.$auth0.getUser()
+  const useCreateUser = async () => {
+    const { userData } = await(context as any).root.$auth0.getUser()
+    const variables = { input: { email: userData.email, name: userData.nickname, auth0Id: userData.sub }}
     const { data } = await context.root.$apollo.mutate({
       mutation: CREATE_USER,
       variables

@@ -3,19 +3,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, SetupContext} from "@vue/composition-api"
+import { defineComponent, reactive, SetupContext, watch} from "@vue/composition-api"
 import { useUserStore } from '@/store/userStore'
 
 export default defineComponent({
   setup(props: any, context: SetupContext) {
     const { useCreateUser, user } = useUserStore()
     const callback = async() => {
-      const { appState, user } = await (context as any).root.$auth0.handleRedirectCallback()
-      await useCreateUser(user)
-      // const path = appState ? '/#' + appState : '/'
-      // location.href = path
-      location.href = '/my_bookshelf/'
+      const { appState } = await (context as any).root.$auth0.handleRedirectCallback()
+      await useCreateUser()
+      await context.root.$router.replace('/my_bookshelf')
     }
+
     callback()
     return {
 

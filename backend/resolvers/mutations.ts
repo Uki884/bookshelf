@@ -61,8 +61,9 @@ export const Mutation = {
   createUser: async (_, { input }, { User }) => {
     const user = await User.findOne({ auth0Id: input.auth0Id });
     if (!user) {
-      const createduser = User.create({ ...input });
-      createduser.save();
+      const createduser = await User.create({ ...input });
+      await createduser.save();
+      return createduser;
     }
     return user;
   },
