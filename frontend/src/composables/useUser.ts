@@ -26,7 +26,7 @@ export default function useUser(context: SetupContext): UseUser {
 
   const useCreateUser = async (user: any) => {
     const variables = { input: { email: user.email, name: user.nickname, auth0Id: user.sub }}
-    await context.root.$auth0.getUser()
+    await (context as any).root.$auth0.getUser()
     const { data } = await context.root.$apollo.mutate({
       mutation: CREATE_USER,
       variables
@@ -36,10 +36,10 @@ export default function useUser(context: SetupContext): UseUser {
   }
 
   const useGetCurrentUser = async () => {
-    const isLoggedIn = await context.root.$auth0.isLoggedIn()
+    const isLoggedIn = await (context as any).root.$auth0.isLoggedIn()
     if (!isLoggedIn) return
     if (!user.value) {
-      const { userData, idToken } = await context.root.$auth0.getUser()
+      const { userData, idToken } = await(context as any).root.$auth0.getUser()
       const variables = { auth0Id: userData.sub }
       const data = await context.root.$apollo.query({
         query: GET_CURRENT_USER,
@@ -51,11 +51,11 @@ export default function useUser(context: SetupContext): UseUser {
   }
 
   const login = async () => {
-    context.root.$auth0.loginWithRedirect()
+    (context as any).root.$auth0.loginWithRedirect()
   }
 
   const logout = async () => {
-    context.root.$auth0.logout()
+    (context as any).root.$auth0.logout()
   }
 
   return {

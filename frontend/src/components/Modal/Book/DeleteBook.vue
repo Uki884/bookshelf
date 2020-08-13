@@ -35,7 +35,8 @@ export default defineComponent({
   },
   props: {
     params: {
-      type: Object
+      type: Object,
+      required: true
     }
   },
   setup(props, context) {
@@ -45,7 +46,8 @@ export default defineComponent({
     const { closeModal } = useGrobalStore()
 
     const deleteBook = async() => {
-      await useDeleteBook(Number(props.params.item.book_id))
+      const bookId = props.params.item.book_id ? Number(props.params.item.book_id) : null
+      await useDeleteBook(bookId)
       await useGetUserBookShelf()
       await closeModal()
     }

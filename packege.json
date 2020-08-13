@@ -1,0 +1,11 @@
+{
+  "name": "bookshelf",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build:front": "npm --prefix frontend run build"
+  },
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}

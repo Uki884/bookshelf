@@ -10,7 +10,7 @@ export default defineComponent({
   setup(props: any, context: SetupContext) {
     const { useCreateUser, user } = useUserStore()
     const callback = async() => {
-      const { appState, user } = await context.root.$auth0.handleRedirectCallback()
+      const { appState, user } = await (context as any).root.$auth0.handleRedirectCallback()
       await useCreateUser(user)
       // const path = appState ? '/#' + appState : '/'
       // location.href = path

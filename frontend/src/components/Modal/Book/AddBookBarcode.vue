@@ -57,7 +57,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted} from "@vue/composition-api"
 import { Caputure } from '@/utils/BarcodeScanner.js'
-import useBarcodeScanner from '@/composables/useBarcodeScanner.ts'
+import useBarcodeScanner from '@/composables/useBarcodeScanner'
 import { useBookStore } from '@/store/bookStore'
 import { useGrobalStore } from '@/store/grobalStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
@@ -89,7 +89,6 @@ export default defineComponent({
     }
 
     const registBook = async() => {
-      console.log(barcodeResult)
       const payload = {
         cover: barcodeResult.value.cover,
         author: barcodeResult.value.author,

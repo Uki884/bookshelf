@@ -59,12 +59,12 @@ export default defineComponent({
     const handleSearch = async() => {
       const payload = {keyword: state.searchWord, page: state.currentPage}
       const data = await rakutenApi.getSearchBook(payload)
-      const searchBooks = data.data.Items.map(data => data.Item)
+      const searchBooks = data.data.Items.map((data: any) => data.Item)
       const { count, first, last, page, pageCount } = data.data
       state.searchResult = searchBooks
       state.searchPagenation = { count, first, last, page, pageCount }
     }
-    const selectBook = (index)=> {
+    const selectBook = (index: number)=> {
       const item = state.searchResult[index]
       const payload = {...props.params, ...item}
       ModalService.selectBook(payload)

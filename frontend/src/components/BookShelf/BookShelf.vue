@@ -93,7 +93,7 @@ export default defineComponent({
     })
 
     const saveBookPosition =() => {
-      context.root.ModalService.changeBookPositionComfirm(state.editBookPositions)
+      (context as any).root.ModalService.changeBookPositionComfirm(state.editBookPositions)
     }
 
     const handleAction = (item: any) => {

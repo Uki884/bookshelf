@@ -50,7 +50,7 @@ export default function useBookShelf(context: SetupContext) {
   const bookShelfs = ref([])
 
   const useSetBookShelf = async (bookshelf: any) => {
-    const bookData = bookshelf.map(item => {
+    const bookData = bookshelf.map((item: any) => {
       const bookShelf = { books: null, description: "", id: null, name: "" }
       bookShelf.books = BookUtil.createBookArray(item)
       bookShelf.description = item.description
