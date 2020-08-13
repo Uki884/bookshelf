@@ -3,7 +3,8 @@
     <div
       v-if="isOpen && isUserLoggedIn"
       class="sidemenu"
-      :class="isOpen ? 'is_inactive' : 'is_active'">
+      :class="isOpen ? 'is_inactive' : 'is_active'"
+      :style="sidemenuHeight">
       <div
         v-for="(list, index) in SIDEMENU_LIST"
         :key="index"
