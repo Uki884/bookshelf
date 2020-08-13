@@ -1,0 +1,39 @@
+type Mutation {
+  addBook(input: addBookInput): Book
+  deleteBook(bookId: Int): Book
+  createBookshelf(input: createBookshelfInput): BookShelf
+  deleteBookshelf(bookshelfId: Int): BookShelf
+  saveBookPosition(input: [saveBookPositionInput]): [BookPosition]
+  createUser(input: createUserInput ): User
+}
+
+input addBookInput {
+  title: String
+  author: String
+  cover: String
+  isbn: String
+  price: Int
+  publisher: String
+  image: String
+  row_no: Int
+  column_no: Int,
+  bookshelfId: Int
+}
+
+input saveBookPositionInput {
+  id: String
+  column_no: Int
+  row_no: Int
+}
+
+input createUserInput {
+  id: String
+  auth0Id: String
+  name: String
+  email: String
+}
+
+input createBookshelfInput {
+  name: String
+  description: String
+}

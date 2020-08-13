@@ -1,0 +1,14 @@
+type Book {
+  id: ID
+  title: String
+  author: String
+  cover: String
+  isbn: String
+  price: String
+  publisher: String
+  image: String
+  createdAt: String
+  updatedAt: String
+  bookshelf: BookShelf
+  bookPosition: BookPosition
+}

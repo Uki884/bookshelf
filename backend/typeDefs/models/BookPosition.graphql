@@ -1,0 +1,5 @@
+type BookPosition {
+  id: ID
+  column_no: Int
+  row_no: Int
+}
