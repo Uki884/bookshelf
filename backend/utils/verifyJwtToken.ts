@@ -6,7 +6,9 @@ import User from '../models/User';
 
 export const verifyJwtToken = async (token: any) => {
   let user: any;
-  const cert = fs.readFileSync('./auth0key.pem');
+  // const cert = fs.readFileSync('./auth0key.pem');
+  const secret = process.env.AUTH0_SECRET as string;
+  const cert = Buffer.from(secret, 'base64');
   try {
     if (token) {
       const { sub } = jwt.verify(token, cert);

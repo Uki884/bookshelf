@@ -1,3 +1,7 @@
+const path = require('path');
+
+require('dotenv').config({ path: '.env' });
+
 module.exports = [{
   name: 'default',
   type: 'mysql',
@@ -8,14 +12,12 @@ module.exports = [{
   database: process.env.DB_NAME,
   synchronize: false,
   logging: false,
-  entities: [
-    './models/**/*.js',
-  ],
+  entities: [`${__dirname}/dist/models/**/*.js`],
   migrations: [
-    './migrations/**/*.js',
+    `${__dirname}/dist/migrations/**/*.js`,
   ],
   subscribers: [
-    './subscribers/**/*.js',
+    `${__dirname}/dist/subscribers/**/*.js`,
   ],
   cli: {
     entitiesDir: './models',
