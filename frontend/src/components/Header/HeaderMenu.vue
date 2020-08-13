@@ -5,7 +5,7 @@
     @mouseleave="visbleUserMenu = false">
     <div
       class="header__right"
-      @click="isUserLoggedIn ? logout() : login()"
+      @click="isUserLoggedIn ? null : login()"
       v-text="isUserLoggedIn ? user.name : 'ログイン'" />
     <v-icon
       v-if="isUserLoggedIn"

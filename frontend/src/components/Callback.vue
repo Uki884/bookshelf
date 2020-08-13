@@ -12,7 +12,7 @@ export default defineComponent({
     const callback = async() => {
       const { appState } = await (context as any).root.$auth0.handleRedirectCallback()
       await useCreateUser()
-      await context.root.$router.replace('/my_bookshelf')
+      window.location.href = 'my_bookshelf/'
     }
 
     callback()
