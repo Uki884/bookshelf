@@ -25,7 +25,7 @@ export default {
 
 .search_box {
   position: relative;
-  margin: 44px 44px 12px;
+  margin: 12px;
   display: flex;
   align-items: center;
   input{

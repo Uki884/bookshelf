@@ -3,27 +3,7 @@
     title="この本について"
     @close="closeModal">
     <template slot="main">
-      <div class="detect">
-        <div class="detect__container">
-          <div class="detect__image">
-            <img :src="params.cover">
-          </div>
-          <div class="detect__item">
-            <div class="detect__text">
-              <div class="detect__title">
-                タイトル
-              </div>
-              <span>{{ params.title }}</span>
-            </div>
-            <div class="detect__text">
-              <div class="detect__title">
-                価格情報
-              </div>
-              <span>{{ params.price ? params.price + '円' : '価格情報がありません' }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <BookDetailItem :book="params" />
     </template>
     <template slot="footer" />
   </Modal>
@@ -32,12 +12,14 @@
 <script>
 import Modal from '@/components/Modal/Modal.vue'
 import ModalService from '@/services/modal/index.js'
+import BookDetailItem from '@/components/Book/BookDetailItem.vue'
 
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
     Modal,
+    BookDetailItem
   },
   props: {
     params: {

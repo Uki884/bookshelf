@@ -3,27 +3,7 @@
     title="本を追加"
     @close="closeModal">
     <template slot="main">
-      <div class="detect">
-        <div class="detect__container">
-          <div class="detect__image">
-            <img :src="params.largeImageUrl">
-          </div>
-          <div class="detect__item">
-            <div class="detect__text">
-              <div class="detect__title">
-                タイトル
-              </div>
-              <span>{{ params.title }}</span>
-            </div>
-            <div class="detect__text">
-              <div class="detect__title">
-                価格情報
-              </div>
-              <span>{{ params.itemPrice ? params.itemPrice + '円' : '価格情報がありません' }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <BookDetailItem :book="params" />
     </template>
     <template slot="footer">
       <div class="btn__wrapper">
@@ -50,7 +30,7 @@ import { useUserStore } from '@/store/userStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 import { useGrobalStore } from '@/store/grobalStore.ts'
 import { useBookStore } from '@/store/bookStore'
-
+import BookDetailItem from '@/components/Book/BookDetailItem.vue'
 export default defineComponent({
   props: {
     params: {
@@ -59,7 +39,8 @@ export default defineComponent({
     }
   },
   components: {
-    Modal
+    Modal,
+    BookDetailItem
   },
   setup(props: any, context: SetupContext) {
 
@@ -102,7 +83,6 @@ export default defineComponent({
 /deep/ .Modal__body {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 </style>

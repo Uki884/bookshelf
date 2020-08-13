@@ -13,6 +13,11 @@
     max-height: 98px !important;
     min-height: 98px !important;
   }
+  .search{
+    &__image{
+      height: 148px !important;
+    }
+  }
   .cover-image{
     width: 60px !important;
     height: 86px !important;
@@ -84,7 +89,13 @@
 @media only screen 
     and (device-width : 375px) 
     and (device-height : 667px) 
-    and (-webkit-device-pixel-ratio : 2) { 
+    and (-webkit-device-pixel-ratio : 2) {
+      .btn {
+        font-size: 14px !important;
+      }
+      .Modal__form-item{
+        font-size: 18px !important;
+      }
       .bookshelf{
         &__outer {
           width: 324px !important;
@@ -94,6 +105,7 @@
           min-height: 84px !important;
         }
       }
+
     .cover-image{
         height: 72px !important;
         width: 60px !important;

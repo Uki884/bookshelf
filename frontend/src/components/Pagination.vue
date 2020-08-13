@@ -1,5 +1,5 @@
 <template>
-  <div v-if="pagination.count >= 1">
+  <div class="pagination" v-if="pagination.count >= 1">
     <div class="pagination__result">
       {{ pagination.count }}件の結果
     </div>
@@ -69,6 +69,7 @@ export default {
 <style lang="scss" scoped>
 
 .pagination{
+  width: 100%;
   &__result {
       font-size: 14px;
   };

@@ -43,7 +43,8 @@
     position: relative;
   }
   &__body {
-    height: calc(100% - 200px);
+    padding: 0 20px;
+    height: calc(100% - 148px);
 
   }
   &__form {

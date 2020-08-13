@@ -17,7 +17,6 @@ import {
   reactive,
   computed,
 } from "@vue/composition-api"
-import { useUserStore } from '@/store/userStore'
 
 export default defineComponent({
   components: {
@@ -25,8 +24,6 @@ export default defineComponent({
     Index
   },
   setup(props: any, context: SetupContext) {
-    const { useGetCurrentUser, user } = useUserStore()
-    useGetCurrentUser()
     return {
     }
   }

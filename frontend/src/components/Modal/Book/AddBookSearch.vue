@@ -8,7 +8,7 @@
         :value="state.searchWord"
         @keydown.enter.native="handleSearch()"
         @click="handleSearch()" />
-      <div class="select-list__wrapper">
+      <div v-if="state.searchResult.length" class="select-list__wrapper">
         <ul>
           <li
             v-for="(book, index) in state.searchResult"
@@ -17,6 +17,9 @@
             {{ book.title }}
           </li>
         </ul>
+      </div>
+      <div v-else class="">
+        検索結果がありません
       </div>
     </template>
     <template slot="footer">
@@ -91,12 +94,13 @@ export default defineComponent({
 
 .select-list {
   &__wrapper {
-    padding: 0 32px;
+    padding: 0 12px;
     overflow: scroll;
-    height: calc(100% - 60px);
+    height: calc(100% - 68px);
     ul {
+      height: 100%;
       padding: 0px 14px;
-        cursor: pointer;
+      cursor: pointer;
     }
     li:first-child {
       border-top: solid 1px;
