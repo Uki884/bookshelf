@@ -58,12 +58,20 @@ export const Mutation = {
     return result;
   },
   // ユーザー作成
-  createUser: async (_, { input }, { User }) => {
+  createUser: async (_, { input }, { User, BookShelf }) => {
     const user = await User.findOne({ auth0Id: input.auth0Id });
     if (!user) {
       const createduser = await User.create({ ...input });
       await createduser.save();
-      return createduser;
+      const bookshelfInput = {
+        name: 'サンプル本棚',
+        description: '',
+      };
+      const bookshelf = await BookShelf.create({ ...bookshelfInput });
+      bookshelf.user = createduser;
+      await bookshelf.save();
+      const newUser = await User.findOne({ id: createduser.id }, { relations: ['bookShelf', 'bookShelf.books', 'bookShelf.books.bookPosition'] });
+      return newUser;
     }
     return user;
   },
