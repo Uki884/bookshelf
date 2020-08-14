@@ -74,7 +74,7 @@ export default defineComponent({
       if (result.validStatus) {
         const payload = requestInput(state.input)
         await useCreateBookShelf(payload)
-        await useGetUserBookShelf()
+        await useGetUserBookShelf(user.value.id)
         await closeModal()
       }
     }

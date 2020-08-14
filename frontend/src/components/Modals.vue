@@ -60,7 +60,7 @@ export default defineComponent({
       if (background) {
         background.style.background = "rgba(0, 0, 0, 0.5)"
       }
-    })
+    }, {immediate: true})
 
     return {
       modals

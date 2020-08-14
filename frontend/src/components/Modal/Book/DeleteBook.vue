@@ -48,7 +48,7 @@ export default defineComponent({
     const deleteBook = async() => {
       const bookId = props.params.item.book_id ? Number(props.params.item.book_id) : null
       await useDeleteBook(bookId)
-      await useGetUserBookShelf()
+      await useGetUserBookShelf(user.value.id)
       await closeModal()
     }
 

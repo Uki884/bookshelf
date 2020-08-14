@@ -63,7 +63,7 @@ export default defineComponent({
       }
 
       await useAddBook(payload)
-      await useGetUserBookShelf()
+      await useGetUserBookShelf(user.value.id)
       await (context as any).root.ModalService.closeAll()
     }
 

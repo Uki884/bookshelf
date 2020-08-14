@@ -45,7 +45,7 @@ export default defineComponent({
     const { user } = useUserStore()
 
     watch(() => user.value, async(newValue, oldValue)=>{
-      await useGetUserBookShelf(Number(newValue.id))
+      await useGetUserBookShelf(newValue.id)
     }, { deep: true, immediate: true })
 
     return {

@@ -5,8 +5,10 @@
     <template slot="main">
       <div class="Modal__form">
         <div class="Modal__form-item">
-          <section>本棚の本は全て削除されます。</section>
-          <section>本棚を削除してもよろしいですか？</section>
+          <section>
+            <div>本棚の本は全て削除されます。</div>
+            <div>本棚を削除してもよろしいですか？</div>
+          </section>
         </div>
       </div>
     </template>
@@ -47,7 +49,7 @@ export default defineComponent({
 
     const deleteBookShelf = async() => {
       await useDeleteBookShelf(Number(props.params.id))
-      await useGetUserBookShelf()
+      await useGetUserBookShelf(user.value.id)
       await closeModal()
     }
 

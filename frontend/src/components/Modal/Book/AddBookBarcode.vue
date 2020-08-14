@@ -61,6 +61,7 @@ import useBarcodeScanner from '@/composables/useBarcodeScanner'
 import { useBookStore } from '@/store/bookStore'
 import { useGrobalStore } from '@/store/grobalStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
+import { useUserStore } from '@/store/userStore'
 import Modal from '@/components/Modal/Modal.vue'
 
 export default defineComponent({
@@ -77,6 +78,7 @@ export default defineComponent({
     const { useAddBook, state } = useBookStore()
     const { closeModal, closeAllModal } = useGrobalStore()
     const { useGetUserBookShelf } = useBookShelfStore()
+    const { user } = useUserStore()
     const { CaptureStart, CaptureStop, barcodeResult, isDetected, isFailed} = useBarcodeScanner()
 
     const start = async() => {
@@ -101,7 +103,7 @@ export default defineComponent({
         bookshelfId: props.params.bookShelf
       }
       await useAddBook(payload)
-      await useGetUserBookShelf()
+      await useGetUserBookShelf(user.value.id)
       await closeAllModal()
     }
 
