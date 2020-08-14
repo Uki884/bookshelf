@@ -90,7 +90,8 @@ export default defineComponent({
 }
 
 .swiper-container{
-  width: 100%
+  width: 100%;
+  height: fit-content;
 }
 
 </style>

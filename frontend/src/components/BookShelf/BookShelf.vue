@@ -3,21 +3,19 @@
     class="bookshelf"
     @click.self="handleEdit(false)">
     <div class="bookshelf__container">
-      <div class="bookshelf__title">
-        <div class="bookshelf__title--item">
-          {{ bookShelf.information.name }}
+      <div class="bookshelf__head">
+        <div class="bookshelf__head__text">{{ bookShelf.information.name }}</div>
+        <div class="btn__wrapper">
+          <RoundButton
+            width="90"
+            :is-open="state.isOpenMenu"
+            :options="BOOKSHELF_SELECT_MENU"
+            :use-select="true"
+            text="メニュー"
+            @mouseleave.native="handleOpen(false)"
+            @mouseover.native="handleOpen(true)"
+            @click="handleAction" />
         </div>
-      </div>
-      <div class="btn__wrapper">
-        <RoundButton
-          width="90"
-          :is-open="state.isOpenMenu"
-          :options="BOOKSHELF_SELECT_MENU"
-          :use-select="true"
-          text="メニュー"
-          @mouseleave.native="handleOpen(false)"
-          @mouseover.native="handleOpen(true)"
-          @click="handleAction" />
       </div>
       <div class="bookshelf__wrapper">
         <div v-if="bookShelf.books.length" class="bookshelf__outer" >

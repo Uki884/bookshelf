@@ -5,18 +5,19 @@
   margin-top: 6px;
   &__wrapper {
     overflow: scroll;
-    // height: calc(100% - 180px);
     outline: solid 12px #604737;
     margin: 20px 0px;
   }
   &__container{
-    height: 100%;
+    height: fit-content;
     position: relative;
   }
-  &__title {
-    font-size: 24px;
-    padding-bottom: 8px;
-    &--item {
+  &__head {
+    display: flex;
+    align-items: center;
+    &__text {
+      width: 50%;
+      text-align: left;
       font-size: 20px;
       font-weight: bold;
     }
@@ -60,7 +61,7 @@
   }
   &__bottom-botton {
     position: absolute;
-    bottom: 48px;
+    bottom: 12px;
     right: 0px;
     span {
       font-size: 12px;
