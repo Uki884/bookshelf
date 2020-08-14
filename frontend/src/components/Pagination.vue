@@ -8,7 +8,7 @@
         v-show="currentPage > 1"
         class="pagination__button"
         @click="change(currentPage - 1)">
-        <span>戻る</span>
+        <span>&lt;</span>
       </div>
       <div
         v-for="(page, index) in pages"
@@ -23,7 +23,7 @@
         v-show="currentPage < pagination.pageCount"
         class="pagination__button"
         @click="change(currentPage + 1)">
-        <span>次へ</span>
+        <span>&gt;</span>
       </div>
     </div>
   </div>
@@ -85,8 +85,12 @@ export default {
     padding: 6px;
     border-radius: 3px;
     margin-right: 4px;
-    background: rgb(238,238,238);
-    max-width: 32px;
+    background: #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    width: 18px;
+    max-width: 18px;
     button {
       cursor: pointer;
       background-color: transparent;
