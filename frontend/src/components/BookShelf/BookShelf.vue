@@ -6,6 +6,22 @@
       <div class="bookshelf__head">
         <div class="bookshelf__head__text">{{ bookShelf.information.name }}</div>
         <div class="btn__wrapper">
+          <div class="bottom_buttons bookshelf__bottom-botton">
+            <RoundButton
+              v-if="state.isEditMode"
+              width="120"
+              text="本の追加をやめる"
+              @click.native="handleEdit(false)" />
+            <RoundButton
+              v-if="state.isEditPositionMode"
+              width="120"
+              text="現在の本の位置を保存"
+              @click.native="saveBookPosition()" />
+            <RoundButton
+              width="90"
+              text="行を追加"
+              @click.native="useAddBookShelfRow(bookShelf)" />
+          </div>
           <RoundButton
             width="90"
             :is-open="state.isOpenMenu"
@@ -32,25 +48,6 @@
             :column="index"
             class="bookshelf__line seam" />
         </div>
-        <div v-else >
-          本棚がありません
-        </div>
-      </div>
-      <div class="bottom_buttons bookshelf__bottom-botton">
-        <RoundButton
-          v-if="state.isEditMode"
-          width="120"
-          text="本の追加をやめる"
-          @click.native="handleEdit(false)" />
-        <RoundButton
-          v-if="state.isEditPositionMode"
-          width="120"
-          text="現在の本の位置を保存"
-          @click.native="saveBookPosition()" />
-        <RoundButton
-          width="90"
-          text="行を追加"
-          @click.native="useAddBookShelfRow(bookShelf)" />
       </div>
     </div>
   </div>

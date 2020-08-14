@@ -109,6 +109,9 @@
           max-height: 84px !important;
           min-height: 84px !important;
         }
+        &__container {
+          height: calc(100% - 120px) !important;
+        }
       }
 
     .cover-image{

@@ -61,12 +61,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 .my-bookshelf {
   position: relative;
-  height: 100%;
   width: 100%;
   display: flex;
   position: relative;
   flex-wrap: wrap;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .bookshelfs{
@@ -80,7 +79,7 @@ export default defineComponent({
 }
 
 .swiper-pagination-bullets {
-  bottom: 70px;
+    // bottom: 20%;
 }
 
 .swiper-pagination {
@@ -91,7 +90,7 @@ export default defineComponent({
 
 .swiper-container{
   width: 100%;
-  height: fit-content;
+  height: 100%;
 }
 
 </style>
