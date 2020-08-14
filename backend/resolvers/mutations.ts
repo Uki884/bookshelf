@@ -59,7 +59,16 @@ export const Mutation = {
   },
   // ユーザー作成
   createUser: async (_, { input }, { User, BookShelf }) => {
-    const user = await User.findOne({ auth0Id: input.auth0Id });
+    const user = await User.findOne(
+      { auth0Id: input.auth0Id },
+      {
+        relations: [
+          'bookShelf',
+          'bookShelf.books',
+          'bookShelf.books.bookPosition',
+        ],
+      },
+    );
     if (!user) {
       const createduser = await User.create({ ...input });
       await createduser.save();

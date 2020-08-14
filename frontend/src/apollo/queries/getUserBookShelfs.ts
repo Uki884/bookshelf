@@ -1,8 +1,8 @@
 import gql from "graphql-tag"
 
 export const GET_USER_BOOKSHELFS = gql`
-  query getUserBookshelfs {
-    userBookshelfs {
+  query getUserBookshelfs($userId: Int) {
+    userBookshelfs(userId: $userId) {
         id
         name
         description

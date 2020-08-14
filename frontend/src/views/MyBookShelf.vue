@@ -42,7 +42,12 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { state, bookShelfs, swiperOption, useGetUserBookShelf } = useBookShelfStore()
-    useGetUserBookShelf()
+    const { user } = useUserStore()
+
+    watch(() => user.value, async(newValue, oldValue)=>{
+      await useGetUserBookShelf(Number(newValue.id))
+    }, { deep: true, immediate: true })
+
     return {
       state,
       bookShelfs,

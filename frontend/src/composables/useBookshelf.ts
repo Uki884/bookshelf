@@ -73,8 +73,8 @@ export default function useBookShelf(context: SetupContext) {
     console.log("useCreateBookShelf", data)
   }
 
-  const useGetUserBookShelf = async (input: any) => {
-    const variables = { input }
+  const useGetUserBookShelf = async (userId: any) => {
+    const variables = { userId }
     const { data } = await context.root.$apollo.query({
       query: GET_USER_BOOKSHELFS,
       variables
