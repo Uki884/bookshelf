@@ -44,12 +44,6 @@ export default defineComponent({
     const { useGetCurrentUser, user, isUserLoggedIn } = useUserStore()
     const { useSetBookShelf } = useBookShelfStore()
 
-    onMounted(async ()=>{
-      const userdata = await useGetCurrentUser()
-      if (userdata) {
-        await useSetBookShelf(userdata.bookShelf)
-      }
-    })
     const state = reactive({
       isOpen: isSmartPhone() ? false : true,
     })

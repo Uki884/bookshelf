@@ -7,6 +7,26 @@ mutation createUser($input: createUserInput) {
     name
     email
     auth0Id
+    bookShelf {
+        id
+        name
+        description
+        books {
+          id
+          title
+          cover
+          author
+          isbn
+          price
+          publisher
+          image
+          bookPosition {
+            id
+            row_no
+            column_no
+          }
+        }
+      }
   }
 }
 `

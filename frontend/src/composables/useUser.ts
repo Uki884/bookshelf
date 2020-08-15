@@ -47,6 +47,8 @@ export default function useUser(context: SetupContext): UseUser {
       })
       user.value = data.data.currentUser
       return data.data.currentUser
+    } else {
+      return user.value
     }
   }
 
