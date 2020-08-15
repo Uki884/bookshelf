@@ -5,7 +5,7 @@
       id="main"
       class="main-content">
       <Sidemenu
-        v-if="$route.path  !== '/'"
+        v-if="$route.path !== '/'"
         :is-open="state.isOpen"
         :is-user-logged-in="isUserLoggedIn"
         @click="handleSidemenu"
@@ -31,6 +31,7 @@ import {
   SetupContext,
   reactive,
   computed,
+  onMounted
 } from "@vue/composition-api"
 
 export default defineComponent({
@@ -43,12 +44,12 @@ export default defineComponent({
     const { useGetCurrentUser, user, isUserLoggedIn } = useUserStore()
     const { useSetBookShelf } = useBookShelfStore()
 
-    const getUser = async() => {
+    onMounted(async ()=>{
       const userdata = await useGetCurrentUser()
       if (userdata) {
         await useSetBookShelf(userdata.bookShelf)
       }
-    }
+    })
     const state = reactive({
       isOpen: isSmartPhone() ? false : true,
     })
@@ -68,8 +69,6 @@ export default defineComponent({
     const addBookShelf = () => {
       (context as any).root.ModalService.addBookShelf()
     }
-
-    getUser()
 
     return {
       state,
