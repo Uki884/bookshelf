@@ -6,8 +6,9 @@
   &__wrapper {
     overflow: scroll;
     height: 100%;
-    outline: solid 12px #604737;
-    margin: 20px 0px;
+    border-radius: 2px;
+    margin: 20px 0;
+    box-shadow: 0 0 0 12px #604737;
   }
   &__container{
     height: calc(100% - 200px);
