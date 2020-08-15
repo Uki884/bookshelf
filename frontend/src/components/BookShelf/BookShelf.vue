@@ -19,6 +19,7 @@
               @click.native="saveBookPosition()" />
             <RoundButton
               width="90"
+              v-if="!state.isEditPositionMode"
               text="本棚の行を追加"
               @click.native="useAddBookShelfRow(bookShelf)" />
           </div>

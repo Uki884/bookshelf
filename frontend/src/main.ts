@@ -40,7 +40,7 @@ import {
     setup(props, context) {
       onMounted(async () => {
         const isLoggedIn = await (context as any).root.$auth0.isLoggedIn()
-        if (isLoggedIn && context.root.$route.path !== 'my_bookshelf') {
+        if (isLoggedIn && context.root.$route.path !== '/my_bookshelf') {
           context.root.$router.push('/my_bookshelf')
         }
       })
