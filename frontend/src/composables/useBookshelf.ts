@@ -9,11 +9,13 @@ import { CREATE_BOOKSHELF } from '@/apollo/mutations/createBookShelf.ts'
 import { GET_USER_BOOKSHELFS } from '@/apollo/queries/getUserBookShelfs'
 import { SAVE_BOOK_POSITION } from '@/apollo/mutations/saveBookPosition.ts'
 import { DELETE_BOOKSHELF } from '@/apollo/mutations/deleteBookshelf.ts'
+import { CHANGE_BOOKSHELF_NAME } from "@/apollo/mutations/changeBookshelfName.ts"
 
 const BOOKSHELF_SELECT_MENU = [
   { id: 1, name: "本を追加/削除" },
   { id: 2, name: "本の位置を変更" },
-  { id: 3, name: "本棚を削除", color: "red" },
+  { id: 3, name: "本棚の名前を変更"},
+  { id: 4, name: "本棚を削除", color: "red" },
 ]
 
 const swiperOption = {
@@ -82,6 +84,14 @@ export default function useBookShelf(context: SetupContext) {
     await useSetBookShelf(data.userBookshelfs)
   }
 
+  const useChangeBookshelfName = async (input: any) => {
+    const variables = { input }
+    const { data } = await context.root.$apollo.mutate({
+      mutation: CHANGE_BOOKSHELF_NAME,
+      variables
+    })
+  }
+
   const useHandleChangePositionMode = (state: any, flag: boolean) => {
     state.isEditPositionMode = flag
   }
@@ -147,5 +157,6 @@ export default function useBookShelf(context: SetupContext) {
     useCreateBookShelf,
     useGetUserBookShelf,
     useDeleteBookShelf,
+    useChangeBookshelfName,
   }
 }
