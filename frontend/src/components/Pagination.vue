@@ -1,5 +1,7 @@
 <template>
-  <div class="pagination" v-if="pagination.count >= 1">
+  <div
+    v-if="pagination.count >= 1"
+    class="pagination">
     <div class="pagination__result">
       {{ pagination.count }}件の結果
     </div>

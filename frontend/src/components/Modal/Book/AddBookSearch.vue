@@ -8,7 +8,9 @@
         :value="state.searchWord"
         @keydown.enter.native="handleSearch()"
         @click="handleSearch()" />
-      <div v-if="state.searchResult.length" class="select-list__wrapper">
+      <div
+        v-if="state.searchResult.length"
+        class="select-list__wrapper">
         <ul>
           <li
             v-for="(book, index) in state.searchResult"
@@ -18,7 +20,8 @@
           </li>
         </ul>
       </div>
-      <div v-else class="">
+      <div
+        v-else>
         検索結果がありません
       </div>
     </template>
