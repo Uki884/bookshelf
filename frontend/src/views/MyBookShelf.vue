@@ -41,19 +41,8 @@ export default defineComponent({
     SwiperSlide
   },
   setup(props: any, context: SetupContext) {
-    const { state, bookShelfs, swiperOption, useGetUserBookShelf } = useBookShelfStore()
-    const { user } = useUserStore()
-
-    onMounted(()=> {
-      watch(() => user, async(newValue, oldValue)=>{
-        if (newValue.value.id) {
-          await useGetUserBookShelf(newValue.value.id)
-        }
-      }, { deep: true, immediate: true })
-    })
-
+    const { bookShelfs, swiperOption, useGetUserBookShelf } = useBookShelfStore()
     return {
-      state,
       bookShelfs,
       swiperOption,
     }
