@@ -44,9 +44,13 @@ export default defineComponent({
     const { state, bookShelfs, swiperOption, useGetUserBookShelf } = useBookShelfStore()
     const { user } = useUserStore()
 
-    watch(() => user.value, async(newValue, oldValue)=>{
-      await useGetUserBookShelf(newValue.id)
-    }, { deep: true, immediate: true })
+    onMounted(()=> {
+      watch(() => user, async(newValue, oldValue)=>{
+        if (newValue.value.id) {
+          await useGetUserBookShelf(newValue.value.id)
+        }
+      }, { deep: true, immediate: true })
+    })
 
     return {
       state,
