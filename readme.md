@@ -9,6 +9,8 @@
   - netlify
 
 ## backend
+### URL
+https://bookshelf-graphql.herokuapp.com/graphql
 ### アーキテクチャ
 - node.js(express + apollo server)
   - graphql
