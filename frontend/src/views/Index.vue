@@ -5,6 +5,7 @@
       id="main"
       class="main-content">
       <Sidemenu
+        v-if="$route.path  !== '/'"
         :is-open="state.isOpen"
         :is-user-logged-in="isUserLoggedIn"
         @click="handleSidemenu"
@@ -40,7 +41,7 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { useGetCurrentUser, user, isUserLoggedIn } = useUserStore()
-    const {useSetBookShelf } = useBookShelfStore()
+    const { useSetBookShelf } = useBookShelfStore()
 
     const getUser = async() => {
       const userdata = await useGetCurrentUser()
