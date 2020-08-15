@@ -5,6 +5,7 @@ type Mutation {
   deleteBookshelf(bookshelfId: Int): BookShelf
   saveBookPosition(input: [saveBookPositionInput]): [BookPosition]
   createUser(input: createUserInput ): User
+  changeBookshelfName(input: changeBookshelfNameInput): BookShelf
 }
 
 input addBookInput {
@@ -36,4 +37,9 @@ input createUserInput {
 input createBookshelfInput {
   name: String
   description: String
+}
+
+input changeBookshelfNameInput {
+  id: Int
+  name: String
 }

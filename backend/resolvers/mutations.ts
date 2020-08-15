@@ -35,6 +35,13 @@ export const Mutation = {
     const data = await bookshelf.save();
     return data;
   },
+  changeBookshelfName: async (_, { input }, { BookShelf, currentUser }) => {
+    const bookshelf = await BookShelf.findOne({ id: input.id }, { relations: ['user'] });
+    if (bookshelf.user.id !== currentUser.id) return new Error('本棚の情報を更新できませんでした');
+    bookshelf.name = input.name;
+    await bookshelf.save();
+    return bookshelf;
+  },
   deleteBookshelf: async (_, { bookshelfId }, { BookShelf, currentUser }) => {
     if (!bookshelfId) return new Error('本棚を削除できませんでした');
     const targetBookShelf = await BookShelf.findOne(bookshelfId, { relations: ['user'] });

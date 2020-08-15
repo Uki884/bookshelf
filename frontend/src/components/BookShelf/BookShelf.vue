@@ -4,7 +4,8 @@
     @click.self="handleEdit(false)">
     <div class="bookshelf__container">
       <div class="bookshelf__head">
-        <div class="bookshelf__head__text">{{ bookShelf.information.name }}</div>
+        <BookShelfTitle
+          :title="bookShelf.information.name" />
         <div class="btn__wrapper">
           <div class="bottom_buttons bookshelf__bottom-botton">
             <RoundButton
@@ -18,8 +19,8 @@
               text="現在の本の位置を保存"
               @click.native="saveBookPosition()" />
             <RoundButton
-              width="90"
               v-if="!state.isEditPositionMode"
+              width="90"
               text="本棚の行を追加"
               @click.native="useAddBookShelfRow(bookShelf)" />
           </div>
@@ -36,7 +37,9 @@
         </div>
       </div>
       <div class="bookshelf__wrapper">
-        <div v-if="bookShelf.books.length" class="bookshelf__outer" >
+        <div
+          v-if="bookShelf.books.length"
+          class="bookshelf__outer">
           <Books
             v-for="(item, index) in bookShelf.books"
             :id="index"
@@ -61,6 +64,7 @@ import { defineComponent, reactive, SetupContext, computed} from "@vue/compositi
 import BookShelf from '@/components/BookShelf/BookShelf.vue'
 import RoundButton from '@/components/Parts/RoundButton.vue'
 import Books from '@/components/Book/Books.vue'
+import BookShelfTitle from '@/components/Parts/BookshelfTitle.vue'
 
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
@@ -74,7 +78,8 @@ export default defineComponent({
     Swiper,
     SwiperSlide,
     RoundButton,
-    Books
+    Books,
+    BookShelfTitle
   },
   props: {
     bookShelf: {
@@ -107,6 +112,10 @@ export default defineComponent({
         state.isOpenMenu = false
         break
       case 3:
+        handleEditBookshelfName()
+        state.isOpenMenu = false
+        break
+      case 4:
         deleteBookShelf()
         state.isOpenMenu = false
       }
@@ -121,6 +130,10 @@ export default defineComponent({
     const handleEditPosition = (flg: boolean) => {
       state.isEditMode = false
       state.isEditPositionMode = flg
+    }
+
+    const handleEditBookshelfName = () => {
+      (context as any).root.ModalService.changeBookShelfName(props.bookShelf.information)
     }
 
     // 本棚削除
