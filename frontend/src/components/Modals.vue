@@ -30,6 +30,7 @@ import ChangeBookPositionComfirm from "@/components/Modal/ChangePosition/changeB
 import ChooseAddBookType from '@/components/Modal/Book/ChooseAddBookType.vue'
 import SelectBook from "@/components/Modal/Book/SelectBook.vue"
 import BookDetail from "@/components/Modal/Book/BookDetail.vue"
+import ChangeBookShelfName from '@/components/Modal/BookShelf/ChangeBookShelfName.vue'
 
 export default defineComponent({
   components: {
@@ -41,7 +42,8 @@ export default defineComponent({
     ChangeBookPositionComfirm,
     ChooseAddBookType,
     SelectBook,
-    BookDetail
+    BookDetail,
+    ChangeBookShelfName
   },
   props: {
     item: {

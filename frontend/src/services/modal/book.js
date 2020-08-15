@@ -30,6 +30,12 @@ export const book = {
       params: payload
     })
   },
+  changeBookShelfName(payload) {
+    store.dispatch('modal/openModal', {
+      component: 'ChangeBookShelfName',
+      params: payload
+    })
+  },
   bookDetail(payload) {
     store.dispatch('modal/openModal', {
       component: 'BookDetail',
