@@ -63,8 +63,9 @@ export default {
     handleSidemenu(){
       this.$emit('click')
     },
-    action(action) {
-      ModalService[action.name](action.type)
+    async action(action) {
+      await this.$emit('click')
+      await ModalService[action.name](action.type)
     },
     route(path) {
       this.$router.push(path).catch(err => {})

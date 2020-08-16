@@ -60,6 +60,7 @@ export default defineComponent({
     padding-left: 12px;
     font-size: 26px;
     display: flex;
+    align-items: center;
     span {
       padding-left: 16px;
     }

@@ -31,7 +31,6 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    console.log(props)
     const bookCover = computed(()=>{
       return props.book.cover ? props.book.cover : props.book.largeImageUrl
     })
@@ -46,7 +45,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .search {
   text-align: left;
-  padding: 8px 20px;
+  padding: 0px 20px;
+  height: 100%;
   &__title {
     font-weight: bold;
     padding-bottom: 8px;
