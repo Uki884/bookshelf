@@ -1,5 +1,5 @@
 <template>
-  <img v-if="isLoading" src="@/assets/loading.svg" />
+  <img src="@/assets/loading.svg">
 </template>
 
 <script lang="ts">
@@ -8,12 +8,6 @@ import {
 } from "@vue/composition-api"
 
 export default defineComponent({
-  props: {
-    isLoading: {
-      type: Boolean,
-      default: false
-    }
-  }
 })
 </script>
 

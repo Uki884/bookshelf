@@ -12,6 +12,7 @@ import { GET_CURRENT_USER } from '@/apollo/queries/getCurrentUser.ts'
 export interface UseUser {
   user: Ref<{ email: string, id: number, first_name: string, last_name: string, username: string } | null>
   isUserLoggedIn: Ref<boolean>
+  isLoading: Ref<boolean>
   login: () => any
   logout: () => any
   useCreateUser: (user: any) => Promise<void>

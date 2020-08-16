@@ -1,9 +1,9 @@
 <template>
   <div class="my-bookshelf">
-    <Loading :isLoading="isLoading" />
+    <Loading v-if="isLoading" />
     <swiper
-      ref="mySwiper"
       v-if="!isLoading"
+      ref="mySwiper"
       :options="swiperOption">
       <swiper-slide
         v-for="(bookShelf, index) in bookShelfs"
