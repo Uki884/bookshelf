@@ -46,7 +46,7 @@ export default defineComponent({
 
     onMounted(async ()=>{
       const userdata = await useGetCurrentUser()
-      if (userdata) {
+      if (userdata.bookShelf) {
         await useSetBookShelf(userdata.bookShelf)
       }
     })

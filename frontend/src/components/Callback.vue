@@ -13,7 +13,8 @@ export default defineComponent({
     onMounted(async ()=>{
       await (context as any).root.$auth0.handleRedirectCallback()
       await useCreateUser()
-      context.root.$router.push('/my_bookshelf')
+      window.location.href = '/my_bookshelf'
+      // context.root.$router.push('/')
     })
 
     return {
