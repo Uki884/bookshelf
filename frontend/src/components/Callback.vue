@@ -5,16 +5,20 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, watch, onMounted} from "@vue/composition-api"
 import { useUserStore } from '@/store/userStore'
+import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 
 export default defineComponent({
   setup(props: any, context: SetupContext) {
     const { useCreateUser, user } = useUserStore()
+    const { useGetUserBookShelf, useSetBookShelf } = useBookShelfStore()
 
     onMounted(async ()=>{
       await (context as any).root.$auth0.handleRedirectCallback()
-      await useCreateUser()
-      window.location.href = '/my_bookshelf'
-      // context.root.$router.push('/')
+      const userData = await useCreateUser()
+      if (userData.bookShelf) {
+        await useSetBookShelf(userData.bookShelf)
+      }
+      await context.root.$router.push('/my_bookshelf')
     })
 
     return {
