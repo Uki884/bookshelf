@@ -16,6 +16,7 @@ export interface UseUser {
   logout: () => any
   useCreateUser: (user: any) => Promise<void>
   useGetCurrentUser: () => any
+  userGetCurrentUserByToken:() => any
 }
 
 export default function useUser(context: SetupContext): UseUser {
@@ -38,8 +39,8 @@ export default function useUser(context: SetupContext): UseUser {
   const useGetCurrentUser = async () => {
     const isLoggedIn = await (context as any).root.$auth0.isLoggedIn()
     if (!isLoggedIn) return
-    if (!user.value) {
-      const { userData, idToken } = await(context as any).root.$auth0.getUser()
+    if (!user) {
+      const { userData, idToken } = await (context as any).root.$auth0.getUser()
       const variables = { auth0Id: userData.sub }
       const data = await context.root.$apollo.query({
         query: GET_CURRENT_USER,
@@ -50,6 +51,16 @@ export default function useUser(context: SetupContext): UseUser {
     } else {
       return user.value
     }
+  }
+
+  const userGetCurrentUserByToken = async () => {
+    const accessToken = localStorage.getItem("idToken")
+    if (!accessToken) return
+    const data = await context.root.$apollo.query({
+      query: GET_CURRENT_USER,
+    })
+    user.value = data.data.currentUser
+    return data.data.currentUser
   }
 
   const login = async () => {
@@ -67,6 +78,7 @@ export default function useUser(context: SetupContext): UseUser {
     logout,
     useCreateUser,
     useGetCurrentUser,
+    userGetCurrentUserByToken,
   }
 }
 

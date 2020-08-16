@@ -41,12 +41,12 @@ export default defineComponent({
     Sidemenu
   },
   setup(props: any, context: SetupContext) {
-    const { useGetCurrentUser, user, isUserLoggedIn } = useUserStore()
+    const { useGetCurrentUser, user, isUserLoggedIn, userGetCurrentUserByToken } = useUserStore()
     const { useSetBookShelf } = useBookShelfStore()
 
     onMounted(async()=>{
-      const userdata = useGetCurrentUser()
-      if (userdata.bookShelf) {
+      const userdata = await userGetCurrentUserByToken()
+      if (userdata) {
         await useSetBookShelf(userdata.bookShelf)
       }
     })

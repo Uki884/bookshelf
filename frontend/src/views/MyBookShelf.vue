@@ -44,13 +44,6 @@ export default defineComponent({
     const { bookShelfs, swiperOption, useGetUserBookShelf, useSetBookShelf } = useBookShelfStore()
     const { useGetCurrentUser, user, isUserLoggedIn } = useUserStore()
 
-    onMounted(async ()=>{
-      const userdata = await useGetCurrentUser()
-      if (userdata.bookShelf) {
-        await useSetBookShelf(userdata.bookShelf)
-      }
-    })
-
     return {
       bookShelfs,
       swiperOption,
