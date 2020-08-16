@@ -32,7 +32,7 @@ export default function useUser(context: SetupContext): UseUser {
       variables
     })
     user.value = data.createUser
-    return user
+    return user.value
   }
 
   const useGetCurrentUser = async () => {

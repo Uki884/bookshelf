@@ -42,7 +42,7 @@ import {
         const isLoggedIn = await (context as any).root.$auth0.isLoggedIn()
         if (isLoggedIn && context.root.$route.path !== '/my_bookshelf') {
           context.root.$router.push('/my_bookshelf')
-        } else if(!isLoggedIn && context.root.$route.path !== '/') {
+        } else if(!isLoggedIn && context.root.$route.path !== '/' && context.root.$route.path !== '/callback') {
           context.root.$router.push("/")
         }
       })
