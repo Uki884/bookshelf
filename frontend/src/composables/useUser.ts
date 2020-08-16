@@ -21,11 +21,13 @@ export interface UseUser {
 
 export default function useUser(context: SetupContext): UseUser {
   const user: any = ref(null)
+  const isLoading = ref(false)
   const isUserLoggedIn = computed(() => {
     return !!user.value?.id
   })
 
   const useCreateUser = async () => {
+    isLoading.value = true
     const { userData } = await(context as any).root.$auth0.getUser()
     const variables = { input: { email: userData.email, name: userData.nickname, auth0Id: userData.sub }}
     const { data } = await context.root.$apollo.mutate({
@@ -33,6 +35,7 @@ export default function useUser(context: SetupContext): UseUser {
       variables
     })
     user.value = data.createUser
+    isLoading.value = false
     return user.value
   }
 
@@ -54,12 +57,14 @@ export default function useUser(context: SetupContext): UseUser {
   }
 
   const userGetCurrentUserByToken = async () => {
+    isLoading.value = true
     const accessToken = localStorage.getItem("idToken")
     if (!accessToken) return
     const data = await context.root.$apollo.query({
       query: GET_CURRENT_USER,
     })
     user.value = data.data.currentUser
+    isLoading.value = false
     return data.data.currentUser
   }
 
@@ -73,6 +78,7 @@ export default function useUser(context: SetupContext): UseUser {
 
   return {
     user,
+    isLoading,
     isUserLoggedIn,
     login,
     logout,

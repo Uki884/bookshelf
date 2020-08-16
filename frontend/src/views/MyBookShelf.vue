@@ -1,7 +1,9 @@
 <template>
   <div class="my-bookshelf">
+    <Loading :isLoading="isLoading" />
     <swiper
       ref="mySwiper"
+      v-if="!isLoading"
       :options="swiperOption">
       <swiper-slide
         v-for="(bookShelf, index) in bookShelfs"
@@ -33,18 +35,21 @@ import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 
 import { useUserStore } from '@/store/userStore'
 import { useAsync } from '@/utils/useAsync'
+import Loading from '@/components/Loading.vue'
 
 export default defineComponent({
   components: {
     BookShelf,
     Swiper,
-    SwiperSlide
+    SwiperSlide,
+    Loading
   },
   setup(props: any, context: SetupContext) {
     const { bookShelfs, swiperOption, useGetUserBookShelf, useSetBookShelf } = useBookShelfStore()
-    const { useGetCurrentUser, user, isUserLoggedIn } = useUserStore()
+    const { useGetCurrentUser, user, isUserLoggedIn, isLoading } = useUserStore()
 
     return {
+      isLoading,
       bookShelfs,
       swiperOption,
     }
@@ -58,6 +63,8 @@ export default defineComponent({
   position: relative;
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   flex-wrap: wrap;
   overflow: hidden;
