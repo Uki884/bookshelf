@@ -37,14 +37,19 @@ export default defineComponent({
 <style lang="scss" scoped>
 .bookshelfs {
     width: 100%;
-    margin-left: 400px;
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
     overflow: scroll;
-    zoom: 70%;
+    zoom: 90%;
+  @media screen and (min-width: 1000px) {
+    margin-left: 400px;
+    zoom: 70% !important;
+  }
 }
 /deep/ .bookshelf {
-  width: 33% !important;
+  @media screen and (min-width: 1000px) {
+    width: 33% !important;
+  }
 }
 </style>
