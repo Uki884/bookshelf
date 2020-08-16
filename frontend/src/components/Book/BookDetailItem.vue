@@ -53,7 +53,7 @@ export default defineComponent({
   }
   &__text {
     font-size: 18px;
-    padding-bottom: 6px;
+    padding-bottom: 12px;
   }
   &__image {
     margin: 12px;

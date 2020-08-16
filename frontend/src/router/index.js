@@ -5,6 +5,7 @@ import Login from '@/views/User/Login.vue'
 import SignUp from "@/views/User/SignUp.vue"
 import isLoggedIn from '@/router/plugins/isLoggedIn.js'
 import CallBack from '@/components/Callback.vue'
+import EveryOneBookShelf from '@/views/EveryOneBookshelf.vue'
 
 Vue.use(VueRouter)
 
@@ -19,12 +20,20 @@ const routes = [
   {
     path: "/callback",
     name: "callback",
-    component: CallBack
+    component: CallBack,
   },
   {
     path: "/my_bookshelf",
     name: "MyBookShelf",
     component: MyBookShelf,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/everyone_bookshelf",
+    name: "EveryOneBookShelf",
+    component: EveryOneBookShelf,
     meta: {
       requiresAuth: true,
     },

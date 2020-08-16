@@ -16,13 +16,13 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { useCreateUser, user } = useUserStore()
-    const { useGetUserBookShelf, useSetBookShelf } = useBookShelfStore()
+    const { useGetUserBookShelf, useSetBookShelf, bookShelfs } = useBookShelfStore()
 
     onMounted(async ()=>{
       await (context as any).root.$auth0.handleRedirectCallback()
       const userData = await useCreateUser()
       if (userData.bookShelf) {
-        await useSetBookShelf(userData.bookShelf)
+        bookShelfs.value = await useSetBookShelf(userData.bookShelf)
       }
       await context.root.$router.push('/my_bookshelf')
     })

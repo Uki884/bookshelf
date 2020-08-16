@@ -31,5 +31,6 @@ export const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
   if (networkError) {
     console.log(`[Network error]: ${networkError}`)
+    location.replace("/")
   }
 })

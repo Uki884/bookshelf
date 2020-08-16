@@ -10,6 +10,7 @@ import { GET_USER_BOOKSHELFS } from '@/apollo/queries/getUserBookShelfs'
 import { SAVE_BOOK_POSITION } from '@/apollo/mutations/saveBookPosition.ts'
 import { DELETE_BOOKSHELF } from '@/apollo/mutations/deleteBookshelf.ts'
 import { CHANGE_BOOKSHELF_NAME } from "@/apollo/mutations/changeBookshelfName.ts"
+import { GET_ALL_BOOKSHELFS } from "@/apollo/queries/getAllBookshelfs.ts"
 
 const BOOKSHELF_SELECT_MENU = [
   { id: 1, name: "本を追加/削除" },
@@ -60,10 +61,10 @@ export default function useBookShelf(context: SetupContext) {
       bookShelf.name = item.name
       return bookShelf
     })
-    const bookShelf = bookData.map((item: any) => {
+    const result = bookData.map((item: any) => {
       return BookUtil.setBookShelf(item)
     })
-    bookShelfs.value = bookShelf
+    return result
   }
 
   const useCreateBookShelf = async (input: any) => {
@@ -81,7 +82,15 @@ export default function useBookShelf(context: SetupContext) {
       query: GET_USER_BOOKSHELFS,
       variables
     })
-    await useSetBookShelf(data.userBookshelfs)
+    const bookShelf = await useSetBookShelf(data.userBookshelfs)
+    bookShelfs.value = bookShelf
+  }
+
+  const useGetAllBookshelfs = async () => {
+    const data = await context.root.$apollo.query({
+      query: GET_ALL_BOOKSHELFS
+    })
+    return data.data.allBookshelfs
   }
 
   const useChangeBookshelfName = async (input: any) => {
@@ -158,5 +167,6 @@ export default function useBookShelf(context: SetupContext) {
     useGetUserBookShelf,
     useDeleteBookShelf,
     useChangeBookshelfName,
+    useGetAllBookshelfs,
   }
 }

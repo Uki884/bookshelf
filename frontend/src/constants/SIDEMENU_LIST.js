@@ -14,12 +14,18 @@ export const SIDEMENU_LIST = {
         icon: "",
         visible: true,
       },
-      // {
-      //   text: "みんなの本棚",
-      //   path: "/bookshelf",
-      //   icon: "",
-      //   visible: false,
-      // },
+      {
+        text: "にんきの本棚",
+        path: "/everyone_bookshelf",
+        icon: "",
+        visible: false,
+      },
+      {
+        text: "みんなの本棚",
+        path: "/everyone_bookshelf",
+        icon: "",
+        visible: false,
+      },
       {
         text: "わたしの本棚",
         path: "/my_bookshelf/",

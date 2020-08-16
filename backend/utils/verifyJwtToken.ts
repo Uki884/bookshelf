@@ -16,7 +16,7 @@ export const verifyJwtToken = async (token: any) => {
       return user;
     }
   } catch (err) {
-    return null;
+    return new Error('ログインしてください');
   }
   return user;
 };

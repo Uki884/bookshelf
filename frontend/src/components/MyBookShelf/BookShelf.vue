@@ -61,7 +61,7 @@
 <script lang="ts">
 
 import { defineComponent, reactive, SetupContext, computed} from "@vue/composition-api"
-import BookShelf from '@/components/BookShelf/BookShelf.vue'
+import BookShelf from '@/components/MyBookShelf/BookShelf.vue'
 import RoundButton from '@/components/Parts/RoundButton.vue'
 import Books from '@/components/Book/Books.vue'
 import BookShelfTitle from '@/components/Parts/BookshelfTitle.vue'

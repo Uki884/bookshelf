@@ -46,6 +46,7 @@
   &__item {
       width: 132px;
       max-height: 110px;
+      min-height: 110px;
       position: relative;
       display: flex;
       justify-content: center;
