@@ -1,7 +1,6 @@
 import { AuthenticationError } from 'apollo-server-express';
 
 import jwt from 'jsonwebtoken';
-import fs from 'fs';
 import User from '../models/User';
 
 export const verifyJwtToken = async (token: any) => {
@@ -11,8 +10,8 @@ export const verifyJwtToken = async (token: any) => {
   const cert = Buffer.from(secret, 'base64');
   try {
     if (token) {
-      const { sub } = jwt.verify(token, cert);
-      user = User.findOne({ auth0Id: sub }, { relations: ['bookShelf', 'bookShelf.books', 'bookShelf.books.bookPosition'] });
+      const { sub } = await jwt.verify(token, cert);
+      user = await User.findOne({ auth0Id: sub }, { relations: ['bookShelf', 'bookShelf.books', 'bookShelf.books.bookPosition'] });
       return user;
     }
   } catch (err) {

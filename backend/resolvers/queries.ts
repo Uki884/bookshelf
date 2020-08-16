@@ -16,6 +16,9 @@ export const Query = {
   userBookshelfs: async (_, { userId }, { currentUser, User, BookShelf }) => {
     const bookshelfs = await BookShelf.find({
       where: { user: userId },
+      order: {
+        createdAt: 'ASC',
+      },
       relations: ['books', 'books.bookPosition', 'user'],
     });
     return bookshelfs;

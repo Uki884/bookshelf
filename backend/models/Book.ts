@@ -51,14 +51,14 @@ export class Book extends BaseEntity {
   ])
   bookPosition: BookPosition | undefined;
 
-  @ManyToOne((type) => BookShelf, (bookShelf) => bookShelf.books)
+  @ManyToOne((type) => BookShelf, (bookShelf) => bookShelf.books, { onDelete: 'CASCADE' })
   bookshelf!: BookShelf;
 
-  @CreateDateColumn({ name: 'created_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date | undefined;
+  @CreateDateColumn({ name: 'created_at', precision: 0, default: () => 'NOW()' })
+  createdAt: Date = new Date();
 
-  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date | undefined;
+  @UpdateDateColumn({ name: 'updated_at', precision: 0, default: () => 'NOW()' })
+  updatedAt: Date = new Date();
 }
 
 export default Book;

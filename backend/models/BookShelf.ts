@@ -29,11 +29,11 @@ export class BookShelf extends BaseEntity {
   @ManyToOne((type) => User, (user) => user.bookShelf)
   user!: User;
 
-  @CreateDateColumn({ name: 'created_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date | undefined;
+  @CreateDateColumn({ name: 'created_at', precision: 0, default: () => 'NOW()' })
+  createdAt: Date = new Date();
 
-  @UpdateDateColumn({ name: 'updated_at', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date | undefined;
+  @UpdateDateColumn({ name: 'updated_at', precision: 0, default: () => 'NOW()' })
+  updatedAt: Date = new Date();
 }
 
 export default BookShelf;

@@ -42,12 +42,12 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { useGetCurrentUser, user, isUserLoggedIn, userGetCurrentUserByToken } = useUserStore()
-    const { useSetBookShelf, bookShelfs } = useBookShelfStore()
+    const { useSetBookShelf, bookShelfs, useGetUserBookShelf } = useBookShelfStore()
 
     onMounted(async()=>{
       const userdata = await userGetCurrentUserByToken()
       if (userdata) {
-        bookShelfs.value = await useSetBookShelf(userdata.bookShelf)
+        await useGetUserBookShelf(userdata.id)
       }
     })
 

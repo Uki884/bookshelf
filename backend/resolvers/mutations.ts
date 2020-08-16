@@ -50,8 +50,7 @@ export const Mutation = {
         const result = await targetBookShelf.remove();
         return result;
       }
-      return new Error('本棚を削除できませんでした');
-    } catch {
+    } catch (err) {
       return new Error('本棚を削除できませんでした');
     }
   },
