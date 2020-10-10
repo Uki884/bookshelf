@@ -10,7 +10,7 @@
         @logout="logout"
         @login="login" />
     </div>
-    <div class="header__content">
+    <div v-if="isUserLoggedIn" class="header__content">
       <ActionMenu />
     </div>
   </div>
