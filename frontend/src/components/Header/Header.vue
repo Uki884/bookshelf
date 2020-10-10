@@ -1,13 +1,7 @@
 <template>
   <div class="header">
     <div class="header__title">
-      <v-icon
-        v-if="isSmartPhone()"
-        scale="1.5"
-        class=""
-        name="bars"
-        @click.native="handleSidemenu()" />
-      <span class="header__title--text">みんなの本棚</span>
+      <span class="header__title--text">わたしの本棚</span>
     </div>
     <HeaderMenu
       :is-user-logged-in="isUserLoggedIn"

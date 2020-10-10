@@ -24,11 +24,7 @@ const apolloProvider = new VueApollo({
   defaultClient: apolloClient,
 })
 
-import authService from "./auth"
-import {
-  onMounted,
-} from "@vue/composition-api";
-
+import authService from "@/auth"
 (async function () {
   await authService.init()
   Vue.prototype.$auth0 = authService
@@ -37,16 +33,6 @@ import {
     router,
     store,
     apolloProvider,
-    setup(props, context) {
-      // onMounted(async () => {
-      //   const isLoggedIn = await (context as any).root.$auth0.isLoggedIn()
-      //   if (isLoggedIn && context.root.$route.path !== '/my_bookshelf') {
-      //     context.root.$router.push('/my_bookshelf')
-      //   } else if(!isLoggedIn && context.root.$route.path !== '/' && context.root.$route.path !== '/callback') {
-      //     context.root.$router.push("/")
-      //   }
-      // })
-    },
     render: (h) => h(App),
   }).$mount("#app")
 }())

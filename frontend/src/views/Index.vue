@@ -4,12 +4,6 @@
     <div
       id="main"
       class="main-content">
-      <Sidemenu
-        v-if="$route.path !== '/'"
-        :is-open="state.isOpen"
-        :is-user-logged-in="isUserLoggedIn"
-        @click="handleSidemenu"
-        @hiddenSidemenu="hiddenSidemenu" />
       <router-view />
       <Modals />
     </div>
