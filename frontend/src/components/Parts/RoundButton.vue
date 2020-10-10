@@ -1,7 +1,7 @@
 <template>
   <div
     class="round-button"
-    :style="`width: ${width}px;`">
+    :style="`width: ${width}px;`" @click="$emit('click')">
     <span>{{ text }}</span>
     <div
       v-show="isOpen && useSelect"
@@ -11,7 +11,7 @@
         :key="index"
         class="select__label"
         :style="option.color ? `color: ${option.color}`: null">
-        <span @click="selectItem(option.id)">{{ option.name }}</span>
+        <span @click.stop="selectItem(option.id)">{{ option.name }}</span>
       </div>
     </div>
   </div>

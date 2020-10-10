@@ -1,13 +1,18 @@
 <template>
   <div class="header">
-    <div class="header__title">
-      <span class="header__title--text">わたしの本棚</span>
+    <div class="header__content">
+      <div class="header__title">
+        <span class="header__title--text">わたしの本棚</span>
+      </div>
+      <HeaderMenu
+        :is-user-logged-in="isUserLoggedIn"
+        :user="user"
+        @logout="logout"
+        @login="login" />
     </div>
-    <HeaderMenu
-      :is-user-logged-in="isUserLoggedIn"
-      :user="user"
-      @logout="logout"
-      @login="login" />
+    <div class="header__content">
+      <ActionMenu />
+    </div>
   </div>
 </template>
 
@@ -15,10 +20,12 @@
 import { defineComponent, reactive, SetupContext} from "@vue/composition-api"
 import { useUserStore } from '@/store/userStore'
 import HeaderMenu from '@/components/Header/HeaderMenu.vue'
+import ActionMenu from '@/components/Header/ActionMenu.vue';
 
 export default defineComponent({
   components: {
-    HeaderMenu
+    HeaderMenu,
+    ActionMenu
   },
   setup(props: any, context: SetupContext) {
     const { login, logout, user, isUserLoggedIn} = useUserStore()
@@ -41,12 +48,16 @@ export default defineComponent({
   background: #F5F5F5;
   position: sticky;
   top: 0;
-  height: 44px;
   width: 100%;
-  display: flex;
-  align-items: center;
   z-index: 2;
-  justify-content: space-between;
+  &__content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+    border-bottom: 1px solid #e7ebf3;
+  }
   &__icon {
     vertical-align: text-bottom;
   }
