@@ -18,7 +18,7 @@ export default defineComponent({
   },
   setup(props, ctx) {
     const handleAddBookShelf = () => {
-        ModalService.addBookShelf();
+      ModalService.addBookShelf()
     }
 
     return {

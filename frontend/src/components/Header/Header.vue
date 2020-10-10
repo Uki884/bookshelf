@@ -20,7 +20,7 @@
 import { defineComponent, reactive, SetupContext} from "@vue/composition-api"
 import { useUserStore } from '@/store/userStore'
 import HeaderMenu from '@/components/Header/HeaderMenu.vue'
-import ActionMenu from '@/components/Header/ActionMenu.vue';
+import ActionMenu from '@/components/Header/ActionMenu.vue'
 
 export default defineComponent({
   components: {
