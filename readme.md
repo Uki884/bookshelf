@@ -2,7 +2,7 @@
 
 ## front
 ### URL
-https://everybookshelf.netlify.app/
+https://mybookshelfs.netlify.app
 
 ### アーキテクチャ
 - Vue.js(vue cli)
