@@ -81,6 +81,7 @@ export default defineComponent({
     cursor: pointer;
   }
   &__menu{
+    z-index: 999;
     height: 300px;
     width: 200px;
     position: absolute;
