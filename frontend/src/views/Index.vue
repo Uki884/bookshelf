@@ -42,6 +42,9 @@ export default defineComponent({
       const userdata = await userGetCurrentUserByToken()
       if (userdata) {
         await useGetUserBookShelf(userdata.id)
+        if ( userdata && context.root.$route.path === '/') {
+          context.root.$router.push('/my_bookshelf')
+        }
       }
     })
 
