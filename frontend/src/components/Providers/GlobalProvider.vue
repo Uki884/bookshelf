@@ -6,19 +6,16 @@
 
 <script lang="ts">
 
-import { provide, SetupContext, onMounted } from '@vue/composition-api'
-import { provideUser } from '@/store/userStore.ts'
-import { provideGrobal } from '@/store/grobalStore.ts'
-import { provideBookShelf } from '@/store/bookShelfStore.ts'
-import { provideBook } from '@/store/bookStore.ts'
-export default {
+import { provide, SetupContext, onMounted, defineComponent } from '@vue/composition-api'
+import { provideUser } from '@/store/userStore'
+import { provideGrobal } from '@/store/grobalStore'
+
+export default defineComponent({
   setup(_: any, context: SetupContext) {
     provideUser(context)
     provideGrobal(context)
-    provideBookShelf(context)
-    provideBook(context)
   },
-}
+})
 </script>
 
 <style scoped lang="scss">

@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent, reactive, provide, inject, SetupContext, watch, watchEffect, onMounted} from "@vue/composition-api"
 import { useUserStore } from '@/store/userStore'
-import { useBookShelfStore } from '@/store/bookShelfStore.ts'
+import { useBookShelfStore } from '@/store/bookShelfStore'
 import BookShelf from '@/components/EveryOneBookShelf/BookShelf.vue'
 
 export default defineComponent({
