@@ -19,6 +19,7 @@ import Modals from '@/components/Modals.vue'
 import { isSmartPhone } from  '@/utils/useIsDevice.ts'
 import { useUserStore } from '@/store/userStore'
 import { useBookShelfStore } from '@/store/bookShelfStore'
+import { provideBook } from '@/store/bookStore.ts'
 
 import {
   defineComponent,
@@ -35,18 +36,8 @@ export default defineComponent({
     Sidemenu
   },
   setup(props: any, context: SetupContext) {
-    const { useGetCurrentUser, user, isUserLoggedIn, userGetCurrentUserByToken } = useUserStore()
-    const { useSetBookShelf, bookShelfs, useGetUserBookShelf } = useBookShelfStore()
-
-    onMounted(async()=>{
-      const userdata = await userGetCurrentUserByToken()
-      if (userdata) {
-        await useGetUserBookShelf(userdata.id)
-        if ( userdata && context.root.$route.path === '/') {
-          context.root.$router.push('/my_bookshelf')
-        }
-      }
-    })
+    provideBook(context)
+    const { useGetCurrentUser, user, isUserLoggedIn, useGetCurrentUserByToken } = useUserStore()
 
     const state = reactive({
       isOpen: isSmartPhone() ? false : true,

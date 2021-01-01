@@ -24,7 +24,7 @@ export default defineComponent({
       if (userData.bookShelf) {
         bookShelfs.value = await useSetBookShelf(userData.bookShelf)
       }
-      await context.root.$router.push('/my_bookshelf')
+      window.location.href = '/my_bookshelf'
     })
 
     return {

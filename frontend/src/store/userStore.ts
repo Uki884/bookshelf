@@ -19,7 +19,7 @@ export interface UseUser {
   logout: () => any
   useCreateUser: (user: any) => Promise<void>
   useGetCurrentUser: () => any
-  userGetCurrentUserByToken: () => any
+  useGetCurrentUserByToken: () => any
 }
 
 export default function useUser(context: SetupContext): UseUser {
@@ -87,7 +87,7 @@ export default function useUser(context: SetupContext): UseUser {
     logout,
     useCreateUser: createUser,
     useGetCurrentUser: getCurrentUser,
-    userGetCurrentUserByToken: getCurrentUserByToken
+    useGetCurrentUserByToken: getCurrentUserByToken
   }
 }
 

@@ -46,7 +46,17 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { bookShelfs, swiperOption, useGetUserBookShelf, useSetBookShelf } = useBookShelfStore()
-    const { useGetCurrentUser, user, isUserLoggedIn, isLoading } = useUserStore()
+    const { useGetCurrentUser, user, isUserLoggedIn, isLoading, useGetCurrentUserByToken } = useUserStore()
+
+    onMounted(async()=>{
+      const userdata = await useGetCurrentUserByToken()
+      if (userdata) {
+        await useGetUserBookShelf(userdata.id)
+        if ( userdata && context.root.$route.path === '/') {
+          window.location.href = '/my_bookshelf'
+        }
+      }
+    })
 
     return {
       isLoading,
@@ -78,10 +88,6 @@ export default defineComponent({
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-}
-
-.swiper-pagination-bullets {
-    // bottom: 20%;
 }
 
 .swiper-pagination {

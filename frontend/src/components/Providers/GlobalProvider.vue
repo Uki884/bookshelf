@@ -9,11 +9,13 @@
 import { provide, SetupContext, onMounted, defineComponent } from '@vue/composition-api'
 import { provideUser } from '@/store/userStore'
 import { provideGrobal } from '@/store/grobalStore'
+import { provideBookShelf } from '@/store/bookShelfStore.ts'
 
 export default defineComponent({
   setup(_: any, context: SetupContext) {
     provideUser(context)
     provideGrobal(context)
+    provideBookShelf(context)
   },
 })
 </script>
