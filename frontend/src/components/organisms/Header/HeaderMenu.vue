@@ -1,10 +1,10 @@
 <template>
   <div
-    class="header__right"
+    class="right"
     @mouseover="visbleUserMenu = true"
     @mouseleave="visbleUserMenu = false">
     <div
-      class="header__right"
+      class="right"
       @click="isUserLoggedIn ? null : login()"
       v-text="isUserLoggedIn ? user.name : 'ログイン'" />
     <v-icon
@@ -13,9 +13,9 @@
     <transition name="fade">
       <div
         v-if="visbleUserMenu && isUserLoggedIn"
-        class="header__menu">
+        class="menu">
         <div
-          class="header__menu__item"
+          class="item"
           @click="logout()">
           ログアウト
         </div>
@@ -62,4 +62,25 @@ export default {
   opacity: 0;
 }
 
+  .menu{
+    z-index: 999;
+    height: 300px;
+    width: 200px;
+    position: absolute;
+    top: 32px;
+    padding: 13px;
+    right: 12px;
+    background: #F5F5F5;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15);
+    .item {
+      padding: 6px 12px;
+    }
+  }
+
+  .right{
+    padding-right: 12px;
+    font-weight: bold;
+    display: flex;
+    cursor: pointer;
+  }
 </style>

@@ -105,16 +105,15 @@ export default defineComponent({
   .container {
     position: relative;
     width: 100%;
-.cover-image {
-  width: auto;
-  height: 110px;
-  cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   .menu {
     position: absolute;
     top: 0;
     font-size: 13px;
-    height: 96px;
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,6 +122,10 @@ export default defineComponent({
     cursor: pointer;
     background: rgba(0, 0, 0, 0.5);
   }
+.cover-image {
+  width: auto;
+  height: 110px;
+  cursor: pointer;
   .title {
     font-size: 12px;
   }

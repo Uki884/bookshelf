@@ -1,6 +1,6 @@
 <template>
   <div class="action-menu">
-    <div class="action-menu__content">
+    <div class="content">
         <round-button text="本棚を追加する" width="92" @click="handleAddBookShelf"></round-button>
     </div>
   </div>
@@ -33,7 +33,7 @@ export default defineComponent({
   height: 42px;
   width: 560px;
   margin: 0 auto;
-  &__content {
+  .content {
     height: 100%;
     display: flex;
     justify-content: flex-end;

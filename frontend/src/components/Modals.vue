@@ -51,8 +51,6 @@ export default defineComponent({
     }
   },
   setup(props: any, context: SetupContext) {
-    const grobalStore = useGrobalStore()
-
     const modals = computed(()=> {
       return context.root.$store.getters['modal/modals']
     })

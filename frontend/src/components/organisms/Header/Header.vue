@@ -1,8 +1,8 @@
 <template>
   <div class="header">
-    <div class="header__content">
-      <div class="header__title">
-        <span class="header__title--text">わたしの本棚</span>
+    <div class="content">
+      <div class="title">
+        <span class="text">わたしの本棚</span>
       </div>
       <HeaderMenu
         :is-user-logged-in="isUserLoggedIn"
@@ -10,7 +10,7 @@
         @logout="logout"
         @login="login" />
     </div>
-    <div v-if="isUserLoggedIn" class="header__content">
+    <div v-if="isUserLoggedIn" class="content">
       <ActionMenu />
     </div>
   </div>
@@ -50,7 +50,7 @@ export default defineComponent({
   top: 0;
   width: 100%;
   z-index: 2;
-  &__content {
+  .content {
     display: flex;
     width: 100%;
     align-items: center;
@@ -58,10 +58,7 @@ export default defineComponent({
     height: 44px;
     border-bottom: 1px solid #e7ebf3;
   }
-  &__icon {
-    vertical-align: text-bottom;
-  }
-  &__title {
+  .title {
     padding-left: 12px;
     font-size: 26px;
     display: flex;
@@ -72,26 +69,6 @@ export default defineComponent({
     svg {
       cursor: pointer;
       margin-left: 12px;
-    }
-  }
-  &__right{
-    padding-right: 12px;
-    font-weight: bold;
-    display: flex;
-    cursor: pointer;
-  }
-  &__menu{
-    z-index: 999;
-    height: 300px;
-    width: 200px;
-    position: absolute;
-    top: 32px;
-    padding: 13px;
-    right: 12px;
-    background: #F5F5F5;
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15);
-    &__item {
-      padding: 6px 12px;
     }
   }
 }
