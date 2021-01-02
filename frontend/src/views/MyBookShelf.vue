@@ -52,7 +52,7 @@ export default defineComponent({
       const userdata = await useGetCurrentUserByToken()
       if (userdata) {
         await useGetUserBookShelf(userdata.id)
-        if ( userdata && context.root.$route.path === '/') {
+        if (userdata && context.root.$route.path === '/') {
           window.location.href = '/my_bookshelf'
         }
       }
