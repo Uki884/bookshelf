@@ -3,7 +3,9 @@
     title="本を追加"
     @close="closeModal">
     <template slot="main">
-      <BookDetailItem :book="params" />
+      <ModalContent>
+        <BookDetailItem :book="params" />
+      </ModalContent>
     </template>
     <template slot="footer">
       <div class="btn__wrapper">
@@ -30,6 +32,7 @@ import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 import { useGrobalStore } from '@/store/grobalStore.ts'
 import { useBookStore } from '@/store/bookStore'
 import BookDetailItem from '@/components/organisms/Book/BookDetailItem.vue'
+import ModalContent from '@/components/atoms/ModalContent.vue'
 export default defineComponent({
   props: {
     params: {
@@ -39,7 +42,8 @@ export default defineComponent({
   },
   components: {
     Modal,
-    BookDetailItem
+    BookDetailItem,
+    ModalContent
   },
   setup(props: any, context: SetupContext) {
 

@@ -3,11 +3,11 @@
     title="本を追加"
     @close="closeModal">
     <template slot="main">
-      <InputSearchBox
-        v-model="state.searchWord"
-        :value="state.searchWord"
-        @keydown.enter.native="handleSearch()"
-        @click="handleSearch()" />
+        <InputSearchBox
+          v-model="state.searchWord"
+          :value="state.searchWord"
+          @keydown.enter.native="handleSearch()"
+          @click="handleSearch()" />
       <div
         v-if="state.searchResult.length"
         class="select-list__wrapper">
@@ -43,12 +43,14 @@ import { SetupContext, defineComponent, reactive } from '@vue/composition-api'
 import { mapGetters } from 'vuex'
 import { useBookStore } from '@/store/bookStore'
 import { RepositoryFactory } from '@/api/Factory'
+import ModalContent from '@/components/atoms/ModalContent.vue'
 
 export default defineComponent({
   components: {
     Modal,
     InputSearchBox,
-    Pagination
+    Pagination,
+    ModalContent
   },
   props: {
     params: {

@@ -3,10 +3,12 @@
     title="本棚を削除"
     @close="closeModal">
     <template slot="main">
+      <ModalContent>
       <section>
         <div>本棚の本は全て削除されます。</div>
         <div>本棚を削除してもよろしいですか？</div>
       </section>
+      </ModalContent>
     </template>
     <template slot="footer">
       <div
@@ -25,6 +27,7 @@ import { SetupContext, defineComponent, reactive } from '@vue/composition-api'
 import { useUserStore } from '@/store/userStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 import { useGrobalStore } from '@/store/grobalStore.ts'
+import ModalContent from '@/components/atoms/ModalContent.vue'
 
 export default defineComponent({
   props: {
@@ -34,7 +37,8 @@ export default defineComponent({
     }
   },
   components: {
-    Modal
+    Modal,
+    ModalContent
   },
   setup(props: any, context: SetupContext) {
 

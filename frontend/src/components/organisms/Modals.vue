@@ -35,6 +35,7 @@ import ChangeBookShelfNameModal from '@/components/organisms/Modal/ChangeBookShe
 export default defineComponent({
   components: {
     AddBookShelfModal,
+    AddBookBarcodeModal,
     AddBookSearchModal,
     DeleteBookModal,
     DeleteBookShelfModal,

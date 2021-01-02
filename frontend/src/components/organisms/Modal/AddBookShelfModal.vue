@@ -3,7 +3,7 @@
     title="本棚を作成"
     @close="closeModal">
     <template slot="main">
-        <div class="form">
+        <ModalContent>
         <InputTextField
           v-model="state.input.name.value"
           :value="state.input.name.value"
@@ -16,7 +16,7 @@
           :name="state.input.description.name"
           :error-message="state.input.description.errorMessage"
           :required="state.input.description.require" />
-        </div>
+        </ModalContent>
     </template>
     <template slot="footer">
       <div
@@ -36,11 +36,12 @@ import { useGrobalStore } from '@/store/grobalStore'
 import { validation, requestInput } from "@/utils/validation"
 import InputTextField from '@/components/molecules/InputTextField.vue'
 import Modal from '@/components/atoms/BaseModal.vue'
-
+import ModalContent from '@/components/atoms/ModalContent.vue'
 export default defineComponent({
   components: {
     Modal,
-    InputTextField
+    InputTextField,
+    ModalContent
   },
   props: {
     params: {

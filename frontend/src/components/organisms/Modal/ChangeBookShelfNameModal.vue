@@ -2,12 +2,14 @@
   <Modal
     title="本棚の名前を変更">
     <template slot="main">
+        <ModalContent>
         <InputTextField
           v-model="state.input.name.value"
           :value="state.input.name.value"
           :name="state.input.name.name"
           :error-message="state.input.name.errorMessage"
           :required="state.input.name.require" />
+        </ModalContent>
     </template>
     <template slot="footer">
       <div
@@ -27,11 +29,12 @@ import { useGrobalStore } from '@/store/grobalStore'
 import { validation, requestInput } from "@/utils/validation"
 import InputTextField from '@/components/molecules/InputTextField.vue'
 import Modal from '@/components/atoms/BaseModal.vue'
-
+import ModalContent from '@/components/atoms/ModalContent.vue'
 export default defineComponent({
   components: {
     Modal,
-    InputTextField
+    InputTextField,
+    ModalContent
   },
   props: {
     params: {

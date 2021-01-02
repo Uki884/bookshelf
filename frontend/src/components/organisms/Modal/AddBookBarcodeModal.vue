@@ -3,6 +3,7 @@
     title="バーコードで登録"
     @close="closeModal">
     <template slot="main">
+      <ModalContent>
       <div
         v-if="!isDetected"
         id="interactive"
@@ -33,6 +34,7 @@
           </div>
         </div>
       </div>
+      </ModalContent>
     </template>
     <template slot="footer">
       <div
@@ -62,10 +64,11 @@ import { useGrobalStore } from '@/store/grobalStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 import { useUserStore } from '@/store/userStore'
 import Modal from '@/components/atoms/BaseModal.vue'
-
+import ModalContent from '@/components/atoms/ModalContent.vue'
 export default defineComponent({
   components: {
-    Modal
+    Modal,
+    ModalContent
   },
   props: {
     params: {
@@ -118,6 +121,7 @@ export default defineComponent({
       state,
       isDetected,
       isFailed,
+      start,
       barcodeResult
     }
   }

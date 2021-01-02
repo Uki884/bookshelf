@@ -3,7 +3,9 @@
     title="本の位置を変更"
     @close="closeModal">
     <template slot="main">
-      変更した本の位置を保存しますか？
+      <ModalContent>
+        変更した本の位置を保存しますか？
+      </ModalContent>
     </template>
     <template slot="footer">
       <div
@@ -20,6 +22,7 @@ import Modal from '@/components/atoms/BaseModal.vue'
 import { SetupContext, defineComponent } from '@vue/composition-api'
 import { useGrobalStore } from '@/store/grobalStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore'
+import ModalContent from '@/components/atoms/ModalContent.vue'
 
 export default defineComponent({
   props: {
@@ -29,7 +32,8 @@ export default defineComponent({
     }
   },
   components: {
-    Modal
+    Modal,
+    ModalContent
   },
   setup(props: any, context: SetupContext) {
     const { closeModal } = useGrobalStore()

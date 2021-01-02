@@ -3,7 +3,9 @@
     title="本を追加"
     @close="closeModal">
     <template slot="main">
-      どちらの方法で本を追加しますか？
+      <ModalContent>
+        どちらの方法で本を追加しますか？
+      </ModalContent>
     </template>
     <template slot="footer">
       <div class="btn__wrapper">
@@ -24,11 +26,13 @@
 import Modal from '@/components/atoms/BaseModal.vue'
 import { mapGetters } from 'vuex'
 import commonButton from "@/components/atoms/button/CommonButton.vue"
+import ModalContent from '@/components/atoms/ModalContent.vue'
 
 export default {
   components: {
     Modal,
-    commonButton
+    commonButton,
+    ModalContent
   },
   props: {
     params: {

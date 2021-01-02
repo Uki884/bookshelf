@@ -3,7 +3,9 @@
     title="本を削除"
     @close="closeModal">
     <template slot="main">
-      本棚から本を削除してもよろしいですか？
+      <ModalContent>
+        本棚から本を削除してもよろしいですか？
+      </ModalContent>
     </template>
     <template slot="footer">
       <div
@@ -23,10 +25,11 @@ import { useUserStore } from '@/store/userStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 import { useGrobalStore } from '@/store/grobalStore.ts'
 import { useBookStore } from '@/store/bookStore'
-
+import ModalContent from '@/components/atoms/ModalContent.vue'
 export default defineComponent({
   components: {
-    Modal
+    Modal,
+    ModalContent
   },
   props: {
     params: {
