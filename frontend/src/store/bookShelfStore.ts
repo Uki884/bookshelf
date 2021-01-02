@@ -22,7 +22,6 @@ const BOOKSHELF_SELECT_MENU = [
 ]
 
 const swiperOption = {
-  centeredSlides: true,
   noSwipingSelector: ".cover-image",
   grabCursor: true,
   pagination: {

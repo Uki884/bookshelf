@@ -33,7 +33,6 @@ export default defineComponent({
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap');
-@import '@/assets/scss/responsive.scss';
 body {
   overscroll-behavior: none;
   width: 100%;

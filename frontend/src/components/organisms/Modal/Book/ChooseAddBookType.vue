@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Modal from '@/components/Modal/Modal.vue'
+import Modal from '@/components/atoms/BaseModal.vue'
 import ModalService from '@/services/modal/index.js'
 import { mapGetters } from 'vuex'
 import commonButton from "@/components/Parts/CommonButton.vue"
@@ -37,7 +37,8 @@ export default {
   },
   props: {
     params: {
-      type: Object
+      type: Object,
+      default: null
     }
   },
   methods: {

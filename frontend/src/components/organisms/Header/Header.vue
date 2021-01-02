@@ -19,8 +19,8 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext} from "@vue/composition-api"
 import { useUserStore } from '@/store/userStore'
-import HeaderMenu from '@/components/Header/HeaderMenu.vue'
-import ActionMenu from '@/components/Header/ActionMenu.vue'
+import HeaderMenu from '@/components/organisms/Header/HeaderMenu.vue'
+import ActionMenu from '@/components/organisms/Header/ActionMenu.vue'
 
 export default defineComponent({
   components: {
@@ -43,7 +43,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .header{
   background: #F5F5F5;
   position: sticky;

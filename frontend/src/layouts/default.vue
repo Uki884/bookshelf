@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import TheHeader from '@/components/Header/Header.vue'
+import TheHeader from '@/components/organisms/Header'
 import { provideBook } from '@/store/bookStore.ts'
 
 import {

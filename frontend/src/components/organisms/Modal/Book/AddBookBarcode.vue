@@ -62,7 +62,7 @@ import { useBookStore } from '@/store/bookStore'
 import { useGrobalStore } from '@/store/grobalStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 import { useUserStore } from '@/store/userStore'
-import Modal from '@/components/Modal/Modal.vue'
+import Modal from '@/components/atoms/BaseModal.vue'
 
 export default defineComponent({
   components: {

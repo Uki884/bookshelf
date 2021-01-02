@@ -1,5 +1,5 @@
 <template>
-  <div class="cover-image__container">
+  <div class="container">
     <img
       v-if="item.cover"
       :src="item.cover"
@@ -7,7 +7,7 @@
       @click="selectBook(item)">
     <div
       v-if="isEdit"
-      class="cover-image__menu"
+      class="menu"
       @click="noBook ? addBook() : deleteBook(item)"
       v-text="noBook ? '追加する' : '削除する'" />
     <div
@@ -102,14 +102,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+  .container {
+    position: relative;
+    width: 100%;
 .cover-image {
-  width: 70px;
-  //仮
-  height: 96px;
-  //仮
-  padding: 0 10px 10px;
+  width: auto;
+  height: 110px;
   cursor: pointer;
-  &__menu {
+  .menu {
     position: absolute;
     top: 0;
     font-size: 13px;
@@ -123,14 +123,14 @@ export default defineComponent({
     cursor: pointer;
     background: rgba(0, 0, 0, 0.5);
   }
-  &__container {
-    margin: 12px;
-    position: relative;
-    width: 100%;
+  .title {
+    font-size: 12px;
+  }
+  .content{
+      padding: 14px 0 0px 0px;
+      height: 80%;
+    }
   }
 }
 
-.title {
-  font-size: 12px;
-}
 </style>

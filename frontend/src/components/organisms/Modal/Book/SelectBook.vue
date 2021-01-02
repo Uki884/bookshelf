@@ -23,14 +23,14 @@
 </template>
 
 <script lang="ts">
-import Modal from '@/components/Modal/Modal.vue'
+import Modal from '@/components/atoms/BaseModal.vue'
 import ModalService from '@/services/modal/index.js'
 import { SetupContext, defineComponent } from '@vue/composition-api'
 import { useUserStore } from '@/store/userStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 import { useGrobalStore } from '@/store/grobalStore.ts'
 import { useBookStore } from '@/store/bookStore'
-import BookDetailItem from '@/components/Book/BookDetailItem.vue'
+import BookDetailItem from '@/components/organisms/Book/BookDetailItem.vue'
 export default defineComponent({
   props: {
     params: {

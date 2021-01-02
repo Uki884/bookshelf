@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, provide, inject, SetupContext, watch, watchEffect, onMounted} from "@vue/composition-api"
-import BookShelf from '@/components/MyBookShelf/BookShelf.vue'
+import BookShelf from '@/components/organisms/MyBookShelf'
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'

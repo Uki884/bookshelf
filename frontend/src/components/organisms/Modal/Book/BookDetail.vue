@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import Modal from '@/components/Modal/Modal.vue'
+import Modal from '@/components/atoms/BaseModal.vue'
 import ModalService from '@/services/modal/index.js'
-import BookDetailItem from '@/components/Book/BookDetailItem.vue'
+import BookDetailItem from '@/components/organisms/Book/BookDetailItem.vue'
 
 import { mapGetters } from 'vuex'
 
@@ -23,7 +23,8 @@ export default {
   },
   props: {
     params: {
-      type: Object
+      type: Object,
+      default: null
     }
   },
   data() {

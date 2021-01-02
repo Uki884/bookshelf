@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import Modal from '@/components/Modal/Modal.vue'
+import Modal from '@/components/atoms/BaseModal.vue'
 import ModalService from '@/services/modal/index'
 import SearchBox from "@/components/Parts/CommonSearchBox.vue"
 import Pagination from '@/components/Pagination.vue'

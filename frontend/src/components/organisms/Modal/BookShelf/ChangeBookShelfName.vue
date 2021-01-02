@@ -1,6 +1,6 @@
 <template>
   <Modal
-    title="本棚を作成"
+    title="本棚の名前を変更"
     @close="closeModal">
     <template slot="main">
       <div class="form">
@@ -10,19 +10,13 @@
           :name="state.input.name.name"
           :error-message="state.input.name.errorMessage"
           :required="state.input.name.require" />
-        <text-field
-          v-model="state.input.description.value"
-          :value="state.input.description.value"
-          :name="state.input.description.name"
-          :error-message="state.input.description.errorMessage"
-          :required="state.input.description.require" />
       </div>
     </template>
     <template slot="footer">
       <div
         class="btn btn--large"
-        @click="addBookShelf()">
-        作成する
+        @click="changeBookShelfName()">
+        この名前に変更する
       </div>
     </template>
   </Modal>
@@ -34,7 +28,7 @@ import { useUserStore } from '@/store/userStore'
 import { useBookShelfStore } from '@/store/bookShelfStore'
 import { useGrobalStore } from '@/store/grobalStore'
 import { validation, requestInput } from "@/utils/validation"
-import Modal from '@/components/Modal/Modal.vue'
+import Modal from '@/components/atoms/BaseModal.vue'
 
 export default defineComponent({
   props: {
@@ -49,31 +43,28 @@ export default defineComponent({
   setup(props: any, context: SetupContext) {
 
     const { user } = useUserStore()
-    const { useCreateBookShelf, useGetUserBookShelf } = useBookShelfStore()
+    const { useChangeBookshelfName, useGetUserBookShelf} = useBookShelfStore()
     const { closeModal } = useGrobalStore()
     const state = reactive({
       input: {
         name: {
-          name: '名前',
-          value: '',
+          name: '新しい名前',
+          value: props.params.name,
           length: [1, 32],
           require: true,
           errorMessage: []
-        },
-        description: {
-          name: '本棚の説明',
-          value: '',
-          length: [1, 32],
-          require: false,
-          errorMessage: []
-        },
+        }
       },
     })
-    const addBookShelf = async() => {
+    const changeBookShelfName = async() => {
       const result = validation(state.input)
       if (result.validStatus) {
-        const payload = requestInput(state.input)
-        await useCreateBookShelf(payload)
+        const input = requestInput(state.input)
+        const payload = {
+          ...input,
+          id: props.params.id
+        }
+        await useChangeBookshelfName(payload)
         await useGetUserBookShelf(user.value.id)
         await closeModal()
       }
@@ -81,7 +72,7 @@ export default defineComponent({
 
     return {
       state,
-      addBookShelf,
+      changeBookShelfName,
       closeModal
     }
   }

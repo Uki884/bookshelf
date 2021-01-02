@@ -1,21 +1,18 @@
 <template>
   <Modal
-    title="本棚を削除"
+    title="本を削除"
     @close="closeModal">
     <template slot="main">
       <div class="Modal__form">
         <div class="Modal__form-item">
-          <section>
-            <div>本棚の本は全て削除されます。</div>
-            <div>本棚を削除してもよろしいですか？</div>
-          </section>
+          本棚から本を削除してもよろしいですか？
         </div>
       </div>
     </template>
     <template slot="footer">
       <div
         class="btn btn--large"
-        @click="deleteBookShelf()">
+        @click="deleteBook()">
         削除する
       </div>
     </template>
@@ -23,41 +20,43 @@
 </template>
 
 <script lang="ts">
-import Modal from '@/components/Modal/Modal.vue'
+import Modal from '@/components/atoms/BaseModal.vue'
 import ModalService from '@/services/modal/index.js'
 import { mapGetters } from 'vuex'
-import { SetupContext, defineComponent, reactive } from '@vue/composition-api'
+import { SetupContext, defineComponent } from '@vue/composition-api'
 import { useUserStore } from '@/store/userStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 import { useGrobalStore } from '@/store/grobalStore.ts'
+import { useBookStore } from '@/store/bookStore'
 
 export default defineComponent({
-  props: {
-    params: {
-      type: Object,
-      default: null
-    }
-  },
   components: {
     Modal
   },
-  setup(props: any, context: SetupContext) {
-
+  props: {
+    params: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props, context) {
     const { user } = useUserStore()
-    const { useGetUserBookShelf, useDeleteBookShelf } = useBookShelfStore()
+    const { useGetUserBookShelf } = useBookShelfStore()
+    const { useAddBook, useDeleteBook } = useBookStore()
     const { closeModal } = useGrobalStore()
 
-    const deleteBookShelf = async() => {
-      await useDeleteBookShelf(Number(props.params.id))
+    const deleteBook = async() => {
+      const bookId = props.params.item.book_id ? Number(props.params.item.book_id) : null
+      await useDeleteBook(bookId)
       await useGetUserBookShelf(user.value.id)
       await closeModal()
     }
 
     return {
-      deleteBookShelf,
-      closeModal
+      closeModal,
+      deleteBook
     }
-  }
+  },
 })
 </script>
 

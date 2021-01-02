@@ -9,7 +9,7 @@
     <div
       v-for="(item, index) in books"
       :key="index"
-      class="bookshelf__item">
+      class="item">
       <BookItem
         type="bookShelf"
         :index="index"
@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import draggable from 'vuedraggable'
-import BookItem from '@/components/Book/BookItem.vue'
+import BookItem from '@/components/atoms/BookItem.vue'
 import isMobile from 'ismobilejs'
 import ModalService from '@/services/modal/index.js'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
@@ -167,7 +167,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/bookshelf.scss';
 
 .ghost{
   img {
@@ -179,4 +178,18 @@ export default defineComponent({
 .dragging {
   position: absolute;
 }
+.item {
+      width: 132px;
+      max-height: 110px;
+      min-height: 110px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    @media screen and (max-width: 480px) {
+      width: 88px !important;
+    }
+  img {
+    filter: drop-shadow(10px 9px 10px rgba(0,0,0,0.2));
+    }
+  }
 </style>

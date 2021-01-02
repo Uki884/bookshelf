@@ -1,5 +1,5 @@
 import { reactive, SetupContext, ref } from "@vue/composition-api"
-import Quagga from "quagga"
+const Quagga = require('quagga')
 import { RepositoryFactory } from "@/api/Factory/index.js"
 
 export default function useBarcodeScanner() {
