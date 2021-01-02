@@ -1,15 +1,15 @@
 <template>
-  <GlobalProvide>
-    <div id="app">
-      <Index />
-    </div>
-  </GlobalProvide>
+  <GlobalProvider>
+    <defaultLayout />
+    <Modals />
+  </GlobalProvider>
 </template>
 
 <script lang="ts">
 import 'normalize.css'
-import GlobalProvide from '@/components/Providers/GlobalProvider.vue'
-import Index from '@/views/Index.vue'
+import GlobalProvider from '@/components/Providers/GlobalProvider.vue'
+import defaultLayout from '@/layouts/default.vue'
+import Modals from '@/components/Modals.vue'
 
 import {
   defineComponent,
@@ -20,8 +20,9 @@ import {
 
 export default defineComponent({
   components: {
-    GlobalProvide,
-    Index
+    GlobalProvider,
+    defaultLayout,
+    Modals
   },
   setup(props: any, context: SetupContext) {
     return {
@@ -37,8 +38,8 @@ body {
   overscroll-behavior: none;
   width: 100%;
 }
-html,body { height:100%; overflow: hidden; }
-#app {
+html,body {
+  overflow: hidden;
   height: 100%;
   width: 100%;
   font-family: 'Noto Serif JP', serif;
