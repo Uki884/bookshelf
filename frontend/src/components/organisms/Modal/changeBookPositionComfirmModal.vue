@@ -3,11 +3,7 @@
     title="本の位置を変更"
     @close="closeModal">
     <template slot="main">
-      <div class="form">
-        <div class="form-item">
-          変更した本の位置を保存しますか？
-        </div>
-      </div>
+      変更した本の位置を保存しますか？
     </template>
     <template slot="footer">
       <div
@@ -53,11 +49,4 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '@/assets/scss/btn.scss';
-.form{
-  display: flex;
-  align-items: center;
-  height: 100%;
-  justify-content: center;
-  font-size: 18px;
-}
 </style>

@@ -3,7 +3,7 @@
     title="本棚を作成"
     @close="closeModal">
     <template slot="main">
-      <div class="form">
+        <div class="form">
         <InputTextField
           v-model="state.input.name.value"
           :value="state.input.name.value"
@@ -16,7 +16,7 @@
           :name="state.input.description.name"
           :error-message="state.input.description.errorMessage"
           :required="state.input.description.require" />
-      </div>
+        </div>
     </template>
     <template slot="footer">
       <div
@@ -93,11 +93,4 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import 'src/assets/scss/form.scss';
 @import '@/assets/scss/btn.scss';
-.form{
-  display: flex;
-  align-items: center;
-  height: 100%;
-  justify-content: center;
-  font-size: 18px;
-}
 </style>

@@ -3,11 +3,7 @@
     title="本を削除"
     @close="closeModal">
     <template slot="main">
-      <div class="form">
-        <div class="form-item">
-          本棚から本を削除してもよろしいですか？
-        </div>
-      </div>
+      本棚から本を削除してもよろしいですか？
     </template>
     <template slot="footer">
       <div
@@ -62,13 +58,5 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import 'src/assets/scss/form.scss';
 @import '@/assets/scss/btn.scss';
-
-.form{
-  display: flex;
-  align-items: center;
-  height: 100%;
-  justify-content: center;
-  font-size: 18px;
-}
 
 </style>

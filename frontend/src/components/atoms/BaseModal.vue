@@ -18,7 +18,9 @@
         </div>
       </div>
       <div class="body">
-        <slot name="main" />
+        <div class="content">
+          <slot name="main" />
+        </div>
       </div>
       <div class="footer">
         <slot name="footer" />
@@ -95,7 +97,13 @@ export default {
   .body {
     padding: 0 60px;
     height: calc(100% - 148px);
-
   }
+  .content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  font-size: 18px;
+}
 
 </style>

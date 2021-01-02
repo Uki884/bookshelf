@@ -2,14 +2,12 @@
   <Modal
     title="本棚の名前を変更">
     <template slot="main">
-      <div class="form">
         <InputTextField
           v-model="state.input.name.value"
           :value="state.input.name.value"
           :name="state.input.name.name"
           :error-message="state.input.name.errorMessage"
           :required="state.input.name.require" />
-      </div>
     </template>
     <template slot="footer">
       <div
@@ -84,4 +82,5 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import 'src/assets/scss/form.scss';
 @import '@/assets/scss/btn.scss';
+
 </style>
