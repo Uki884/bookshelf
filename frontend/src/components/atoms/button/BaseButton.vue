@@ -58,7 +58,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/btn.scss';
 
 .round-button {
     position: relative;
@@ -75,9 +74,9 @@ export default defineComponent({
     color: black;
     background: #ECECEC;
     transition: .4s;
-    height: 24px;
+    height: 36px;
     width: 100%;
-    border-radius: 8px;
+    border-radius: 4px;
     margin-left: 12px;
     cursor: pointer;
     &--negative {

@@ -29,7 +29,6 @@
 import draggable from 'vuedraggable'
 import BookItem from '@/components/atoms/BookItem.vue'
 import isMobile from 'ismobilejs'
-import ModalService from '@/services/modal/index.js'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 
 import { defineComponent, reactive, provide, inject, SetupContext, watchEffect, computed} from "@vue/composition-api"
@@ -142,15 +141,15 @@ export default defineComponent({
     }
 
     const deleteBook = (payload: any) => {
-      (context as any).root.ModalService.deleteBook(payload)
+      (context as any).root.$modalService.deleteBook(payload)
     }
 
     const addBook = (payload: any) => {
-      (context as any).root.ModalService.chooseAddBookType({ ...payload, bookShelf: props.bookShelfId })
+      (context as any).root.$modalService.chooseAddBookType({ ...payload, bookShelf: props.bookShelfId })
     }
 
     const selectBook = (book: any) => {
-      (context as any).root.ModalService.bookDetail(book)
+      (context as any).root.$modalService.bookDetail(book)
     }
 
     return {

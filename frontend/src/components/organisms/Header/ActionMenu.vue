@@ -1,24 +1,24 @@
 <template>
   <div class="action-menu">
     <div class="content">
-        <round-button text="本棚を追加する" width="92" @click="handleAddBookShelf"></round-button>
+      <round-button
+        text="本棚を追加する"
+        width="92"
+        @click="handleAddBookShelf" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext} from "@vue/composition-api"
-import ModalService from '@/services/modal/index.js'
-import CommonButton from "@/components/Parts/CommonButton.vue"
-import RoundButton from '@/components/Parts/RoundButton.vue'
+import RoundButton from '@/components/atoms/button/BaseButton.vue'
 export default defineComponent({
   components: {
-    CommonButton,
     RoundButton
   },
   setup(props, ctx) {
     const handleAddBookShelf = () => {
-      ModalService.addBookShelf()
+      (ctx as any).root.$modalService.addBookShelf()
     }
 
     return {

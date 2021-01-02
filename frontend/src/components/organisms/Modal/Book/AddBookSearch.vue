@@ -3,7 +3,7 @@
     title="本を追加"
     @close="closeModal">
     <template slot="main">
-      <SearchBox
+      <InputSearchBox
         v-model="state.searchWord"
         :value="state.searchWord"
         @keydown.enter.native="handleSearch()"
@@ -37,18 +37,18 @@
 <script lang="ts">
 import Modal from '@/components/atoms/BaseModal.vue'
 import ModalService from '@/services/modal/index'
-import SearchBox from "@/components/Parts/CommonSearchBox.vue"
+import InputSearchBox from "@/components/molecules/InputSearchBox.vue"
 import Pagination from '@/components/Pagination.vue'
 import { SetupContext, defineComponent, reactive } from '@vue/composition-api'
 
 import { mapGetters } from 'vuex'
 import { useBookStore } from '@/store/bookStore'
-import { RepositoryFactory } from '@/api/Factory/index.js'
+import { RepositoryFactory } from '@/api/Factory'
 
 export default defineComponent({
   components: {
     Modal,
-    SearchBox,
+    InputSearchBox,
     Pagination
   },
   props: {

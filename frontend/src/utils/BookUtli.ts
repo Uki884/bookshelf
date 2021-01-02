@@ -1,24 +1,61 @@
+interface Book extends Payload {
+  author: string
+  title: string
+  book_id: string
+  column_no: number
+  row_no: number
+  cover: string
+  created_at: string
+  image: string
+  isbn: string
+  position_id: string
+  price: string
+  publisher: string
+}
+
+interface Payload {
+  author: string
+  title: string
+  id: string
+  column_no: number
+  row_no: number
+  cover: string
+  created_at: string
+  image: string
+  isbn: string
+  position_id: string
+  price: string
+  publisher: string
+  bookPosition: { id: string; column_no: number; row_no: number }
+}
+
+export interface BookShelf {
+  description: string
+  id: number
+  name: string
+  books: Book[]
+}
+
 export default {
-  setBookShelf: (bookData) => {
+  setBookShelf: (bookData: BookShelf) => {
     let arrayLength = 4
     if (bookData.books.length) {
-      const columnNo = bookData.books.map((item) => {
+      const columnNo = bookData.books.map((item: Book) => {
         return item.column_no
       })
       arrayLength = Math.max(...columnNo)
     }
     arrayLength = arrayLength <= 4 ? 4 : arrayLength
     const targetBookShelf = [...Array(arrayLength + 1)].map(() => {
-      let items = []
+      const items = []
       for (let i = 0; i < 4; i++) {
-        let item = {}
+        const item = {} as any
         item.no = i
         items.push(item)
       }
       return items
     })
-    let information
-    information = { id: bookData.id, description: bookData.description, name: bookData.name }
+    const information = { id: bookData.id, description: bookData.description, name: bookData.name }
     if (bookData.books.length > 0) {
       targetBookShelf.forEach((target, targetIndex) => {
         bookData.books.forEach((item, booksIndex) => {
@@ -32,10 +69,10 @@ export default {
     return { books: targetBookShelf, information }
   },
 
-  createBookArray: (item) => {
+  createBookArray: (item: BookShelf) => {
     if (item.books.length <= 0) return []
-    return item.books.map((book) => {
-      let bookData = {}
+    return item.books.map((book: Book) => {
+      const bookData = {} as Book
       bookData.book_id = book.id
       bookData.author = book.author
       bookData.title = book.title

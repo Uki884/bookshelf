@@ -26,9 +26,8 @@
 </template>
 
 <script>
-import ModalService from '@/services/modal/index.js'
 import {SIDEMENU_LIST} from '@/constants/SIDEMENU_LIST.js'
-import CommonButton from "@/components/Parts/CommonButton.vue"
+import CommonButton from "@/components/atoms/button/CommonButton.vue"
 
 export default {
   components: {
@@ -65,7 +64,7 @@ export default {
     },
     async action(action) {
       await this.$emit('click')
-      await ModalService[action.name](action.type)
+      await this.$modalService[action.name](action.type)
     },
     route(path) {
       this.$router.push(path).catch(err => {})

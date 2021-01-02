@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import Modal from '@/components/atoms/BaseModal.vue'
-import ModalService from '@/services/modal/index.js'
 import { mapGetters } from 'vuex'
 import { SetupContext, defineComponent } from '@vue/composition-api'
 import { useUserStore } from '@/store/userStore.ts'

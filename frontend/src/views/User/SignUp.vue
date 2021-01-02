@@ -50,7 +50,7 @@
 
 <script>
 import { validation, requestInput } from '@/utils/validation.js'
-import TextField from "@/components/Parts/CommonTextField.vue"
+import TextField from "@/components/molecules/InputTextField.vue"
 export default {
   components: {
     TextField

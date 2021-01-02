@@ -44,7 +44,7 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext} from "@vue/composition-api"
 import { useUserStore } from '@/store/userStore'
-import TextField from "@/components/Parts/CommonTextField.vue"
+import TextField from "@/components/molecules/InputTextField.vue"
 
 export default defineComponent({
   components: {

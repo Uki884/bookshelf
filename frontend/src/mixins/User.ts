@@ -5,8 +5,9 @@ export default {
     ...mapGetters({ user: "user/user" }),
   },
   methods: {
-    isLoggedIn() {
-      return Object.keys(this.user).length > 0
+    isLoggedIn(): boolean {
+      const user = (this as any).user
+      return Object.keys(user).length > 0
     }
   },
 }

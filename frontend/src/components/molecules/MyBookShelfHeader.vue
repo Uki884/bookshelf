@@ -41,7 +41,7 @@ import {
   computed,
 } from "@vue/composition-api"
 import { useBookShelfStore } from "@/store/bookShelfStore.ts"
-import RoundButton from '@/components/Parts/RoundButton.vue'
+import RoundButton from '@/components/atoms/button/BaseButton.vue'
 import BookShelfLabel from '@/components/atoms/labels/BookShelfLabel.vue'
 export default defineComponent({
   components: {

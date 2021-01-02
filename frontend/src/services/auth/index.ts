@@ -9,13 +9,18 @@ const client_id = process.env.VUE_APP_AUTH0_CLIENT_ID
 const redirect_uri = window.location.origin + "/callback"
 
 export class Auth {
+  auth0Client: any
+  domain: string = ''
+  client_id: string = ''
+  loading: boolean = false
+  error: any = ''
   constructor() {
   }
 
   async init() {
     this.auth0Client = await createAuth0Client({
-      domain: domain,
-      client_id: client_id,
+      domain: domain || '',
+      client_id: client_id || '',
       redirect_uri: redirect_uri,
     })
   }
@@ -33,7 +38,7 @@ export class Auth {
     return { userData, idToken: idToken.__raw, token }
   }
 
-  async loginWithPopup(o) {
+  async loginWithPopup(o: any) {
     try {
       await this.auth0Client.loginWithPopup(o)
     } catch (e) {
@@ -56,11 +61,11 @@ export class Auth {
     }
   }
 
-  async loginWithRedirect(o) {
+  async loginWithRedirect(o: any) {
     return await this.auth0Client.loginWithRedirect(o)
   }
 
-  logout(o) {
+  logout(o: any) {
     const returnTo = { returnTo: window.location.origin }
     this.auth0Client.logout(returnTo)
     localStorage.removeItem("idToken")

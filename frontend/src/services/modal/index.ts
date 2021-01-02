@@ -1,5 +1,5 @@
-import { book } from '@/services/modal/book.js'
-import store from '@/store/index'
+import { book } from '@/services/modal/book'
+import store from '@/store'
 
 export default {
   ...book,

@@ -25,7 +25,7 @@
 <script lang="ts">
 
 import { defineComponent, reactive, SetupContext, computed} from "@vue/composition-api"
-import RoundButton from '@/components/Parts/RoundButton.vue'
+import RoundButton from '@/components/atoms/button/BaseButton.vue'
 import Books from '@/components/organisms/Books'
 
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'

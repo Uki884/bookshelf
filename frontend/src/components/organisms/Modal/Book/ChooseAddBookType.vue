@@ -26,9 +26,8 @@
 
 <script>
 import Modal from '@/components/atoms/BaseModal.vue'
-import ModalService from '@/services/modal/index.js'
 import { mapGetters } from 'vuex'
-import commonButton from "@/components/Parts/CommonButton.vue"
+import commonButton from "@/components/atoms/button/CommonButton.vue"
 
 export default {
   components: {
@@ -46,10 +45,10 @@ export default {
       ModalService.close()
     },
     search() {
-      this.ModalService.addBook('Search', this.params)
+      this.$modalService.addBook('Search', this.params)
     },
     barcode() {
-      this.ModalService.addBook('Barcode', this.params)
+      this.$modalService.addBook('Barcode', this.params)
     }
   }
 

@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import Modal from '@/components/atoms/BaseModal.vue'
-import ModalService from '@/services/modal/index.js'
 import { SetupContext, defineComponent } from '@vue/composition-api'
 import { useGrobalStore } from '@/store/grobalStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore'

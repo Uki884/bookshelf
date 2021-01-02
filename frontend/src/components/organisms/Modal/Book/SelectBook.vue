@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import Modal from '@/components/atoms/BaseModal.vue'
-import ModalService from '@/services/modal/index.js'
 import { SetupContext, defineComponent } from '@vue/composition-api'
 import { useUserStore } from '@/store/userStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
@@ -64,7 +63,7 @@ export default defineComponent({
 
       await useAddBook(payload)
       await useGetUserBookShelf(user.value.id)
-      await (context as any).root.ModalService.closeAll()
+      await (context as any).root.$modalService.closeAll()
     }
 
     return {

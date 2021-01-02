@@ -11,7 +11,6 @@
 
 <script>
 import Modal from '@/components/atoms/BaseModal.vue'
-import ModalService from '@/services/modal/index.js'
 import BookDetailItem from '@/components/organisms/Book/BookDetailItem.vue'
 
 import { mapGetters } from 'vuex'
@@ -36,7 +35,7 @@ export default {
   },
   methods: {
     closeModal() {
-      ModalService.close()
+      this.$modalService.close()
     },
   }
 }

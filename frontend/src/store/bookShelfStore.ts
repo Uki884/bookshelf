@@ -6,7 +6,7 @@ import {
   ref
 } from "@vue/composition-api"
 
-import BookUtil from "@/utils/BookUtli"
+import BookUtil, { BookShelf } from "@/utils/BookUtli"
 import { CREATE_BOOKSHELF } from '@/apollo/mutations/createBookShelf.ts'
 import { GET_USER_BOOKSHELFS } from '@/apollo/queries/getUserBookShelfs'
 import { SAVE_BOOK_POSITION } from '@/apollo/mutations/saveBookPosition.ts'
@@ -55,7 +55,7 @@ export default function useBookShelf(context: SetupContext) {
 
   const useSetBookShelf = async (bookshelf: any) => {
     const bookData = bookshelf.map((item: any) => {
-      const bookShelf = { books: null, description: "", id: null, name: "" }
+      const bookShelf = { } as BookShelf
       bookShelf.books = BookUtil.createBookArray(item)
       bookShelf.description = item.description
       bookShelf.id = Number(item.id) as any

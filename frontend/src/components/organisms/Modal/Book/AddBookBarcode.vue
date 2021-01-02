@@ -56,7 +56,6 @@
 
 <script lang="ts">
 import { defineComponent, reactive, SetupContext, onMounted} from "@vue/composition-api"
-import { Caputure } from '@/utils/BarcodeScanner.js'
 import useBarcodeScanner from '@/composables/useBarcodeScanner'
 import { useBookStore } from '@/store/bookStore'
 import { useGrobalStore } from '@/store/grobalStore.ts'

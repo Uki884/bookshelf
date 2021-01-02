@@ -17,9 +17,7 @@
             scale="2"
             name="times-circle" />
         </div>
-        <!-- <slot name="header_button" /> -->
       </div>
-      <!-- <slot name="subtile" /> -->
       <div class="Modal__body">
         <slot name="main" />
       </div>
@@ -31,7 +29,6 @@
 </template>
 
 <script>
-import ModalService from '@/services/modal/index.js'
 
 export default {
   props: {
@@ -60,7 +57,7 @@ export default {
   },
   methods: {
     closeModal() {
-      ModalService.close()
+      this.$modalService.close()
     },
   }
 }

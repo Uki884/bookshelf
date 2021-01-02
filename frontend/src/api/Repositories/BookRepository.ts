@@ -1,12 +1,12 @@
-import Repository from "@/api/index"
+import Repository from "@/api"
 
 const resource = process.env.VUE_APP_API_URL
 
 export default {
-  addBook(payload) {
+  addBook(payload: any) {
     return Repository.post(`${resource}/api/books/`, payload)
   },
-  deleteBook(payload) {
+  deleteBook(payload: any) {
     return Repository.delete(`${resource}/api/books/${payload.id}`)
   },
   getBooks() {
@@ -15,13 +15,13 @@ export default {
   getBookShelf() {
     return Repository.get(`${resource}/api/book_shelf/`)
   },
-  addBookShelf(payload) {
+  addBookShelf(payload: any) {
     return Repository.post(`${resource}/api/book_shelf/`, payload)
   },
-  deleteBookShelf(payload) {
+  deleteBookShelf(payload: any) {
     return Repository.delete(`${resource}/api/book_shelf/${payload.id}`)
   },
-  saveBooksPosition(payload) {
+  saveBooksPosition(payload: any) {
     return Repository.patch(`${resource}/api/books/edit_book_position/`, payload)
   },
 }
