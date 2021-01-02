@@ -12,7 +12,7 @@
     "@auth0/auth0-spa-js": "^1.11.0",
     "@types/swiper": "^5.4.0",
     "@types/vuedraggable": "^2.23.1",
-    "@vue/composition-api": "^1.0.0-beta.10",
+    "@vue/composition-api": "^1.0.0-beta.22",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.14",

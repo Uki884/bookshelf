@@ -91,6 +91,7 @@ export default {
     width: 600px;
     background: white;
     position: relative;
+    margin: 16px;
   }
   .body {
     padding: 0 60px;
