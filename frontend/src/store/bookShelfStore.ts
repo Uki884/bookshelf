@@ -6,7 +6,7 @@ import {
   ref
 } from "@vue/composition-api"
 
-import BookUtil, { BookShelf } from "@/utils/BookUtli"
+import BookUtil from "@/utils/BookUtli"
 import { CREATE_BOOKSHELF } from '@/apollo/mutations/createBookShelf.ts'
 import { GET_USER_BOOKSHELFS } from '@/apollo/queries/getUserBookShelfs'
 import { SAVE_BOOK_POSITION } from '@/apollo/mutations/saveBookPosition.ts'

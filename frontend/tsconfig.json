@@ -12,7 +12,7 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "@types/"
+      "@types"
     ],
     "paths": {
       "@/*": [
@@ -27,7 +27,6 @@
   },
   "include": [
     "*/**/*",
-    "@types"
   ],
   "exclude": [
     "node_modules"

@@ -2,28 +2,28 @@
   <div
     class="bookshelf"
     @click.self="useHandleEdit(false)">
-      <MyBookShelfHeader :bookShelf="bookShelf"  />
-      <div
-        v-if="bookShelf.books.length"
-        class="outer">
-        <Books
-          v-for="(item, index) in bookShelf.books"
-          :id="index"
-          :key="index"
-          :books="item"
-          :book-shelf="bookShelf.books"
-          :book-shelf-id="bookShelf.information.id"
-          :parent-index="parentIndex"
-          :is-edit="state.isEditMode"
-          :is-edit-position="state.isEditPositionMode"
-          :column="index"
-          class="line seam" />
-      </div>
+    <MyBookShelfHeader :book-shelf="bookShelf" />
+    <div
+      v-if="bookShelf.books.length"
+      class="outer">
+      <Books
+        v-for="(item, index) in bookShelf.books"
+        :id="index"
+        :key="index"
+        :books="item"
+        :book-shelf="bookShelf.books"
+        :book-shelf-id="bookShelf.information.id"
+        :parent-index="parentIndex"
+        :is-edit="state.isEditMode"
+        :is-edit-position="state.isEditPositionMode"
+        :column="index"
+        class="line seam" />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-
+import { PropType } from 'vue'
 import { defineComponent, reactive, SetupContext, computed} from "@vue/composition-api"
 import RoundButton from '@/components/atoms/button/BaseButton.vue'
 import Books from '@/components/organisms/Books'
@@ -34,7 +34,6 @@ import { useUserStore } from '@/store/userStore.ts'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 import MyBookShelfHeader from '@/components/molecules/MyBookShelfHeader.vue'
 
-//@ts-ignore
 export default defineComponent({
   components: {
     Swiper,
@@ -51,7 +50,7 @@ export default defineComponent({
       type: Number,
     }
   },
-  setup(props: any, context: SetupContext) {
+  setup(props: { bookShelf: BookShelf }, context: SetupContext) {
     const { user } = useUserStore()
     const { BOOKSHELF_SELECT_MENU, useAddBookShelfRow, state,useHandleEdit } = useBookShelfStore()
 
