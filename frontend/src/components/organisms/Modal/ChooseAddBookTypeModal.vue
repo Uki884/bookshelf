@@ -45,10 +45,10 @@ export default {
       ModalService.close()
     },
     search() {
-      this.$modalService.addBook('Search', this.params)
+      this.$modalService.addBook('AddBookSearchModal', this.params)
     },
     barcode() {
-      this.$modalService.addBook('Barcode', this.params)
+      this.$modalService.addBook('AddBookBarcodeModal', this.params)
     }
   }
 

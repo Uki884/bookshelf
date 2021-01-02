@@ -9,49 +9,49 @@ export const book = {
   },
   selectBook(payload: any) {
     store.dispatch('modal/openModal', {
-      component: "SelectBook",
+      component: "SelectBookModal",
       params: payload
     })
   },
   deleteBook(payload: any) {
     store.dispatch('modal/openModal', {
-      component: 'DeleteBook',
+      component: 'DeleteBookModal',
       params: payload
     })
   },
   deleteBookShelf(payload: any) {
     store.dispatch('modal/openModal', {
-      component: 'DeleteBookShelf',
+      component: 'DeleteBookShelfModal',
       params: payload
     })
   },
   addBookShelf(payload: any) {
     store.dispatch('modal/openModal', {
-      component: 'AddBookShelf',
+      component: 'AddBookShelfModal',
       params: payload
     })
   },
   changeBookShelfName(payload: any) {
     store.dispatch('modal/openModal', {
-      component: 'ChangeBookShelfName',
+      component: 'ChangeBookShelfNameModal',
       params: payload
     })
   },
   bookDetail(payload: any) {
     store.dispatch('modal/openModal', {
-      component: 'BookDetail',
+      component: 'BookDetailModal',
       params: payload
     })
   },
   changeBookPositionComfirm(payload: any) {
     store.dispatch('modal/openModal', {
-      component: 'ChangeBookPositionComfirm',
+      component: 'ChangeBookPositionComfirmModal',
       params: payload
     })
   },
   chooseAddBookType(payload: any) {
     store.dispatch('modal/openModal', {
-      component: 'ChooseAddBookType',
+      component: 'ChooseAddBookTypeModal',
       params: payload
     })
   },

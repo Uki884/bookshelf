@@ -21,29 +21,28 @@ import {
 
 import { useGrobalStore } from '@/store/grobalStore.ts'
 
-import Barcode from '@/components/organisms/Modal/AddBookBarcodeModal.vue'
-import Search from "@/components/organisms/Modal/AddBookSearchModal.vue"
-import DeleteBook from "@/components/organisms/Modal/DeleteBookModal.vue"
-import DeleteBookShelf from '@/components/organisms/Modal/DeleteBookShelfModal.vue'
-import AddBookShelf from '@/components/organisms/Modal/AddBookShelfModal.vue'
-import ChangeBookPositionComfirm from "@/components/organisms/Modal/changeBookPositionComfirmModal.vue"
-import ChooseAddBookType from '@/components/organisms/Modal/ChooseAddBookTypeModal.vue'
-import SelectBook from "@/components/organisms/Modal/SelectBookModal.vue"
-import BookDetailItem from "@/components/organisms/Modal/BookDetailItemModal.vue"
-import ChangeBookShelfName from '@/components/organisms/Modal/ChangeBookShelfNameModal.vue'
+import AddBookBarcodeModal from '@/components/organisms/Modal/AddBookBarcodeModal.vue'
+import AddBookSearchModal from "@/components/organisms/Modal/AddBookSearchModal.vue"
+import DeleteBookModal from "@/components/organisms/Modal/DeleteBookModal.vue"
+import DeleteBookShelfModal from '@/components/organisms/Modal/DeleteBookShelfModal.vue'
+import AddBookShelfModal from '@/components/organisms/Modal/AddBookShelfModal.vue'
+import ChangeBookPositionComfirmModal from "@/components/organisms/Modal/ChangeBookPositionComfirmModal.vue"
+import ChooseAddBookTypeModal from '@/components/organisms/Modal/ChooseAddBookTypeModal.vue'
+import SelectBookModal from "@/components/organisms/Modal/SelectBookModal.vue"
+import BookDetailItemModal from "@/components/organisms/Modal/BookDetailItemModal.vue"
+import ChangeBookShelfNameModal from '@/components/organisms/Modal/ChangeBookShelfNameModal.vue'
 
 export default defineComponent({
   components: {
-    AddBookShelf,
-    Barcode,
-    Search,
-    DeleteBook,
-    DeleteBookShelf,
-    ChangeBookPositionComfirm,
-    ChooseAddBookType,
-    SelectBook,
-    BookDetailItem,
-    ChangeBookShelfName
+    AddBookShelfModal,
+    AddBookSearchModal,
+    DeleteBookModal,
+    DeleteBookShelfModal,
+    ChangeBookPositionComfirmModal,
+    ChooseAddBookTypeModal,
+    SelectBookModal,
+    BookDetailItemModal,
+    ChangeBookShelfNameModal
   },
   props: {
     item: {
