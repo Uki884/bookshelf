@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'vue-awesome/icons'
-import '@/firebase/firebaseConfig.js'
 import Icon from "vue-awesome/components/Icon.vue"
 import isDevice from "@/mixins/isDevice.ts"
 import ModalService from "@/services/modal"
@@ -24,7 +23,8 @@ const apolloProvider = new VueApollo({
 })
 
 import authService from "@/services/auth"
-(async function () {
+
+const createVueApp = async() => {
   await authService.init()
   Vue.prototype.$auth0 = authService
   Vue.config.productionTip = false
@@ -34,4 +34,6 @@ import authService from "@/services/auth"
     apolloProvider,
     render: (h) => h(App),
   }).$mount("#app")
-}())
+}
+
+createVueApp()

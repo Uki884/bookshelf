@@ -12,15 +12,11 @@ export default function useGrobal(context: SetupContext) {
     modals.value.push(payload)
   }
 
-  // const closeModal = () => {
-  //   modals.value.pop()
-  // }
-
   const closeModal = () => {
-    (context as any).root.ModalService.close()
+    (context as any).root.$modalService.close()
   }
   const closeAllModal = () => {
-    (context as any).root.ModalService.closeAll()
+    (context as any).root.$modalService.closeAll()
   }
 
   return {

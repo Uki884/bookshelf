@@ -1,7 +1,7 @@
 <template>
   <div
     class="bookshelf"
-    @click.self="handleEdit(false)">
+    @click.self="useHandleEdit(false)">
       <MyBookShelfHeader :bookShelf="bookShelf"  />
       <div
         v-if="bookShelf.books.length"
@@ -53,7 +53,7 @@ export default defineComponent({
   },
   setup(props: any, context: SetupContext) {
     const { user } = useUserStore()
-    const { BOOKSHELF_SELECT_MENU, useAddBookShelfRow, state } = useBookShelfStore()
+    const { BOOKSHELF_SELECT_MENU, useAddBookShelfRow, state,useHandleEdit } = useBookShelfStore()
 
     const bookShelf = computed(() => {
       return props.bookShelf
@@ -61,6 +61,7 @@ export default defineComponent({
 
     return {
       state,
+      useHandleEdit,
     }
   }
 })

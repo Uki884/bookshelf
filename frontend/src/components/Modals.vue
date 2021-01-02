@@ -21,16 +21,16 @@ import {
 
 import { useGrobalStore } from '@/store/grobalStore.ts'
 
-import Barcode from '@/components/organisms/Modal/Book/AddBookBarcode.vue'
-import Search from "@/components/organisms/Modal/Book/AddBookSearch.vue"
-import DeleteBook from "@/components/organisms/Modal/Book/DeleteBook.vue"
-import DeleteBookShelf from '@/components/organisms/Modal/BookShelf/DeleteBookShelf.vue'
-import AddBookShelf from '@/components/organisms/Modal/BookShelf/AddBookShelf.vue'
-import ChangeBookPositionComfirm from "@/components/organisms/Modal/ChangePosition/changeBookPositionComfirm.vue"
-import ChooseAddBookType from '@/components/organisms/Modal/Book/ChooseAddBookType.vue'
-import SelectBook from "@/components/organisms/Modal/Book/SelectBook.vue"
-import BookDetail from "@/components/organisms/Modal/Book/BookDetail.vue"
-import ChangeBookShelfName from '@/components/organisms/Modal/BookShelf/ChangeBookShelfName.vue'
+import Barcode from '@/components/organisms/Modal/AddBookBarcodeModal.vue'
+import Search from "@/components/organisms/Modal/AddBookSearchModal.vue"
+import DeleteBook from "@/components/organisms/Modal/DeleteBookModal.vue"
+import DeleteBookShelf from '@/components/organisms/Modal/DeleteBookShelfModal.vue'
+import AddBookShelf from '@/components/organisms/Modal/AddBookShelfModal.vue'
+import ChangeBookPositionComfirm from "@/components/organisms/Modal/changeBookPositionComfirmModal.vue"
+import ChooseAddBookType from '@/components/organisms/Modal/ChooseAddBookTypeModal.vue'
+import SelectBook from "@/components/organisms/Modal/SelectBookModal.vue"
+import BookDetailItem from "@/components/organisms/Modal/BookDetailItemModal.vue"
+import ChangeBookShelfName from '@/components/organisms/Modal/ChangeBookShelfNameModal.vue'
 
 export default defineComponent({
   components: {
@@ -42,7 +42,7 @@ export default defineComponent({
     ChangeBookPositionComfirm,
     ChooseAddBookType,
     SelectBook,
-    BookDetail,
+    BookDetailItem,
     ChangeBookShelfName
   },
   props: {

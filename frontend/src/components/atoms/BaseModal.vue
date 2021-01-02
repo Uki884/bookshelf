@@ -1,27 +1,26 @@
 <template>
   <div
     id="background"
-    class="Modal__background"
-    @click.self="$emit('close')">
+    class="background"
+    @click.self="closeModal()">
     <div
-      class="Modal__wrapper"
-      :style="modalSize">
-      <div class="Modal__header">
-        <div class="Modal__title">
+      class="wrapper">
+      <div class="header">
+        <div class="title">
           {{ title }}
         </div>
         <div
-          class="Modal__close"
-          @click="closeModal">
+          class="close"
+          @click="closeModal()">
           <v-icon
             scale="2"
             name="times-circle" />
         </div>
       </div>
-      <div class="Modal__body">
+      <div class="body">
         <slot name="main" />
       </div>
-      <div class="Modal__footer">
+      <div class="footer">
         <slot name="footer" />
       </div>
     </div>
@@ -42,19 +41,6 @@ export default {
       size: ''
     }
   },
-  computed: {
-    modalSize() {
-      const modalSize = `width: ${this.size}%;`
-      return modalSize
-    }
-  },
-  mounted() {
-    if (this.isMobile()) {
-      let client_w = document.querySelector(".Modal__wrapper").clientWidth
-      const size = (client_w * 2 / 100)
-      this.size = 100 - size
-    }
-  },
   methods: {
     closeModal() {
       this.$modalService.close()
@@ -64,6 +50,52 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/modal.scss';
+  .background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .title{
+    font-size: 24px;
+    padding-top: 12px;
+    font-weight: bold;
+  }
+  .header {
+    height: 60px;
+    position: relative;
+  }
+  .footer {
+    display: flex;
+    justify-content: center;
+    height: 60px;
+  }
+  .pagination {
+    height: 60px;
+    border-top: solid 1px;
+  }
+  .close {
+    position: absolute;
+    right: 16px;
+    top: 10px;
+    cursor: pointer;
+  }
+  .wrapper {
+    border-radius: 6px;
+    height: 600px;
+    width: 600px;
+    background: white;
+    position: relative;
+  }
+  .body {
+    padding: 0 60px;
+    height: calc(100% - 148px);
+
+  }
 
 </style>

@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MyBookShelf from "../views/MyBookShelf.vue"
-import Login from '@/views/User/Login.vue'
-import SignUp from "@/views/User/SignUp.vue"
+import MyBookShelf from "@/views/MyBookShelf.vue"
 import isLoggedIn from '@/router/plugins/isLoggedIn.js'
 import CallBack from '@/views/Callback.vue'
 
@@ -35,17 +33,6 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
-    beforeEnter: isLoggedIn,
-  },
-  {
-    path: "/signup",
-    name: "SignUp",
-    component: SignUp,
   },
 ]
 

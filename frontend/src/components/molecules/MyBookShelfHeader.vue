@@ -7,7 +7,7 @@
           v-if="state.isEditMode"
           width="120"
           text="本の追加をやめる"
-          @click.native="handleEdit(false)" />
+          @click.native="useHandleEdit(false)" />
         <RoundButton
           v-if="state.isEditPositionMode"
           width="120"
@@ -59,6 +59,7 @@ export default defineComponent({
       BOOKSHELF_SELECT_MENU,
       useAddBookShelfRow,
       state,
+      useHandleEdit,
     } = useBookShelfStore()
 
     const handleOpen = (flg: boolean) => {
@@ -78,20 +79,20 @@ export default defineComponent({
     }
 
     const handleEditBookshelfName = () => {
-      (context as any).root.ModalService.changeBookShelfName(
+      (context as any).root.$modalService.changeBookShelfName(
         props.bookShelf.information
       )
     }
 
     // 本棚削除
     const deleteBookShelf = () => {
-      (context as any).root.ModalService.deleteBookShelf(
+      (context as any).root.$modalService.deleteBookShelf(
         props.bookShelf.information
       )
     }
 
     const saveBookPosition = () => {
-      (context as any).root.ModalService.changeBookPositionComfirm(
+      (context as any).root.$modalService.changeBookPositionComfirm(
         state.editBookPositions
       )
     }
@@ -119,7 +120,7 @@ export default defineComponent({
     return {
       state,
       handleOpen,
-      handleEdit,
+      useHandleEdit,
       handleAction,
       useAddBookShelfRow,
       saveBookPosition,

@@ -36,7 +36,6 @@
 
 <script lang="ts">
 import Modal from '@/components/atoms/BaseModal.vue'
-import ModalService from '@/services/modal/index'
 import InputSearchBox from "@/components/molecules/InputSearchBox.vue"
 import Pagination from '@/components/Pagination.vue'
 import { SetupContext, defineComponent, reactive } from '@vue/composition-api'
@@ -56,11 +55,12 @@ export default defineComponent({
       type: Object
     }
   },
-  setup(props: any, context: SetupContext) {
+  setup(props: any, context: any) {
     const {state} = useBookStore()
-    const rakutenApi = RepositoryFactory.get('rakuten')
+    const rakutenApi = context.root.$RepositoryFactory.get('rakuten')
+
     const closeModal = () => {
-      ModalService.close()
+      context.root.$modalService.close()
     }
     const handleSearch = async() => {
       const payload = {keyword: state.searchWord, page: state.currentPage}
@@ -73,11 +73,11 @@ export default defineComponent({
     const selectBook = (index: number)=> {
       const item = state.searchResult[index]
       const payload = {...props.params, ...item}
-      ModalService.selectBook(payload)
+      context.root.$modalService.selectBook(payload)
     }
 
     const barcode = () => {
-      ModalService.addBook('barcode', props.params)
+      context.root.$modalService.addBook('barcode', props.params)
     }
 
     return {

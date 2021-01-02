@@ -53,7 +53,7 @@ export default function useBookShelf(context: SetupContext) {
 
   const bookShelfs = ref([])
 
-  const useSetBookShelf = async (bookshelf: any) => {
+  const setBookShelf = async (bookshelf: any) => {
     const bookData = bookshelf.map((item: any) => {
       const bookShelf = { } as BookShelf
       bookShelf.books = BookUtil.createBookArray(item)
@@ -68,7 +68,7 @@ export default function useBookShelf(context: SetupContext) {
     return result
   }
 
-  const useCreateBookShelf = async (input: any) => {
+  const createBookShelf = async (input: any) => {
     const variables = { input }
     const data = await context.root.$apollo.mutate({
       mutation: CREATE_BOOKSHELF,
@@ -77,24 +77,24 @@ export default function useBookShelf(context: SetupContext) {
     console.log("useCreateBookShelf", data)
   }
 
-  const useGetUserBookShelf = async (userId: any) => {
+  const getUserBookShelf = async (userId: any) => {
     const variables = { userId }
     const { data } = await context.root.$apollo.query({
       query: GET_USER_BOOKSHELFS,
       variables
     })
-    const bookShelf = await useSetBookShelf(data.userBookshelfs)
+    const bookShelf = await setBookShelf(data.userBookshelfs)
     bookShelfs.value = bookShelf
   }
 
-  const useGetAllBookshelfs = async () => {
+  const getAllBookshelfs = async () => {
     const data = await context.root.$apollo.query({
       query: GET_ALL_BOOKSHELFS
     })
     return data.data.allBookshelfs
   }
 
-  const useChangeBookshelfName = async (input: any) => {
+  const changeBookshelfName = async (input: any) => {
     const variables = { input }
     const { data } = await context.root.$apollo.mutate({
       mutation: CHANGE_BOOKSHELF_NAME,
@@ -102,17 +102,17 @@ export default function useBookShelf(context: SetupContext) {
     })
   }
 
-  const useHandleChangePositionMode = (state: any, flag: boolean) => {
+  const handleChangePositionMode = (state: any, flag: boolean) => {
     state.isEditPositionMode = flag
   }
 
-  const useAddBookShelfRow = (bookShelf: any) => {
+  const addBookShelfRow = (bookShelf: any) => {
     const emptyBooks = [{}, {}, {}, {}]
     bookShelf.books.push(emptyBooks)
     return state
   }
 
-  const useSaveBooksPosition = async (input: any) => {
+  const saveBooksPosition = async (input: any) => {
     const variables = { input }
     const data = await context.root.$apollo.mutate({
       mutation: SAVE_BOOK_POSITION,
@@ -122,7 +122,7 @@ export default function useBookShelf(context: SetupContext) {
   }
 
   //移動した本の位置を保存
-  const useSetBookPosition = (
+  const setBookPosition = (
     changedPosition: { id?: number; column_no: number; row_no: number },
     draggedBookId: number,
     targetPosition: { id?: number; column_no: number; row_no: number },
@@ -147,28 +147,36 @@ export default function useBookShelf(context: SetupContext) {
       }
     }
   }
-  const useDeleteBookShelf = async (bookshelfId: number) => {
+  const deleteBookShelf = async (bookshelfId: number) => {
     const variables = { bookshelfId }
     const { data } = await context.root.$apollo.mutate({
       mutation: DELETE_BOOKSHELF,
       variables,
     })
   }
+
+  // 本棚編集モード
+  const handleEdit = (flg: boolean) => {
+    state.isEditPositionMode = false
+    state.isEditMode = flg
+  }
+
   return {
     state,
     bookShelfs,
     swiperOption,
     BOOKSHELF_SELECT_MENU,
-    useSetBookShelf,
-    useHandleChangePositionMode,
-    useAddBookShelfRow,
-    useSaveBooksPosition,
-    useSetBookPosition,
-    useCreateBookShelf,
-    useGetUserBookShelf,
-    useDeleteBookShelf,
-    useChangeBookshelfName,
-    useGetAllBookshelfs,
+    useSetBookShelf: setBookShelf,
+    useHandleChangePositionMode: handleChangePositionMode,
+    useAddBookShelfRow: addBookShelfRow,
+    useSaveBooksPosition: saveBooksPosition,
+    useSetBookPosition: setBookPosition,
+    useCreateBookShelf: createBookShelf,
+    useGetUserBookShelf: getUserBookShelf,
+    useDeleteBookShelf: deleteBookShelf,
+    useChangeBookshelfName: changeBookshelfName,
+    useGetAllBookshelfs: getAllBookshelfs,
+    useHandleEdit: handleEdit
   }
 }
 
