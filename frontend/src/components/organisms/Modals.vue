@@ -29,7 +29,7 @@ import AddBookShelfModal from '@/components/organisms/Modal/AddBookShelfModal.vu
 import ChangeBookPositionComfirmModal from "@/components/organisms/Modal/ChangeBookPositionComfirmModal.vue"
 import ChooseAddBookTypeModal from '@/components/organisms/Modal/ChooseAddBookTypeModal.vue'
 import SelectBookModal from "@/components/organisms/Modal/SelectBookModal.vue"
-import BookDetailItemModal from "@/components/organisms/Modal/BookDetailItemModal.vue"
+import BookDetailModal from "@/components/organisms/Modal/BookDetailModal.vue"
 import ChangeBookShelfNameModal from '@/components/organisms/Modal/ChangeBookShelfNameModal.vue'
 
 export default defineComponent({
@@ -41,7 +41,7 @@ export default defineComponent({
     ChangeBookPositionComfirmModal,
     ChooseAddBookTypeModal,
     SelectBookModal,
-    BookDetailItemModal,
+    BookDetailModal,
     ChangeBookShelfNameModal
   },
   props: {

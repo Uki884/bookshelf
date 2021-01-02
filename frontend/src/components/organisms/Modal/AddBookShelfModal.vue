@@ -93,4 +93,11 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import 'src/assets/scss/form.scss';
 @import '@/assets/scss/btn.scss';
+.form{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  font-size: 18px;
+}
 </style>

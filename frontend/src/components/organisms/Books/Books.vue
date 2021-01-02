@@ -65,7 +65,6 @@ export default defineComponent({
     BookItem
   },
   setup(props: any, context: SetupContext) {
-    const bookShelfStore = useBookShelfStore()
     const { useSetBookPosition } = useBookShelfStore()
 
     const bookShelf = computed(()=> {
