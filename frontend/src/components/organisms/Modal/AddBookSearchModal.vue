@@ -37,7 +37,7 @@
 <script lang="ts">
 import Modal from '@/components/atoms/BaseModal.vue'
 import InputSearchBox from "@/components/molecules/InputSearchBox.vue"
-import Pagination from '@/components/Pagination.vue'
+import Pagination from '@/components/organisms/Pagination.vue'
 import { SetupContext, defineComponent, reactive } from '@vue/composition-api'
 
 import { mapGetters } from 'vuex'

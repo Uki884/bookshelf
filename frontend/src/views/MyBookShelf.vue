@@ -35,7 +35,7 @@ import { useBookShelfStore } from '@/store/bookShelfStore.ts'
 
 import { useUserStore } from '@/store/userStore'
 import { useAsync } from '@/utils/useAsync'
-import Loading from '@/components/Loading.vue'
+import Loading from '@/components/atoms/Loading.vue'
 
 export default defineComponent({
   components: {

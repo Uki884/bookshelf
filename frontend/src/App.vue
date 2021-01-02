@@ -9,7 +9,7 @@
 import 'normalize.css'
 import GlobalProvider from '@/components/Providers/GlobalProvider.vue'
 import defaultLayout from '@/layouts/default.vue'
-import Modals from '@/components/Modals.vue'
+import Modals from '@/components/organisms/Modals.vue'
 
 import {
   defineComponent,

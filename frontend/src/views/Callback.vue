@@ -8,7 +8,7 @@
 import { defineComponent, reactive, SetupContext, watch, onMounted} from "@vue/composition-api"
 import { useUserStore } from '@/store/userStore'
 import { useBookShelfStore } from '@/store/bookShelfStore.ts'
-import Loading from '@/components/Loading.vue'
+import Loading from '@/components/atoms/Loading.vue'
 
 export default defineComponent({
   components: {
@@ -34,7 +34,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .callback {
   width: 100%;
   height: 100%;
