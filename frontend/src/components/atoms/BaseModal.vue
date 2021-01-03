@@ -94,7 +94,7 @@ export default {
     margin: 16px;
   }
   .body {
-    padding: 0 60px;
+    padding: 0 10%;
     height: calc(100% - 148px);
   }
 

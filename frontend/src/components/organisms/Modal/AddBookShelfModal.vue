@@ -3,7 +3,8 @@
     title="本棚を作成"
     @close="closeModal">
     <template slot="main">
-        <ModalContent>
+      <ModalContent>
+        <div>
         <InputTextField
           v-model="state.input.name.value"
           :value="state.input.name.value"
@@ -16,7 +17,8 @@
           :name="state.input.description.name"
           :error-message="state.input.description.errorMessage"
           :required="state.input.description.require" />
-        </ModalContent>
+          </div>
+      </ModalContent>
     </template>
     <template slot="footer">
       <div
